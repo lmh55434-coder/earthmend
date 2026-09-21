@@ -14,15 +14,19 @@ export default function Home() {
 
       <WhyItMatters id="why-it-matters" linkLabel="Explore Why It Matters" linkHref="#why-it-matters" />
 
-      <BusinessSection id="for-business" quoteHref="#quote" sampleHref="#sample" />
+      <BusinessSection
+        id="for-business"
+        quoteHref="/for-business#build-your-order"
+        sampleHref="/for-business#build-your-order"
+      />
 
       <StorySection id="our-story" linkLabel="Our Story" linkHref="#our-story" />
 
       <CTASection
         heading="Start with something small."
         supporting="A better promotional product can start with a better question: what happens after it's used?"
-        quoteHref="#quote"
-        sampleHref="#sample"
+        quoteHref="/for-business#build-your-order"
+        sampleHref="/for-business#build-your-order"
       />
     </>
   );

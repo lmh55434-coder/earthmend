@@ -60,8 +60,8 @@ export default function ThePen() {
       <CTASection
         heading="Bring EarthMend to your business."
         supporting="Branded, plantable, and ready for your next event, conference or gift order."
-        quoteHref="/#quote"
-        sampleHref="/#sample"
+        quoteHref="/for-business#build-your-order"
+        sampleHref="/for-business#build-your-order"
       />
     </>
   );

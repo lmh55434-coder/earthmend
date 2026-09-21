@@ -19,7 +19,7 @@ export default function ForBusiness() {
         heading="Give your next branded product a second purpose."
         supporting="Whether you're planning an event, gifting clients or building a campaign, let's create something people will remember."
         quoteHref="/for-business#build-your-order"
-        sampleHref="/#sample"
+        sampleHref="/for-business#build-your-order"
       />
     </>
   );

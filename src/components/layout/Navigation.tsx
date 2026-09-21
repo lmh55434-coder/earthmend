@@ -71,7 +71,7 @@ export default function Navigation() {
             </nav>
 
             <Button
-              href="/#sample"
+              href="/for-business#build-your-order"
               variant="primary"
               className="absolute right-0 px-5 py-2.5 text-xs"
             >
@@ -126,7 +126,11 @@ export default function Navigation() {
             );
           })}
           <div className="mt-4">
-            <Button href="/#sample" variant="primary" onClick={() => setOpen(false)}>
+            <Button
+              href="/for-business#build-your-order"
+              variant="primary"
+              onClick={() => setOpen(false)}
+            >
               Request a Free Sample
             </Button>
           </div>

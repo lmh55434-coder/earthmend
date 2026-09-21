@@ -30,7 +30,7 @@ export default function SampleCTA() {
               Want to experience EarthMend before placing a larger order? Request a sample and
               see the product for yourself.
             </p>
-            <Button href="/#sample" variant="primary" className="mt-8">
+            <Button href="/for-business#build-your-order" variant="primary" className="mt-8">
               Request a Free Sample
             </Button>
           </Reveal>
