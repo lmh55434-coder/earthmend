@@ -8,7 +8,7 @@ const COLUMNS = [
       { label: "The Pen", href: "/the-pen" },
       { label: "Why It Matters", href: "/why-it-matters" },
       { label: "For Business", href: "/for-business" },
-      { label: "Our Story", href: "/#our-story" },
+      { label: "Our Story", href: "/our-story" },
     ],
   },
   {

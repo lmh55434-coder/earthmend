@@ -20,7 +20,7 @@ export default function Home() {
         sampleHref="/for-business#build-your-order"
       />
 
-      <StorySection id="our-story" linkLabel="Our Story" linkHref="#our-story" />
+      <StorySection id="our-story" linkLabel="Read Our Story" linkHref="/our-story" />
 
       <CTASection
         heading="Start with something small."
