@@ -14,7 +14,7 @@ const COLUMNS = [
   {
     heading: "Resources",
     links: [
-      { label: "Blog", href: "/#blog" },
+      { label: "Blog", href: "/blog" },
       { label: "FAQ", href: "/#faq" },
       { label: "Get a Quote", href: "/for-business#build-your-order" },
     ],

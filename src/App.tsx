@@ -5,6 +5,8 @@ import ThePen from "./pages/ThePen";
 import WhyItMatters from "./pages/WhyItMatters";
 import ForBusiness from "./pages/ForBusiness";
 import OurStory from "./pages/OurStory";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import RequestQuote from "./pages/RequestQuote";
 
 export default function App() {
@@ -16,6 +18,8 @@ export default function App() {
         <Route path="why-it-matters" element={<WhyItMatters />} />
         <Route path="for-business" element={<ForBusiness />} />
         <Route path="our-story" element={<OurStory />} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog/:slug" element={<BlogPost />} />
         <Route path="request-quote" element={<RequestQuote />} />
       </Route>
     </Routes>
