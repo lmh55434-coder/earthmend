@@ -32,7 +32,13 @@ export default function TheIdea({ id }: { id?: string }) {
 
           <Reveal delay={120} className="max-w-content-text lg:col-span-5">
             <SectionLabel>The Idea</SectionLabel>
-            <h2 className="text-h1 mt-4">One pen. Your brand. A second purpose.</h2>
+            <h2 className="text-h1 mt-4">
+              One pen.
+              <br />
+              Your brand.
+              <br />
+              A second purpose.
+            </h2>
             <p className="text-body-lg mt-5 text-ink-muted">
               An everyday writing essential designed for businesses, events and organisations —
               with a thoughtful second life after use.
