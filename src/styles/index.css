@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design tokens mirrored as CSS custom properties for the rare cases
+  (gradients, box-shadow colour-mixing) that fall outside Tailwind's
+  utility classes. Tailwind's `tailwind.config.ts` is the source of truth —
+  keep these in sync with it.
+*/
+:root {
+  --color-ivory: #f5f0e5;
+  --color-cream: #eee4cc;
+  --color-kraft: #d8c49a;
+  --color-charcoal: #1e1914;
+  --color-muted: #635a4c;
+  --color-moss: #57623f;
+  --color-moss-soft: #647348;
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply bg-background text-ink font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    background-color: var(--color-moss);
+    color: var(--color-ivory);
+  }
+
+  /* Consistent, visible focus ring everywhere — never removed, only restyled. */
+  :focus-visible {
+    outline: 2px solid var(--color-moss);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-5 focus:top-5 focus:z-50;
+    @apply focus:rounded-sm focus:bg-charcoal focus:px-4 focus:py-3 focus:text-paper;
+    @apply focus:text-sm focus:font-medium;
+  }
+
+  /* Eyebrow: small tracked label used above headlines and as section kickers. */
+  .text-eyebrow {
+    @apply font-sans text-xs font-medium uppercase tracking-widest text-ink-muted;
+  }
+
+  .text-display {
+    @apply font-serif font-medium text-ink;
+    font-size: clamp(2.75rem, 2.05rem + 3vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .text-h1 {
+    @apply font-serif font-medium text-ink;
+    font-size: clamp(2.25rem, 1.85rem + 1.8vw, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .text-h2 {
+    @apply font-serif font-medium text-ink;
+    font-size: clamp(1.75rem, 1.5rem + 1.1vw, 2.375rem);
+    line-height: 1.15;
+  }
+
+  .text-h3 {
+    @apply font-sans text-ink;
+    font-size: clamp(1rem, 0.93rem + 0.3vw, 1.1875rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  .text-body-lg {
+    @apply font-sans text-ink;
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    line-height: 1.6;
+  }
+
+  .text-body {
+    @apply font-sans text-ink;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .text-small {
+    @apply font-sans text-ink-muted;
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .text-button {
+    @apply font-sans text-sm font-medium uppercase tracking-wide;
+  }
+}
