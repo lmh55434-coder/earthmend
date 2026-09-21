@@ -1,7 +1,6 @@
 import Container from "../layout/Container";
 import Bleed from "../layout/Bleed";
 import Section from "../layout/Section";
-import Button from "../ui/Button";
 import penFull from "../../assets/pen/pen-full.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
@@ -16,20 +15,12 @@ export default function Hero() {
   return (
     <Section tone="ivory" spacing="sm">
       <Container>
-        <div className="max-w-2xl">
-          <h1 className="text-display">A Pen That Gives Back.</h1>
-          <p className="text-body-lg mt-6 max-w-lg text-ink-muted">
+        <div className="text-center">
+          <h1 className="text-display lg:whitespace-nowrap">A Pen That Gives Back.</h1>
+          <p className="text-body-lg mx-auto mt-6 max-w-xl text-ink-muted">
             Thoughtfully designed from sustainable materials, EarthMend turns an everyday writing
             essential into something that can be used, planted and grown.
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Button href="#the-pen" variant="primary">
-              Explore the Pen
-            </Button>
-            <Button href="#for-business" variant="secondary">
-              For Business
-            </Button>
-          </div>
         </div>
       </Container>
 
