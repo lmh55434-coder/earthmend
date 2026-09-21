@@ -2,6 +2,7 @@ import { useEffect, useId, useState } from "react";
 import Container from "./Container";
 import TextLink from "../ui/TextLink";
 import Button from "../ui/Button";
+import logoMark from "../../assets/brand/logo-mark.png";
 
 const NAV_LINKS = [
   { label: "The Pen", href: "#the-pen" },
@@ -28,9 +29,20 @@ export default function Navigation() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-background/95 backdrop-blur">
       <Container>
-        <div className="flex h-[72px] items-center justify-between">
-          <a href="#top" className="font-serif text-xl font-medium tracking-tight text-ink">
-            Earthmend
+        <div className="relative flex flex-col items-center gap-3 py-5">
+          {/* Business CTAs — desktop only, pinned to the corner so the brand mark can stay centred. */}
+          <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 items-center gap-6 xl:flex">
+            <TextLink href="#quote">Get a Quote</TextLink>
+            <Button href="#sample" variant="primary" className="px-5 py-2.5 text-xs">
+              Request a Free Sample
+            </Button>
+          </div>
+
+          <a href="#top" className="flex flex-col items-center gap-2">
+            <img src={logoMark} alt="" className="h-8 w-auto" />
+            <span className="font-serif text-xl font-medium tracking-tight text-ink">
+              EarthMend
+            </span>
           </a>
 
           <nav aria-label="Primary" className="hidden xl:block">
@@ -48,20 +60,13 @@ export default function Navigation() {
             </ul>
           </nav>
 
-          <div className="hidden items-center gap-6 xl:flex">
-            <TextLink href="#quote">Get a Quote</TextLink>
-            <Button href="#sample" variant="primary" className="px-5 py-2.5 text-xs">
-              Request a Free Sample
-            </Button>
-          </div>
-
           <button
             type="button"
             aria-expanded={open}
             aria-controls={menuId}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center xl:hidden"
+            className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center xl:hidden"
           >
             <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
               <line x1="0" y1="1" x2="22" y2="1" stroke="currentColor" strokeWidth="1.4" />

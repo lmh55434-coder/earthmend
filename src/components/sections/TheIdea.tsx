@@ -24,7 +24,7 @@ export default function TheIdea({ id }: { id?: string }) {
           <Reveal className="lg:col-span-7">
             <img
               src={penFull}
-              alt="The Earthmend kraft-paper pen with its branded barrel and biodegradable seed capsule"
+              alt="The EarthMend kraft-paper pen with its branded barrel and biodegradable seed capsule"
               className="w-full object-cover"
               style={{ aspectRatio: "5 / 4", objectPosition: "68% 50%" }}
             />

@@ -19,7 +19,7 @@ export default function Hero() {
         <div className="max-w-2xl">
           <h1 className="text-display">A Pen That Gives Back.</h1>
           <p className="text-body-lg mt-6 max-w-lg text-ink-muted">
-            Thoughtfully designed from sustainable materials, Earthmend turns an everyday writing
+            Thoughtfully designed from sustainable materials, EarthMend turns an everyday writing
             essential into something that can be used, planted and grown.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -40,7 +40,7 @@ export default function Hero() {
       <Bleed className="mt-14 lg:mt-16">
         <img
           src={penFull}
-          alt="The Earthmend kraft-paper pen and its biodegradable seed capsule, resting beside its cap"
+          alt="The EarthMend kraft-paper pen and its biodegradable seed capsule, resting beside its cap"
           className="w-full object-cover"
           style={{ aspectRatio: PEN_PHOTO_ASPECT }}
         />
@@ -48,7 +48,7 @@ export default function Hero() {
 
       <Container>
         <div
-          aria-label="The Earthmend journey: write, plant, grow"
+          aria-label="The EarthMend journey: write, plant, grow"
           className="mt-8 flex items-center gap-3"
         >
           {JOURNEY.map((step, i) => (

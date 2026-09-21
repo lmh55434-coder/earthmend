@@ -15,14 +15,14 @@ const STEPS = [
     label: "Write",
     description: "Use the pen normally until the ink runs out.",
     image: penTip,
-    alt: "Close-up of the Earthmend pen's writing tip",
+    alt: "Close-up of the EarthMend pen's writing tip",
   },
   {
     number: "02",
     label: "Plant",
     description: "Remove the biodegradable seed capsule and gently plant it in suitable soil.",
     image: penSeedCapsule,
-    alt: "Close-up of the Earthmend pen's biodegradable seed capsule",
+    alt: "Close-up of the EarthMend pen's biodegradable seed capsule",
   },
   {
     number: "03",
@@ -53,7 +53,7 @@ export default function HowToPlant({ id, linkLabel, linkHref }: HowToPlantProps)
         <SectionIntro
           label="How to Plant"
           heading="Give Your Pen a Second Life."
-          supporting="When your Earthmend pen reaches the end of its writing life, don't simply throw it away. Plant the seed capsule and give something new the chance to grow."
+          supporting="When your EarthMend pen reaches the end of its writing life, don't simply throw it away. Plant the seed capsule and give something new the chance to grow."
         />
 
         <div

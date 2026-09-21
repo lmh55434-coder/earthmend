@@ -24,7 +24,7 @@ export default function StorySection({ id, linkLabel, linkHref }: StorySectionPr
         <Reveal className="relative lg:pb-16 lg:pl-[8%]">
           <img
             src={penFull}
-            alt="The Earthmend kraft-paper pen resting on its surface"
+            alt="The EarthMend kraft-paper pen resting on its surface"
             className="w-full object-cover lg:ml-[10%] lg:w-[90%]"
             style={{ aspectRatio: "16 / 10", objectPosition: "35% 50%" }}
           />
@@ -34,11 +34,11 @@ export default function StorySection({ id, linkLabel, linkHref }: StorySectionPr
             <h2 className="text-h1 mt-4">Better choices don&rsquo;t have to look ordinary.</h2>
             <div className="text-body-lg mt-5 space-y-4 text-ink-muted">
               <p>
-                Earthmend began with a simple idea: what if an everyday product could have a life
+                EarthMend began with a simple idea: what if an everyday product could have a life
                 beyond its first use?
               </p>
               <p>
-                We created Earthmend to make sustainability feel tangible — not complicated, not
+                We created EarthMend to make sustainability feel tangible — not complicated, not
                 loud, and not perfect.
               </p>
               <p>Just a small product with a thoughtful second purpose.</p>

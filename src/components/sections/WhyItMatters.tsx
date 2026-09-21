@@ -40,7 +40,7 @@ export default function WhyItMatters({ id, linkLabel, linkHref }: WhyItMattersPr
             </blockquote>
 
             <p className="text-body-lg mt-6 text-ink-muted">
-              Earthmend starts with a simple idea — make an everyday product more thoughtful.
+              EarthMend starts with a simple idea — make an everyday product more thoughtful.
             </p>
 
             <TextLink href={linkHref} className="mt-7">
@@ -51,7 +51,7 @@ export default function WhyItMatters({ id, linkLabel, linkHref }: WhyItMattersPr
           <Reveal delay={120} className="lg:col-span-7">
             <img
               src={penMood}
-              alt="The Earthmend pen resting on a kraft-paper surface, with generous negative space"
+              alt="The EarthMend pen resting on a kraft-paper surface, with generous negative space"
               className="w-full object-cover"
               style={{ aspectRatio: "6 / 5", objectPosition: "50% 35%" }}
             />
