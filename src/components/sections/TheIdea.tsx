@@ -21,7 +21,7 @@ export default function TheIdea({ id }: { id?: string }) {
     <Section id={id} tone="ivory" spacing="lg">
       <Container size="narrow">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:items-center lg:gap-x-16">
-          <Reveal className="lg:col-span-7">
+          <Reveal className="lg:col-span-6">
             <img
               src={penFull}
               alt="The EarthMend kraft-paper pen with its branded barrel and biodegradable seed capsule"
@@ -30,7 +30,7 @@ export default function TheIdea({ id }: { id?: string }) {
             />
           </Reveal>
 
-          <Reveal delay={120} className="max-w-content-text lg:col-span-5">
+          <Reveal delay={120} className="max-w-content-text lg:col-span-6">
             <SectionLabel>The Idea</SectionLabel>
             <h2 className="text-h1 mt-4">
               One pen.
