@@ -45,7 +45,7 @@ export default function WhatTheSymbolMeans() {
   return (
     <Section tone="charcoal" spacing="lg">
       <Container size="narrow">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-x-16">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-x-16">
           <Reveal className="lg:col-span-5">
             <img
               src={logoMark}
