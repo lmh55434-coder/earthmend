@@ -2,7 +2,6 @@ import BrandShowcase from "../components/sections/BrandShowcase";
 import TheProblem from "../components/sections/TheProblem";
 import TheDifference from "../components/sections/TheDifference";
 import WhereItFits from "../components/sections/WhereItFits";
-import Customisation from "../components/sections/Customisation";
 import OrderSteps from "../components/sections/OrderSteps";
 import PricingTable from "../components/sections/PricingTable";
 import SampleCTA from "../components/sections/SampleCTA";
@@ -15,7 +14,6 @@ export default function ForBusiness() {
       <TheProblem />
       <TheDifference />
       <WhereItFits />
-      <Customisation />
       <OrderSteps />
       <PricingTable />
       <SampleCTA />
