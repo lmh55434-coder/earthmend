@@ -13,7 +13,9 @@ export default function PackagingSelector({ checked, onChange, unitCount }: Pack
     <div className="mt-6">
       <label
         className={`group flex min-h-[44px] cursor-pointer items-center justify-between gap-6 border px-5 py-4 transition-colors duration-200 ease-editorial ${
-          checked ? "border-moss bg-kraft/20" : "border-line-strong bg-transparent hover:border-charcoal"
+          checked
+            ? "border-moss bg-moss/15"
+            : "border-line-inverted-strong bg-transparent hover:border-kraft"
         }`}
       >
         <span className="flex items-center gap-4">
@@ -25,8 +27,8 @@ export default function PackagingSelector({ checked, onChange, unitCount }: Pack
           />
           <span
             aria-hidden="true"
-            className={`flex h-6 w-6 shrink-0 items-center justify-center border text-base leading-none transition-colors duration-200 ease-editorial peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-moss ${
-              checked ? "border-moss bg-moss text-ivory" : "border-line-strong text-ink-muted"
+            className={`flex h-6 w-6 shrink-0 items-center justify-center border text-base leading-none transition-colors duration-200 ease-editorial peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-kraft ${
+              checked ? "border-moss bg-moss !text-ivory" : "border-line-inverted-strong !text-kraft"
             }`}
           >
             {checked ? (
@@ -46,12 +48,12 @@ export default function PackagingSelector({ checked, onChange, unitCount }: Pack
           <span>
             <span
               className={`text-body-lg block transition-colors duration-200 ease-editorial ${
-                checked ? "text-ink" : "text-ink-muted group-hover:text-ink"
+                checked ? "!text-ivory" : "!text-kraft group-hover:!text-ivory"
               }`}
             >
               {checked ? "Single Card Packaging" : "Add Single Card Packaging"}
             </span>
-            <span className="text-small mt-0.5 block">
+            <span className="text-small !text-kraft mt-0.5 block">
               {checked && unitCount
                 ? `${formatCurrency(SINGLE_CARD_PRICE)} × ${unitCount.toLocaleString("en-AU")}`
                 : `${formatCurrency(SINGLE_CARD_PRICE)} per pen`}
@@ -59,7 +61,9 @@ export default function PackagingSelector({ checked, onChange, unitCount }: Pack
           </span>
         </span>
 
-        {cost !== null && <span className="text-h3 shrink-0 tracking-normal">{formatCurrency(cost)}</span>}
+        {cost !== null && (
+          <span className="text-h3 !text-ivory shrink-0 tracking-normal">{formatCurrency(cost)}</span>
+        )}
       </label>
     </div>
   );

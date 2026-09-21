@@ -32,18 +32,18 @@ export default function QuantitySelector({ value, onChange }: QuantitySelectorPr
             onClick={() => onChange(option.key)}
             className={`flex flex-col items-start gap-1 border px-5 py-4 text-left transition-colors duration-200 ease-editorial ${
               isSelected
-                ? "border-charcoal bg-charcoal text-ivory"
+                ? "border-ivory bg-ivory"
                 : isSpecial
-                  ? "border-moss/50 bg-transparent text-ink hover:border-moss hover:bg-kraft/20"
-                  : "border-line-strong bg-transparent text-ink hover:border-charcoal hover:bg-kraft/20"
+                  ? "border-moss/60 bg-transparent hover:border-moss hover:bg-moss/10"
+                  : "border-line-inverted-strong bg-transparent hover:border-kraft hover:bg-ivory/5"
             }`}
           >
-            <span className={`text-h3 tracking-normal ${isSelected ? "!text-ivory" : ""}`}>
+            <span className={`text-h3 tracking-normal ${!isSelected ? "!text-ivory" : ""}`}>
               {option.label}
             </span>
-            <span className={`text-eyebrow ${isSelected ? "!text-kraft" : ""}`}>{meta.qualifier}</span>
+            <span className={`text-eyebrow ${!isSelected ? "!text-kraft" : ""}`}>{meta.qualifier}</span>
             {meta.price && (
-              <span className={`text-small ${isSelected ? "!text-kraft" : ""}`}>{meta.price}</span>
+              <span className={`text-small ${!isSelected ? "!text-kraft" : ""}`}>{meta.price}</span>
             )}
           </button>
         );
