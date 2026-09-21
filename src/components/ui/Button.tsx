@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 type Variant = "primary" | "primary-inverted" | "secondary" | "secondary-inverted";
 
@@ -36,13 +37,25 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 /**
  * Restrained rectangular button — no pill shapes, no drop shadow.
  * Renders an `<a>` when `href` is provided, otherwise a `<button>`.
+ * An internal route (href starting with "/", no "#") renders a router
+ * `<Link>` for client-side navigation. Anything with a hash — including a
+ * homepage section like "/#quote" — stays a plain `<a>`, since that's what
+ * makes the browser scroll to the fragment; `<Link>` doesn't.
  */
 export default function Button({ children, variant = "primary", className = "", ...rest }: ButtonProps) {
   const classes = `${base} ${variants[variant]} ${className}`;
 
   if ("href" in rest && rest.href) {
+    const { href, ...anchorRest } = rest as AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+    if (href.startsWith("/") && !href.includes("#")) {
+      return (
+        <Link to={href} className={classes} {...anchorRest}>
+          {children}
+        </Link>
+      );
+    }
     return (
-      <a className={classes} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <a href={href} className={classes} {...anchorRest}>
         {children}
       </a>
     );

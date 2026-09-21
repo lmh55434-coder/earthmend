@@ -14,9 +14,11 @@ type ProductFeatureProps = {
   body: ReactNode;
   linkLabel: string;
   linkHref: string;
+  imageSrc?: string;
   imageAlt: string;
   imagePlaceholderLabel?: string;
   imageAspect?: string;
+  imageObjectPosition?: string;
   /** Which side the image sits on at desktop width. */
   imageSide?: "start" | "end";
 };
@@ -34,9 +36,11 @@ export default function ProductFeature({
   body,
   linkLabel,
   linkHref,
+  imageSrc,
   imageAlt,
   imagePlaceholderLabel,
   imageAspect = "4 / 5",
+  imageObjectPosition,
   imageSide = "end",
 }: ProductFeatureProps) {
   const text = (
@@ -55,8 +59,10 @@ export default function ProductFeature({
   const image = (
     <Reveal delay={120} className="lg:col-span-7">
       <ProductImage
+        src={imageSrc}
         alt={imageAlt}
         aspect={imageAspect}
+        objectPosition={imageObjectPosition}
         placeholderLabel={imagePlaceholderLabel}
         className="w-full"
       />

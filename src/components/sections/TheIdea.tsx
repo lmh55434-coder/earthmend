@@ -58,7 +58,7 @@ export default function TheIdea({ id }: { id?: string }) {
               ))}
             </ol>
 
-            <TextLink href="#the-pen" className="mt-10">
+            <TextLink href="/the-pen" className="mt-10">
               Explore the Pen
             </TextLink>
           </Reveal>

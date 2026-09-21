@@ -1,5 +1,3 @@
-import Navigation from "../components/layout/Navigation";
-import Footer from "../components/layout/Footer";
 import Hero from "../components/sections/Hero";
 import TheIdea from "../components/sections/TheIdea";
 import WhyItMatters from "../components/sections/WhyItMatters";
@@ -9,33 +7,23 @@ import CTASection from "../components/sections/CTASection";
 
 export default function Home() {
   return (
-    <div id="top">
-      <a href="#main" className="skip-link">
-        Skip to content
-      </a>
+    <>
+      <Hero />
 
-      <Navigation />
+      <TheIdea id="the-idea" />
 
-      <main id="main">
-        <Hero />
+      <WhyItMatters id="why-it-matters" linkLabel="Explore Why It Matters" linkHref="#why-it-matters" />
 
-        <TheIdea id="the-pen" />
+      <BusinessSection id="for-business" quoteHref="#quote" sampleHref="#sample" />
 
-        <WhyItMatters id="why-it-matters" linkLabel="Explore Why It Matters" linkHref="#why-it-matters" />
+      <StorySection id="our-story" linkLabel="Our Story" linkHref="#our-story" />
 
-        <BusinessSection id="for-business" quoteHref="#quote" sampleHref="#sample" />
-
-        <StorySection id="our-story" linkLabel="Our Story" linkHref="#our-story" />
-
-        <CTASection
-          heading="Start with something small."
-          supporting="A better promotional product can start with a better question: what happens after it's used?"
-          quoteHref="#quote"
-          sampleHref="#sample"
-        />
-      </main>
-
-      <Footer />
-    </div>
+      <CTASection
+        heading="Start with something small."
+        supporting="A better promotional product can start with a better question: what happens after it's used?"
+        quoteHref="#quote"
+        sampleHref="#sample"
+      />
+    </>
   );
 }

@@ -3,6 +3,8 @@ type ImageBlockProps = {
   alt: string;
   /** CSS aspect-ratio value, e.g. "4 / 5". */
   aspect?: string;
+  /** CSS object-position, for controlling the crop on a wide source photo. */
+  objectPosition?: string;
   placeholderLabel?: string;
   className?: string;
 };
@@ -13,14 +15,21 @@ type ImageBlockProps = {
  * placeholder at the correct aspect ratio — never a fabricated product
  * illustration.
  */
-export default function ImageBlock({ src, alt, aspect = "4 / 5", placeholderLabel, className = "" }: ImageBlockProps) {
+export default function ImageBlock({
+  src,
+  alt,
+  aspect = "4 / 5",
+  objectPosition,
+  placeholderLabel,
+  className = "",
+}: ImageBlockProps) {
   if (src) {
     return (
       <img
         src={src}
         alt={alt}
         className={`w-full object-cover ${className}`}
-        style={{ aspectRatio: aspect }}
+        style={{ aspectRatio: aspect, objectPosition }}
         loading="lazy"
       />
     );

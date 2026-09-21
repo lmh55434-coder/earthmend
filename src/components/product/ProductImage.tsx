@@ -5,6 +5,7 @@ type ProductImageProps = {
   alt: string;
   caption?: string;
   aspect?: string;
+  objectPosition?: string;
   placeholderLabel?: string;
   className?: string;
 };
@@ -20,12 +21,19 @@ export default function ProductImage({
   alt,
   caption,
   aspect = "4 / 5",
+  objectPosition,
   placeholderLabel,
   className = "",
 }: ProductImageProps) {
   return (
     <figure className={className}>
-      <ImageBlock src={src} alt={alt} aspect={aspect} placeholderLabel={placeholderLabel} />
+      <ImageBlock
+        src={src}
+        alt={alt}
+        aspect={aspect}
+        objectPosition={objectPosition}
+        placeholderLabel={placeholderLabel}
+      />
       {caption && (
         <figcaption className="mt-4 text-eyebrow !normal-case !tracking-normal text-ink-muted">
           {caption}
