@@ -1,8 +1,7 @@
-import BusinessHero from "../components/sections/BusinessHero";
+import BrandShowcase from "../components/sections/BrandShowcase";
 import TheProblem from "../components/sections/TheProblem";
 import TheDifference from "../components/sections/TheDifference";
 import WhereItFits from "../components/sections/WhereItFits";
-import BrandShowcase from "../components/sections/BrandShowcase";
 import Customisation from "../components/sections/Customisation";
 import OrderSteps from "../components/sections/OrderSteps";
 import PricingTable from "../components/sections/PricingTable";
@@ -12,11 +11,10 @@ import CTASection from "../components/sections/CTASection";
 export default function ForBusiness() {
   return (
     <>
-      <BusinessHero />
+      <BrandShowcase />
       <TheProblem />
       <TheDifference />
       <WhereItFits />
-      <BrandShowcase />
       <Customisation />
       <OrderSteps />
       <PricingTable />
