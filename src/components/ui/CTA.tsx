@@ -30,7 +30,7 @@ export default function CTA({
   return (
     <div
       className={`flex flex-col items-start gap-6 border-t ${
-        inverted ? "border-line-strong" : "border-line"
+        inverted ? "border-line-inverted-strong" : "border-line"
       } pt-10 sm:flex-row sm:items-end sm:justify-between sm:gap-10`}
     >
       <div className="max-w-xl space-y-3">

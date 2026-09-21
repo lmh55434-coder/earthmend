@@ -23,7 +23,7 @@ const COLUMNS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line bg-charcoal text-ivory">
+    <footer className="border-t border-line-inverted bg-charcoal text-ivory">
       <Container>
         <div className="grid grid-cols-1 gap-12 py-section-sm sm:grid-cols-[1.4fr_1fr_1fr]">
           <div className="max-w-sm space-y-4">
@@ -50,8 +50,16 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-line-strong py-8 text-small !text-kraft sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-t border-line-inverted py-8 text-small !text-kraft sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Earthmend. Made in Australia.</p>
+          <div className="flex items-center gap-6">
+            <TextLink href="#privacy" tone="inverted" className="min-h-0 py-0">
+              Privacy
+            </TextLink>
+            <TextLink href="#terms" tone="inverted" className="min-h-0 py-0">
+              Terms
+            </TextLink>
+          </div>
           <p>Write. Plant. Grow.</p>
         </div>
       </Container>

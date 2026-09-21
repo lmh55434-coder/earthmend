@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "secondary-inverted";
+type Variant = "primary" | "primary-inverted" | "secondary" | "secondary-inverted";
 
 const base =
   "text-button inline-flex min-h-[44px] items-center justify-center gap-2 px-7 py-3.5 " +
@@ -10,6 +10,7 @@ const base =
 // can never collide with another variant's classes when composed via className.
 const variants: Record<Variant, string> = {
   primary: "bg-charcoal text-ivory hover:bg-moss active:bg-charcoal",
+  "primary-inverted": "bg-ivory text-charcoal hover:bg-kraft active:bg-ivory",
   secondary: "border border-charcoal text-charcoal hover:border-moss hover:text-moss",
   "secondary-inverted": "border border-ivory text-ivory hover:border-kraft hover:text-kraft",
 };

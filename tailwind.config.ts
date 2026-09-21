@@ -29,6 +29,10 @@ export default {
         "accent-soft": "#647348",
         line: "rgba(30, 25, 20, 0.12)",
         "line-strong": "rgba(30, 25, 20, 0.22)",
+        // for dividers on dark (charcoal) surfaces, where the dark-toned
+        // `line` tokens above would be invisible against a dark background
+        "line-inverted": "rgba(245, 240, 229, 0.14)",
+        "line-inverted-strong": "rgba(245, 240, 229, 0.24)",
       },
       fontFamily: {
         serif: ["Fraunces", "ui-serif", "Georgia", "serif"],
@@ -37,6 +41,8 @@ export default {
       maxWidth: {
         content: "1200px",
         "content-wide": "1240px",
+        "content-narrow": "1100px",
+        "content-text": "760px",
       },
       spacing: {
         "section-sm": "4rem",
