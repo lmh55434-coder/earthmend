@@ -3,7 +3,6 @@ import Footer from "../components/layout/Footer";
 import Hero from "../components/sections/Hero";
 import TheIdea from "../components/sections/TheIdea";
 import WhyItMatters from "../components/sections/WhyItMatters";
-import HowToPlant from "../components/sections/HowToPlant";
 import BusinessSection from "../components/sections/BusinessSection";
 import StorySection from "../components/sections/StorySection";
 import CTASection from "../components/sections/CTASection";
@@ -23,8 +22,6 @@ export default function Home() {
         <TheIdea id="the-pen" />
 
         <WhyItMatters id="why-it-matters" linkLabel="Explore Why It Matters" linkHref="#why-it-matters" />
-
-        <HowToPlant id="how-to-plant" linkLabel="Learn How to Plant" linkHref="#how-to-plant" />
 
         <BusinessSection id="for-business" quoteHref="#quote" sampleHref="#sample" />
 

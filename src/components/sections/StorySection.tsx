@@ -19,7 +19,7 @@ type StorySectionProps = {
  */
 export default function StorySection({ id, linkLabel, linkHref }: StorySectionProps) {
   return (
-    <Section id={id} tone="ivory" spacing="lg">
+    <Section id={id} tone="cream" spacing="lg">
       <Container size="narrow">
         <Reveal className="relative lg:pb-16 lg:pl-[8%]">
           <img

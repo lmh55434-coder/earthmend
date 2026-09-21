@@ -17,7 +17,7 @@ type WhyItMattersProps = {
  */
 export default function WhyItMatters({ id, linkLabel, linkHref }: WhyItMattersProps) {
   return (
-    <Section id={id} tone="ivory" spacing="lg">
+    <Section id={id} tone="cream" spacing="lg">
       <Container size="narrow">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-x-14">
           <Reveal className="max-w-content-text lg:col-span-5">

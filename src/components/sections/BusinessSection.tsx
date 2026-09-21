@@ -28,7 +28,7 @@ type BusinessSectionProps = {
  */
 export default function BusinessSection({ id, quoteHref, sampleHref }: BusinessSectionProps) {
   return (
-    <Section id={id} tone="cream" spacing="lg">
+    <Section id={id} tone="ivory" spacing="lg">
       <Container size="narrow">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-x-16">
           <Reveal className="max-w-content-text lg:col-span-5">
