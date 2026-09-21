@@ -34,6 +34,9 @@ const STEPS = [
 
 type HowToPlantProps = {
   id?: string;
+  label?: string;
+  heading?: string;
+  supporting?: string;
 };
 
 /**
@@ -43,15 +46,16 @@ type HowToPlantProps = {
  * exist yet, so that stop uses the same honest placeholder treatment as
  * everywhere else rather than a fabricated image.
  */
-export default function HowToPlant({ id }: HowToPlantProps) {
+export default function HowToPlant({
+  id,
+  label = "How to Plant",
+  heading = "Give Your Pen a Second Life.",
+  supporting = "When your EarthMend pen reaches the end of its writing life, don't simply throw it away. Plant the seed capsule and give something new the chance to grow.",
+}: HowToPlantProps) {
   return (
     <Section id={id} tone="cream" spacing="lg">
       <Container size="narrow">
-        <SectionIntro
-          label="How to Plant"
-          heading="Give Your Pen a Second Life."
-          supporting="When your EarthMend pen reaches the end of its writing life, don't simply throw it away. Plant the seed capsule and give something new the chance to grow."
-        />
+        <SectionIntro label={label} heading={heading} supporting={supporting} />
 
         <div aria-hidden="true" className="mt-14 flex items-center gap-4 text-eyebrow lg:mt-20">
           {JOURNEY.map((step, i) => (

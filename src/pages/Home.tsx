@@ -12,7 +12,7 @@ export default function Home() {
 
       <TheIdea id="the-idea" />
 
-      <WhyItMatters id="why-it-matters" linkLabel="Explore Why It Matters" linkHref="#why-it-matters" />
+      <WhyItMatters id="why-it-matters" linkLabel="Explore Why It Matters" linkHref="/why-it-matters" />
 
       <BusinessSection
         id="for-business"
