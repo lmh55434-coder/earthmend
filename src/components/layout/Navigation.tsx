@@ -1,6 +1,5 @@
 import { useEffect, useId, useState } from "react";
 import Container from "./Container";
-import TextLink from "../ui/TextLink";
 import Button from "../ui/Button";
 import logoMark from "../../assets/brand/logo-mark.png";
 
@@ -30,35 +29,39 @@ export default function Navigation() {
     <header className="sticky top-0 z-40 border-b border-line bg-background/95 backdrop-blur">
       <Container>
         <div className="relative flex flex-col items-center gap-3 py-5">
-          {/* Business CTAs — desktop only, pinned to the corner so the brand mark can stay centred. */}
-          <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 items-center gap-6 xl:flex">
-            <TextLink href="#quote">Get a Quote</TextLink>
-            <Button href="#sample" variant="primary" className="px-5 py-2.5 text-xs">
-              Request a Free Sample
-            </Button>
-          </div>
-
           <a href="#top" className="flex flex-col items-center gap-2">
-            <img src={logoMark} alt="" className="h-8 w-auto" />
+            <img src={logoMark} alt="" className="h-11 w-auto" />
             <span className="font-serif text-xl font-medium tracking-tight text-ink">
               EarthMend
             </span>
           </a>
 
-          <nav aria-label="Primary" className="hidden xl:block">
-            <ul className="flex items-center gap-6">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-small !text-ink transition-colors duration-200 ease-editorial hover:text-moss"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* Nav links stay centred on their own row; the CTA is pinned to the
+              right edge of that same row rather than affecting the centring. */}
+          <div className="relative hidden w-full items-center justify-center xl:flex">
+            <nav aria-label="Primary">
+              <ul className="flex items-center gap-10">
+                {NAV_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className="text-small !text-ink border-b border-transparent pb-0.5 transition-colors duration-200 ease-editorial hover:border-moss hover:text-moss"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <Button
+              href="#sample"
+              variant="primary"
+              className="absolute right-0 px-5 py-2.5 text-xs"
+            >
+              Request a Free Sample
+            </Button>
+          </div>
 
           <button
             type="button"
@@ -103,10 +106,7 @@ export default function Navigation() {
               {link.label}
             </a>
           ))}
-          <div className="mt-4 flex flex-col gap-3">
-            <TextLink href="#quote" onClick={() => setOpen(false)}>
-              Get a Quote
-            </TextLink>
+          <div className="mt-4">
             <Button href="#sample" variant="primary" onClick={() => setOpen(false)}>
               Request a Free Sample
             </Button>
