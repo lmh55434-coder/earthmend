@@ -25,6 +25,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* required by the Bleed component's negative-margin breakout technique */
+    overflow-x: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {

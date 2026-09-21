@@ -2,8 +2,8 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import TextLink from "../ui/TextLink";
-import ProductImage from "../product/ProductImage";
 import Reveal from "../ui/Reveal";
+import penMood from "../../assets/pen/pen-mood.jpg";
 
 type WhyItMattersProps = {
   id?: string;
@@ -13,8 +13,8 @@ type WhyItMattersProps = {
 
 /**
  * A short homepage teaser for the (future) dedicated Why It Matters page —
- * a strong visual carrying most of the weight, with brief copy and no
- * invented statistics or claims.
+ * a strong visual carrying most of the weight, with brief copy, a single
+ * pull-quote moment, and no invented statistics or claims.
  */
 export default function WhyItMatters({ id, linkLabel, linkHref }: WhyItMattersProps) {
   return (
@@ -24,32 +24,36 @@ export default function WhyItMatters({ id, linkLabel, linkHref }: WhyItMattersPr
           <Reveal className="max-w-content-text lg:col-span-5">
             <SectionLabel>Why It Matters</SectionLabel>
             <h2 className="text-h1 mt-4">Small choices. Bigger meaning.</h2>
-            <div className="text-body-lg mt-5 space-y-4 text-ink-muted">
-              <p>
-                The products businesses choose are changing. People are paying closer attention
-                to what they buy, businesses are considering sustainability in more areas of
-                their operations, and environmental claims are receiving greater scrutiny.
-              </p>
-              <p>That makes the question behind a promotional product more interesting:</p>
-              <p className="text-h3 normal-case tracking-normal text-ink">
+            <p className="text-body-lg mt-5 text-ink-muted">
+              The products businesses choose are changing. People are paying closer attention to
+              what they buy, businesses are considering sustainability across more areas of their
+              operations, and environmental claims are receiving greater scrutiny.
+            </p>
+            <p className="text-body-lg mt-4 text-ink-muted">
+              That makes the question behind a promotional product more interesting:
+            </p>
+
+            <blockquote className="mt-6 border-l-2 border-moss py-1 pl-6">
+              <p className="font-serif text-2xl italic leading-snug text-ink">
                 What happens after it has been used?
               </p>
-              <p>
-                Earthmend is our answer to that question — a small product designed with a second
-                purpose.
-              </p>
-            </div>
+            </blockquote>
+
+            <p className="text-body-lg mt-6 text-ink-muted">
+              Earthmend starts with a simple idea — make an everyday product more thoughtful.
+            </p>
+
             <TextLink href={linkHref} className="mt-7">
               {linkLabel}
             </TextLink>
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-7">
-            <ProductImage
-              alt="Placeholder for Australian landscape and natural material photography"
-              aspect="6 / 5"
-              placeholderLabel="Why It Matters"
-              className="w-full"
+            <img
+              src={penMood}
+              alt="The Earthmend pen resting on a kraft-paper surface, with generous negative space"
+              className="w-full object-cover"
+              style={{ aspectRatio: "6 / 5", objectPosition: "50% 35%" }}
             />
           </Reveal>
         </div>
