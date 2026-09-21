@@ -64,11 +64,12 @@ export default function WhatTheSymbolMeans() {
 
             <div className="mt-10 grid grid-cols-1 border-t border-line-inverted sm:grid-cols-2">
               {ELEMENTS.map(({ icon, label, description, borders }) => (
-                <div key={label} className={`border-line-inverted py-6 pr-6 ${borders}`}>
-                  <div className="flex items-center gap-3">
-                    <img src={icon} alt="" aria-hidden="true" className="h-8 w-8 shrink-0 object-contain invert" />
-                    <p className="text-h3 !text-ivory">{label}</p>
-                  </div>
+                <div
+                  key={label}
+                  className={`flex flex-col items-center border-line-inverted px-6 py-8 text-center ${borders}`}
+                >
+                  <img src={icon} alt="" aria-hidden="true" className="h-8 w-8 object-contain invert" />
+                  <p className="text-h3 !text-ivory mt-3">{label}</p>
                   <p className="text-body mt-2 max-w-xs !text-kraft">{description}</p>
                 </div>
               ))}
