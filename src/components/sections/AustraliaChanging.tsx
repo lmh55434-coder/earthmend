@@ -2,12 +2,15 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import penMood from "../../assets/pen/pen-mood.jpg";
+import TemperatureExplorer from "../climate/TemperatureExplorer";
 
 /**
- * Opens the page's argument proper — large asymmetric image (real material
- * texture, not a stock "eco" photo) beside a short, deliberately
- * unstatistical statement of context.
+ * Opens the page's argument proper — an interactive look at Australia's own
+ * recent temperature record (real, sourced Bureau of Meteorology figures)
+ * beside a short, deliberately unstatistical statement of context. The
+ * data doesn't rise every single year — 2022 and 2025 both sit below the
+ * year before — so the copy is written to reflect that honestly rather
+ * than implying a straight year-on-year climb.
  */
 export default function AustraliaChanging() {
   return (
@@ -15,12 +18,10 @@ export default function AustraliaChanging() {
       <Container size="narrow">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-x-14">
           <Reveal className="lg:col-span-7">
-            <img
-              src={penMood}
-              alt="Natural kraft-paper material, resting in warm light"
-              className="w-full object-cover"
-              style={{ aspectRatio: "6 / 5", objectPosition: "50% 40%" }}
-            />
+            <p className="text-eyebrow text-center">Australia&rsquo;s Average Temperature</p>
+            <div className="mx-auto mt-6 max-w-sm">
+              <TemperatureExplorer />
+            </div>
           </Reveal>
 
           <Reveal delay={120} className="max-w-content-text lg:col-span-5">
@@ -36,6 +37,10 @@ export default function AustraliaChanging() {
               The conversation is no longer limited to environmental organisations or government
               policy. It increasingly intersects with how businesses operate, communicate and make
               decisions.
+            </p>
+            <p className="text-body-lg mt-4 text-ink-muted">
+              Australia&rsquo;s own temperature record moves from year to year — but every one of
+              the last five years has finished above the long-term average.
             </p>
           </Reveal>
         </div>
