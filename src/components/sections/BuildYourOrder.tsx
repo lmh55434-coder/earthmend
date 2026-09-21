@@ -93,7 +93,12 @@ export default function BuildYourOrder() {
                   </p>
                 </div>
               </div>
-              <PackagingSelector checked={packaging} onChange={setPackaging} unitCount={option.units} />
+              <PackagingSelector
+                checked={packaging}
+                onChange={setPackaging}
+                unitCount={option.units}
+                free={quantityKey === "sample"}
+              />
             </Reveal>
           </div>
 

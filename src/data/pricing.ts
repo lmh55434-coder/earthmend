@@ -61,7 +61,7 @@ export function calculateOrder(quantityKey: QuantityKey, packaging: boolean): Or
   }
 
   const penCost = option.units * option.unitPrice;
-  const packagingCost = packaging ? option.units * SINGLE_CARD_PRICE : 0;
+  const packagingCost = packaging && quantityKey !== "sample" ? option.units * SINGLE_CARD_PRICE : 0;
 
   return {
     units: option.units,

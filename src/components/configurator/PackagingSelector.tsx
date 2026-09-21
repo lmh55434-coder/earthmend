@@ -4,10 +4,17 @@ type PackagingSelectorProps = {
   checked: boolean;
   onChange: (checked: boolean) => void;
   unitCount: number | null;
+  /** True for the Free Sample tier, where packaging is included at no charge. */
+  free?: boolean;
 };
 
-export default function PackagingSelector({ checked, onChange, unitCount }: PackagingSelectorProps) {
-  const cost = checked && unitCount ? unitCount * SINGLE_CARD_PRICE : null;
+export default function PackagingSelector({
+  checked,
+  onChange,
+  unitCount,
+  free = false,
+}: PackagingSelectorProps) {
+  const cost = checked ? (free ? 0 : unitCount ? unitCount * SINGLE_CARD_PRICE : null) : null;
 
   return (
     <div className="mt-6">
@@ -54,9 +61,11 @@ export default function PackagingSelector({ checked, onChange, unitCount }: Pack
               {checked ? "Single Card Packaging" : "Add Single Card Packaging"}
             </span>
             <span className="text-small !text-kraft mt-0.5 block">
-              {checked && unitCount
-                ? `${formatCurrency(SINGLE_CARD_PRICE)} × ${unitCount.toLocaleString("en-AU")}`
-                : `${formatCurrency(SINGLE_CARD_PRICE)} per pen`}
+              {free
+                ? "Included free with your sample"
+                : checked && unitCount
+                  ? `${formatCurrency(SINGLE_CARD_PRICE)} × ${unitCount.toLocaleString("en-AU")}`
+                  : `${formatCurrency(SINGLE_CARD_PRICE)} per pen`}
             </span>
           </span>
         </span>
