@@ -1,44 +1,53 @@
-import { QUANTITY_OPTIONS, getQuantityOption, formatCurrency, type QuantityKey } from "../../data/pricing";
+import { QUANTITY_OPTIONS, formatCurrency, type QuantityKey, type QuantityOption } from "../../data/pricing";
 
 type QuantitySelectorProps = {
   value: QuantityKey;
   onChange: (key: QuantityKey) => void;
 };
 
+function quantityMeta(option: QuantityOption): { qualifier: string; price: string | null } {
+  if (option.key === "sample") {
+    return { qualifier: "1 Pen", price: "A$0.00" };
+  }
+  if (option.key === "5000plus") {
+    return { qualifier: "Custom Quote", price: null };
+  }
+  return { qualifier: "Pens", price: `${formatCurrency(option.unitPrice!)} / each` };
+}
+
 export default function QuantitySelector({ value, onChange }: QuantitySelectorProps) {
-  const selected = getQuantityOption(value);
-
   return (
-    <div className="mt-6">
-      <div role="radiogroup" aria-label="Quantity" className="flex flex-wrap gap-x-7 gap-y-4">
-        {QUANTITY_OPTIONS.map((option) => {
-          const isSelected = option.key === value;
-          return (
-            <button
-              key={option.key}
-              type="button"
-              role="radio"
-              aria-checked={isSelected}
-              onClick={() => onChange(option.key)}
-              className={`text-h3 border-b-2 pb-1 tracking-widest transition-colors duration-200 ease-editorial ${
-                isSelected
-                  ? "border-moss text-ink"
-                  : "border-transparent text-ink-muted hover:border-line-strong hover:text-ink"
-              }`}
-            >
-              {option.label.toUpperCase()}
-            </button>
-          );
-        })}
-      </div>
+    <div role="radiogroup" aria-label="Quantity" className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      {QUANTITY_OPTIONS.map((option) => {
+        const isSelected = option.key === value;
+        const isSpecial = option.key === "sample";
+        const meta = quantityMeta(option);
 
-      <p className="text-small mt-5">
-        {selected.key === "5000plus"
-          ? "Custom quote for orders above 5,000 — we'll confirm pricing with you directly."
-          : selected.key === "sample"
-            ? "One free sample pen."
-            : `${formatCurrency(selected.unitPrice!)} each`}
-      </p>
+        return (
+          <button
+            key={option.key}
+            type="button"
+            role="radio"
+            aria-checked={isSelected}
+            onClick={() => onChange(option.key)}
+            className={`flex flex-col items-start gap-1 border px-5 py-4 text-left transition-colors duration-200 ease-editorial ${
+              isSelected
+                ? "border-charcoal bg-charcoal text-ivory"
+                : isSpecial
+                  ? "border-moss/50 bg-transparent text-ink hover:border-moss hover:bg-kraft/20"
+                  : "border-line-strong bg-transparent text-ink hover:border-charcoal hover:bg-kraft/20"
+            }`}
+          >
+            <span className={`text-h3 tracking-normal ${isSelected ? "!text-ivory" : ""}`}>
+              {option.label}
+            </span>
+            <span className={`text-eyebrow ${isSelected ? "!text-kraft" : ""}`}>{meta.qualifier}</span>
+            {meta.price && (
+              <span className={`text-small ${isSelected ? "!text-kraft" : ""}`}>{meta.price}</span>
+            )}
+          </button>
+        );
+      })}
     </div>
   );
 }

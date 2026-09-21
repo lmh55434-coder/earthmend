@@ -24,6 +24,7 @@ export default function OrderSummary({
   return (
     <div className={`border border-line-strong bg-ivory p-7 lg:p-9 ${className}`}>
       <SectionLabel>Your Order</SectionLabel>
+      <div className="mt-4 border-t border-line-strong" />
 
       <dl className="mt-6 space-y-5">
         <div>
@@ -40,7 +41,11 @@ export default function OrderSummary({
         <div>
           <dt className="text-eyebrow">Unit Price</dt>
           <dd className="text-body mt-1 text-ink-muted">
-            {calculation.isCustom ? "Custom quote" : formatCurrency(calculation.unitPrice!)}
+            {calculation.isCustom
+              ? "Custom quote"
+              : option.key === "sample"
+                ? formatCurrency(calculation.unitPrice!)
+                : `${formatCurrency(calculation.unitPrice!)} / each`}
           </dd>
         </div>
 
@@ -80,10 +85,10 @@ export default function OrderSummary({
 
       <div className="mt-7 border-t border-line-strong pt-6">
         <p className="text-eyebrow">Estimated Total</p>
-        <p className="text-h1 mt-1">
+        <p className="text-h1 mt-2 leading-none">
           {calculation.isCustom ? "To be confirmed" : formatCurrency(calculation.total!)}
         </p>
-        <p className="text-small mt-2">Delivery charges, if applicable, will be confirmed separately.</p>
+        <p className="text-small mt-3">Prices exclude delivery charges.</p>
       </div>
 
       {variant === "interactive" && (
