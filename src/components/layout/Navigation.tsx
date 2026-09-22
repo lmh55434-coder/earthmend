@@ -23,6 +23,7 @@ function isRoute(href: string) {
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuId = useId();
 
   // Close the mobile panel on Escape and on viewport resize past the mobile breakpoint.
@@ -34,16 +35,43 @@ export default function Navigation() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  // Past a small scroll threshold, collapse the logo/wordmark row so the
+  // sticky header stays out of the way of the page content — the menu row
+  // itself stays put. Scrolling back up near the top brings it back.
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 24);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-background/95 backdrop-blur">
       <Container>
-        <div className="relative flex flex-col items-center gap-3 py-5">
-          <Link to="/" className="flex flex-col items-center gap-2">
-            <img src={logoMark} alt="" className="h-11 w-auto" />
-            <span className="font-serif text-xl font-medium tracking-tight text-ink">
-              EarthMend
-            </span>
-          </Link>
+        <div
+          className={`relative flex flex-col items-center transition-[gap,padding] duration-300 ease-editorial ${
+            scrolled ? "gap-0 py-3" : "gap-3 py-5"
+          }`}
+        >
+          <div
+            aria-hidden={scrolled}
+            className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-editorial ${
+              scrolled ? "max-h-0 opacity-0" : "max-h-24 opacity-100"
+            }`}
+          >
+            <Link
+              to="/"
+              tabIndex={scrolled ? -1 : undefined}
+              className="flex flex-col items-center gap-2"
+            >
+              <img src={logoMark} alt="" className="h-11 w-auto" />
+              <span className="font-serif text-xl font-medium tracking-tight text-ink">
+                EarthMend
+              </span>
+            </Link>
+          </div>
 
           {/* An invisible copy of the CTA sits on the left so the nav truly
               centres between two equal-width edges, instead of being centred
