@@ -3,11 +3,12 @@ import { useId } from "react";
 type FileUploadProps = {
   file: File | null;
   onChange: (file: File | null) => void;
+  name?: string;
 };
 
 const ACCEPT = ".png,.jpg,.jpeg,.webp,.svg,image/png,image/jpeg,image/webp,image/svg+xml";
 
-export default function FileUpload({ file, onChange }: FileUploadProps) {
+export default function FileUpload({ file, onChange, name }: FileUploadProps) {
   const inputId = useId();
 
   return (
@@ -39,6 +40,7 @@ export default function FileUpload({ file, onChange }: FileUploadProps) {
 
       <input
         id={inputId}
+        name={name}
         type="file"
         accept={ACCEPT}
         onChange={(e) => onChange(e.target.files?.[0] ?? null)}

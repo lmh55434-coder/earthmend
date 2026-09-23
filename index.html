@@ -18,6 +18,32 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!--
+      Netlify Forms only detects <form> tags present in the built static
+      HTML — it never runs the React app, so a form that only exists in
+      JS-rendered DOM is invisible to it. This hidden, unreachable form
+      exists purely so Netlify's build-time scanner registers the form
+      name and every field (including the file upload) ahead of time.
+      The real form users fill in lives in src/pages/RequestQuote.tsx and
+      submits to this same form name via fetch.
+    -->
+    <form name="quote-request" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="tel" name="phone" />
+      <input type="email" name="email" />
+      <textarea name="address"></textarea>
+      <textarea name="message"></textarea>
+      <input type="file" name="brand-image" />
+      <input type="text" name="quantity" />
+      <input type="text" name="unit-price" />
+      <input type="text" name="seeds" />
+      <input type="text" name="packaging" />
+      <input type="text" name="estimated-total" />
+      <input type="text" name="bot-field" />
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

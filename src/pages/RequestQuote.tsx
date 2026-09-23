@@ -62,6 +62,7 @@ function TextField({ id, label, type = "text", value, onChange, error, autoCompl
       </label>
       <input
         id={id}
+        name={id}
         type={type}
         value={value}
         autoComplete={autoComplete}
@@ -98,6 +99,7 @@ function TextAreaField({ id, label, value, onChange, error, rows = 4, optional }
       </label>
       <textarea
         id={id}
+        name={id}
         rows={rows}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -123,12 +125,14 @@ export default function RequestQuote() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [file, setFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   function updateField(field: keyof FormState, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!config) return;
 
@@ -141,29 +145,22 @@ export default function RequestQuote() {
       return;
     }
 
-    const calculation = calculateOrder(config.quantityKey, config.packaging);
-    const option = getQuantityOption(config.quantityKey);
+    setSubmitError(false);
+    setSubmitting(true);
 
-    const submission = {
-      customerName: form.name,
-      companyName: form.company,
-      phone: form.phone,
-      email: form.email,
-      address: form.address,
-      brandImage: file,
-      message: form.message,
-      quantity: option.key === "5000plus" ? "5,000+" : option.units,
-      unitPrice: calculation.isCustom ? "Custom quote" : calculation.unitPrice,
-      seeds: SEED_OPTIONS.filter((s) => config.seedIds.includes(s.id)).map((s) => s.label),
-      packaging: config.packaging,
-      packagingUnitPrice: 0.25,
-      packagingTotal: calculation.isCustom ? "To be confirmed" : calculation.packagingCost,
-      penTotal: calculation.isCustom ? "To be confirmed" : calculation.penCost,
-      estimatedTotal: calculation.isCustom ? "To be confirmed" : calculation.total,
-    };
-
-    console.info("EarthMend enquiry submission", submission);
-    setSubmitted(true);
+    try {
+      // Netlify Forms identifies the submission by the "form-name" field
+      // and the fields present, matched against the hidden static form in
+      // index.html — not by which page or React route posted it.
+      const body = new FormData(event.currentTarget);
+      const response = await fetch("/", { method: "POST", body });
+      if (!response.ok) throw new Error(`Form submission failed with status ${response.status}`);
+      setSubmitted(true);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (!config) {
@@ -188,11 +185,15 @@ export default function RequestQuote() {
     );
   }
 
-  if (submitted) {
-    const calculation = calculateOrder(config.quantityKey, config.packaging);
-    const option = getQuantityOption(config.quantityKey);
-    const seedLabels = SEED_OPTIONS.filter((s) => config.seedIds.includes(s.id)).map((s) => s.label);
+  const calculation = calculateOrder(config.quantityKey, config.packaging);
+  const option = getQuantityOption(config.quantityKey);
+  const seedLabels = SEED_OPTIONS.filter((s) => config.seedIds.includes(s.id)).map((s) => s.label);
+  const quantityLabel = option.key === "5000plus" ? "5,000+" : String(option.units);
+  const unitPriceLabel = calculation.isCustom ? "Custom quote" : formatCurrency(calculation.unitPrice!);
+  const packagingLabel = config.packaging ? "Single Card" : "Not selected";
+  const estimatedTotalLabel = calculation.isCustom ? "To be confirmed" : formatCurrency(calculation.total!);
 
+  if (submitted) {
     return (
       <Section tone="ivory" spacing="lg">
         <Container size="narrow">
@@ -258,7 +259,26 @@ export default function RequestQuote() {
 
         <div className="mt-14 grid grid-cols-1 gap-14 lg:mt-16 lg:grid-cols-12 lg:items-start lg:gap-x-16">
           <Reveal delay={80} className="lg:col-span-7">
-            <form onSubmit={handleSubmit} noValidate className="space-y-8">
+            <form
+              name="quote-request"
+              onSubmit={handleSubmit}
+              noValidate
+              encType="multipart/form-data"
+              className="space-y-8"
+            >
+              <input type="hidden" name="form-name" value="quote-request" readOnly />
+              <input type="hidden" name="quantity" value={quantityLabel} readOnly />
+              <input type="hidden" name="unit-price" value={unitPriceLabel} readOnly />
+              <input type="hidden" name="seeds" value={seedLabels.join(", ")} readOnly />
+              <input type="hidden" name="packaging" value={packagingLabel} readOnly />
+              <input type="hidden" name="estimated-total" value={estimatedTotalLabel} readOnly />
+              <p hidden>
+                <label>
+                  Leave this field blank
+                  <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                </label>
+              </p>
+
               <TextField
                 id="name"
                 label="Full Name"
@@ -304,7 +324,7 @@ export default function RequestQuote() {
                 rows={3}
               />
 
-              <FileUpload file={file} onChange={setFile} />
+              <FileUpload file={file} onChange={setFile} name="brand-image" />
 
               <TextAreaField
                 id="message"
@@ -315,8 +335,14 @@ export default function RequestQuote() {
                 optional
               />
 
-              <Button type="submit" variant="primary">
-                Submit Enquiry
+              {submitError && (
+                <p className="text-body text-[#9B2C2C]">
+                  Something went wrong sending your enquiry. Please try again in a moment.
+                </p>
+              )}
+
+              <Button type="submit" variant="primary" disabled={submitting}>
+                {submitting ? "Sending…" : "Submit Enquiry"}
               </Button>
             </form>
           </Reveal>
