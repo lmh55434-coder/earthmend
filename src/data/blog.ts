@@ -42,6 +42,125 @@ export function formatPostDate(iso: string): string {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "sustainable-gardening-tips-for-beginners",
+    title: "Sustainable Gardening Tips For Beginners For Eco-Friendly Produce",
+    category: "Sustainability",
+    excerpt:
+      "Eight practical, low-cost ways to make your home garden more sustainable — from recycled seed pots to vertical growing in small spaces.",
+    date: "2026-09-23",
+    readingTime: "4 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "What is the meaning of sustainable gardening? It uses effective gardening practices to avoid harming the inhabitants and the earth.",
+      },
+      {
+        type: "paragraph",
+        text: "Do you want to know more tips and tricks for your eco-friendly approach? Read ahead!",
+      },
+      { type: "heading", text: "Sustainable Home Gardening Tips" },
+
+      { type: "heading", text: "Use Recycled Packaging To Sow Seeds" },
+      {
+        type: "paragraph",
+        text: "When you are sowing seeds, you can use plenty of alternatives in your vegetable garden as follows:",
+      },
+      {
+        type: "list",
+        items: ["Recycled packaging", "Egg boxes", "Jars", "Yogurt pots", "Coconut shells", "Glass bottles"],
+      },
+      {
+        type: "paragraph",
+        text: "To help germinate the seeds, switch to these alternatives instead of plastic plant pots or trays. Also, use good-quality compost and give sufficient water while keeping them in a sunny place.",
+      },
+
+      { type: "heading", text: "Collect Rainwater" },
+      {
+        type: "paragraph",
+        text: "Did you know that rainwater is the best for plants as it is a natural nutrient essential for plants? Hence, use water butts to collect rainwater.",
+      },
+      {
+        type: "paragraph",
+        text: "The water we use regularly contains chemicals, unhealthy minerals, and even microplastics. Hence, these natural organic fertilizers will add nutrients to your plants and soil, too!",
+      },
+
+      { type: "heading", text: "Choose Organic Options" },
+      {
+        type: "paragraph",
+        text: "There are many opportunities in your garden where you can opt for organic options, including the following:",
+      },
+      {
+        type: "list",
+        items: ["Weedkillers", "Fertilizers", "Pest control", "Soapy water", "Garlic spray", "Beer traps"],
+      },
+      {
+        type: "paragraph",
+        text: "When you add organic options, they don't damage the soil and plants. Even essential wildlife will visit your garden, supporting the growth of your plants.",
+      },
+      {
+        type: "paragraph",
+        text: "Hence, a balanced ecosystem should consist of birds (to eat aphids), amphibians (to pick off slugs), and hedgehogs (to keep insects away).",
+      },
+
+      { type: "heading", text: "Have A Compost Bin" },
+      { type: "paragraph", text: "There are many pros of using a compost bin, as follows:" },
+      {
+        type: "list",
+        items: [
+          "Helps to reduce food waste",
+          "Add your vegetable, fruit, or other kitchen peelings",
+          "Add swept leaves and plant cuttings",
+          "Plastic-free tea bags",
+          "Natural pest deterrent",
+        ],
+      },
+
+      { type: "heading", text: "Grow Your Garden Vertically (If Less Space)" },
+      {
+        type: "paragraph",
+        text: "If you have a small, dedicated place to grow your garden, do not worry! You can use small and old wheelbarrows or deep containers to place them vertically in small areas.",
+      },
+      {
+        type: "paragraph",
+        text: "In such an instance, you can grow cucumbers, peas, beans, tomatoes, melons, beetroots, carrots, and more! These plants do not require much ground space and grow healthily in this structure.",
+      },
+
+      { type: "heading", text: "Grow Miniature Gardens" },
+      {
+        type: "paragraph",
+        text: "What do you do when your seedlings grow into young plants? Adopt these plants to reused crate work, upcycled containers, or vessels.",
+      },
+      {
+        type: "paragraph",
+        text: "Thus, your young plants will have more room to grow through the roots. Reusing these items can help contribute to eco-friendliness and even save you pennies. Instead of buying processed compost, why don't you make your own compost bin and add it to your plants? You can even try out a DIY wormery.",
+      },
+
+      { type: "heading", text: "Reuse And Recycle" },
+      {
+        type: "paragraph",
+        text: "To maintain a sustainable garden, you can reuse and recycle plenty of options as follows:",
+      },
+      {
+        type: "list",
+        items: ["Containers", "Bowls", "Wheelbarrows", "Broken bricks", "Broken pots", "Chipped saucers"],
+      },
+      {
+        type: "paragraph",
+        text: "Using a reuse and recycle approach in your plant garden, you can maintain an eco-friendly garden and even make your home gardening creative.",
+      },
+
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "Many sustainable garden tips help you grow healthy vegetables in the garden.",
+      },
+      {
+        type: "paragraph",
+        text: "We hope this guide was helpful to learn effective green gardening tips!",
+      },
+    ],
+  },
+  {
     slug: "biodegradable-vs-compostable-products",
     title: "Biodegradable Vs. Compostable Products (Hidden Truth)",
     category: "Sustainability",
