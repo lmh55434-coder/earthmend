@@ -7,6 +7,8 @@ export type BlogPost = {
   excerpt: string;
   date: string; // ISO
   readingTime: string;
+  /** One entry per paragraph. Omitted while a post is still a placeholder. */
+  body?: string[];
 };
 
 export const BLOG_CATEGORIES: BlogCategory[] = [

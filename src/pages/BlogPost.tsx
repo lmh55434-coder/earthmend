@@ -9,9 +9,9 @@ import CTASection from "../components/sections/CTASection";
 import { BLOG_POSTS, formatPostDate } from "../data/blog";
 
 /**
- * A lean, honest article shell rather than 12 fabricated full posts — the
- * excerpt stands as the lead paragraph, and the page says plainly that the
- * full article is still coming rather than pretending it's complete.
+ * Renders the real article body when a post has one. Posts without a
+ * `body` yet fall back to an honest "coming soon" placeholder instead of
+ * pretending they're complete.
  */
 export default function BlogPost() {
   const { slug } = useParams();
@@ -48,11 +48,21 @@ export default function BlogPost() {
               {post.excerpt}
             </p>
 
-            <div className="mx-auto mt-10 max-w-content-text border-t border-line pt-8">
-              <p className="text-body italic text-ink-muted">
-                Full article coming soon &mdash; check back shortly.
-              </p>
-            </div>
+            {post.body ? (
+              <div className="mx-auto mt-10 max-w-content-text space-y-5 border-t border-line pt-10">
+                {post.body.map((paragraph, i) => (
+                  <p key={i} className="text-body text-ink-muted">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <div className="mx-auto mt-10 max-w-content-text border-t border-line pt-8">
+                <p className="text-body italic text-ink-muted">
+                  Full article coming soon &mdash; check back shortly.
+                </p>
+              </div>
+            )}
           </Reveal>
         </Container>
       </Section>
