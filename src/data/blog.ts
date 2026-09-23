@@ -38,6 +38,112 @@ export function formatPostDate(iso: string): string {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "how-to-create-a-zero-waste-kitchen",
+    title: "How To Create A Zero-Waste Kitchen (Secrets That Worked)",
+    category: "Sustainability",
+    excerpt:
+      "Eight practical swaps for a lower-waste kitchen — from planning meals and composting to ditching disposable party ware.",
+    date: "2026-09-23",
+    readingTime: "4 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "Implementing some best practices in your kitchen can easily create a zero-waste kitchen. For example, you can have a compost bin, avoid wasting food, be aware of your energy consumption, and more!",
+      },
+      {
+        type: "paragraph",
+        text: "So, do you want to learn more ways to reduce kitchen wastage? Learn more!",
+      },
+      { type: "heading", text: "Steps To Create A Zero Waste Kitchen" },
+      { type: "heading", text: "#1. Do Not Waste Food" },
+      {
+        type: "paragraph",
+        text: "If you waste food, it's time to say “NO” to create a zero-waste kitchen. So, how can you stop wasting food? Here's how:",
+      },
+      {
+        type: "list",
+        items: [
+          "Plan your meals based on the necessary quantities",
+          "Buy only the food you require",
+          "Order the foods that are closer to expiry and use in order",
+          "Use the leftovers to create unique dishes (you can turn overripe fruits into a smoothie).",
+        ],
+      },
+      { type: "heading", text: "#2. Think About Your Energy & Water Consumption" },
+      {
+        type: "paragraph",
+        text: "Two key consumptions when managing a kitchen are energy and water. You should be conscious of how you use your dishwasher, fridge, and energy and water.",
+      },
+      {
+        type: "paragraph",
+        text: "Also, you must learn and follow best practices when using these items. For example, if you are baking and want the cookies to be crunchy, you do not need to preheat the oven (best practice).",
+      },
+      { type: "heading", text: "#3. Switch To Eco-Friendly Products" },
+      {
+        type: "paragraph",
+        text: "While you reduce your use of plastic items, you can also use eco-friendly products to replace them. For example, use tote bags and reusable tea bags, pick products with recyclable packaging, and more!",
+      },
+      {
+        type: "paragraph",
+        text: "Moreover, many cleaning products on the market are not healthy options. Hence, you can use eco-friendly cleaning items made from natural ingredients.",
+      },
+      { type: "heading", text: "#4. Opt For Bar Soap" },
+      {
+        type: "paragraph",
+        text: "If you are using liquid soap, it's time to switch to bar soap, as it is long-lasting. Also, you will no longer have liquid plastic containers to fill your bin.",
+      },
+      {
+        type: "paragraph",
+        text: "However, if you still want to use liquid soap, consider refilling liquid soap. They will at least help you remove the plastic waste in your kitchen.",
+      },
+      { type: "heading", text: "#5. Use Reusable Kitchen Swaps" },
+      {
+        type: "paragraph",
+        text: "Instead of utilizing disposable paper towels, you can replace them with reusable clothes or even your old rags. Also, replace plastic sponges with loofah or silicone dish scrubs, greener sponges, or coconut fiber scrubbing pads.",
+      },
+      {
+        type: "paragraph",
+        text: "These alternatives are washable, reusable, save money, and promote zero waste swaps.",
+      },
+      { type: "heading", text: "#6. Have A Compost Bin" },
+      {
+        type: "paragraph",
+        text: "A compost bin helps you save a lot of kitchen waste to the compost bin.",
+      },
+      {
+        type: "paragraph",
+        text: "Here are the items to drop into the compost bin: food scraps, coffee grounds, fruit peels, veggie scraps, tea bags, eggshells, and more organic waste products.",
+      },
+      { type: "heading", text: "#7. Do Not Use Disposable Party Ware" },
+      {
+        type: "paragraph",
+        text: "You may use disposable plates, cups, straws, and other party items when hosting a party. However, in such instances, many items will be used.",
+      },
+      {
+        type: "paragraph",
+        text: "Thus, you can use regular plates, cutlery, cups, forks, and spoons instead of wasting significant time during your celebration.",
+      },
+      { type: "heading", text: "#8. Use Less Plastic" },
+      {
+        type: "paragraph",
+        text: "Avoid using single-use plastic items like cling wraps, plastic bags, and more!",
+      },
+      {
+        type: "paragraph",
+        text: "Switch to reusable products such as bags, beeswax wraps, stainless steel utensils, glass containers, metal, bamboo, or wood, and more!",
+      },
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "In conclusion, implementing these practices can promote a zero-waste kitchen.",
+      },
+      {
+        type: "paragraph",
+        text: "So, are you ready to embrace this challenge? Get started now!",
+      },
+    ],
+  },
+  {
     slug: "best-eco-friendly-certifications",
     title: "Best Eco-Friendly Certifications (What They Mean And Why They Matter)",
     category: "Sustainability",
