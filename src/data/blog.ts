@@ -42,6 +42,104 @@ export function formatPostDate(iso: string): string {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "sustainable-living-debunking-zero-waste-myths",
+    title: "Sustainable Living: Debunking Zero Waste Myths",
+    category: "Sustainability",
+    excerpt:
+      "Six common myths about zero-waste living — busted, from “it's too expensive” to “it's only for extremists.”",
+    date: "2026-09-23",
+    readingTime: "4 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "Do you need clarification about zero-waste myths? We have constantly heard that “Going sustainable living doesn't make a big difference.” But it does make a difference when you practice it in the long term.",
+      },
+      {
+        type: "paragraph",
+        text: "Let's clarify the top 6 zero waste myths stopping you from adopting this healthy habit today!",
+      },
+      { type: "heading", text: "Popular Zero Waste Myths" },
+
+      { type: "heading", text: "Myth 1: Zero Waste Is Expensive" },
+      {
+        type: "paragraph",
+        text: "Are zero-waste products expensive? No, they are not very expensive, but they come with an initial cost. For example, think about spending money on non-reusable products in the long term, while reusable products are one-time or long-term usage products that can save you a lot of pennies.",
+      },
+      {
+        type: "paragraph",
+        text: "Hence, you can opt for reusable products such as stainless steel water bottles, cloth bags, straws, biodegradable cutlery, and more!",
+      },
+      {
+        type: "paragraph",
+        text: "Using such products can save pennies and avoid excessive environmental waste, including product and packaging waste.",
+      },
+
+      { type: "heading", text: "Myth 2: Sustainable Living Doesn't Create A Difference" },
+      {
+        type: "paragraph",
+        text: "Many people believe sustainable practices don't bring change, but did you try? Your efforts can show a significant impact.",
+      },
+      {
+        type: "paragraph",
+        text: "For example, it reduces plastic usage, preserves energy, and reduces greenhouse gas emissions!",
+      },
+
+      { type: "heading", text: "Myth 3: Zero Waste Isn't About Only No Waste" },
+      {
+        type: "paragraph",
+        text: "Is zero waste impossible? Absolutely not! It is not that zero waste is impossible — rather, it's about eliminating unnecessary waste.",
+      },
+      {
+        type: "paragraph",
+        text: "Then, what does zero waste indicate? It means reducing one's environmental footprint and waste usage. Thus, one must avoid using non-recyclable or non-compostable waste.",
+      },
+      {
+        type: "paragraph",
+        text: "Start with small steps and replace little things step by step, and eventually, someday, you will attain zero waste or reduce it more than you did ten years ago.",
+      },
+
+      { type: "heading", text: "Myth 4: Zero Waste Is Difficult" },
+      {
+        type: "paragraph",
+        text: "Attaining or maintaining minimum or zero waste is not impossible or difficult. You can start with small steps every month, organise your purchases accordingly, and manage them in your daily routine.",
+      },
+      {
+        type: "paragraph",
+        text: "For example, you can even start carrying cloth bags for groceries. Effortless actions can lead to a significant change in your community and environment.",
+      },
+
+      { type: "heading", text: "Myth 5: You Need To Live Near A Zero-Waste Store" },
+      {
+        type: "paragraph",
+        text: "Do you want to live beside a zero-waste store to adopt this habit? That's why it's a myth! You do not need to live beside a zero-waste store to adopt a healthy lifestyle.",
+      },
+      {
+        type: "paragraph",
+        text: "All you need to adopt is switching to zero waste habits, products, and an eco-friendly lifestyle.",
+      },
+      {
+        type: "paragraph",
+        text: "Also, promote and embrace your loved ones to follow the zero-waste lifestyle.",
+      },
+
+      { type: "heading", text: "Myth 6: Zero Waste Is Only For Extremists" },
+      {
+        type: "paragraph",
+        text: "Zero-waste living isn't only for extremists or minimalists. It's suitable for everyone who wants to lead a healthy future for themselves and even their children.",
+      },
+      {
+        type: "paragraph",
+        text: "All you need is some effective steps to get started and ensure you keep up the habit in the long term. Choosing more reusable products and fewer packaging products will alone contribute in the long term.",
+      },
+
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "In conclusion, many zero-waste myths prevent you from living sustainably. So, don't get fooled by them; let your actions speak!",
+      },
+    ],
+  },
+  {
     slug: "how-to-start-a-zero-waste-lifestyle",
     title: "How To Start A Zero-Waste Lifestyle (10+ Easy Tips)",
     category: "Sustainability",
