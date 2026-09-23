@@ -1,9 +1,13 @@
 export type BlogCategory = "Sustainability" | "For Business" | "Product" | "Behind the Brand";
 
+/** A run of text, optionally an external link. Plain strings still work everywhere this is used. */
+export type InlineSegment = { text: string; href?: string };
+export type InlineContent = string | InlineSegment[];
+
 export type BlogBodyBlock =
-  | { type: "paragraph"; text: string }
-  | { type: "heading"; text: string }
-  | { type: "list"; items: string[] };
+  | { type: "paragraph"; text: InlineContent }
+  | { type: "heading"; text: InlineContent }
+  | { type: "list"; items: InlineContent[] };
 
 export type BlogPost = {
   slug: string;
@@ -37,6 +41,154 @@ export function formatPostDate(iso: string): string {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "top-sustainable-fashion-brands",
+    title: "Top Sustainable Fashion Brands (Leading Brands)",
+    category: "Sustainability",
+    excerpt:
+      "A look at six standout sustainable fashion brands — what makes each one different — plus a longer list of others worth knowing.",
+    date: "2026-09-23",
+    readingTime: "5 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "In the current era, there is vast growth in the market for sustainable fashion brands. These brands use ethical practices, eco-friendly products, designs, and more to contribute to the environment.",
+      },
+      {
+        type: "paragraph",
+        text: "In this guide, you will learn the top 5 and more sustainable fashion brands.",
+      },
+      { type: "heading", text: "5 Best Sustainable Fashion Brands" },
+
+      { type: "heading", text: [{ text: "Wholesome Culture", href: "https://www.wholesomeculture.com/" }] },
+      { type: "paragraph", text: "Location: USA · Products: Casual wear, Activewear, Accessories" },
+      {
+        type: "list",
+        items: [
+          "They carry the mission to create a sustainable location via eco-friendly apparel products.",
+          "Use eco-friendly water-based ink.",
+          "Products are made from 100% organic cotton, recycled plastic bottles, and bamboo.",
+          "The shipping orders are packed based on biodegradable or recycled packages.",
+          "Donate 10% of their company profits to animal rescues and environmental sustainability organizations.",
+        ],
+      },
+
+      { type: "heading", text: [{ text: "Christy Dawn", href: "https://christydawn.com/" }] },
+      {
+        type: "paragraph",
+        text: "Location: Los Angeles, USA · Products: Women's & Kid's apparel, Accessories, Footwear",
+      },
+      {
+        type: "list",
+        items: [
+          "Use deadstock fabrics to create sustainable dresses.",
+          "Adapted a farm-closet initiative to use sustainable regenerative processes.",
+          "Collaborated with Oshadi Collective, a community of traditional farmers who grow cotton using regenerative processes.",
+        ],
+      },
+
+      {
+        type: "heading",
+        text: [{ text: "The Classic T-Shirt Company", href: "https://theclassictshirt.com/" }],
+      },
+      { type: "paragraph", text: "Location: California, USA · Products: T-shirts" },
+      {
+        type: "list",
+        items: [
+          "Provide premium ethical t-shirts of top-notch quality for men and women.",
+          "They use only 100% organic cotton to make their t-shirt products.",
+          "Coordinate with farmers to obtain 100% organic cotton, ensuring that the cotton is produced organically without pesticides or fertilizers.",
+        ],
+      },
+
+      { type: "heading", text: [{ text: "Kitdo", href: "https://kitdo.co/" }] },
+      { type: "paragraph", text: "Location: Hong Kong · Products: Accessories" },
+      {
+        type: "list",
+        items: [
+          "Offer chic and functional accessories.",
+          "The materials used in production are lightweight aluminum and strong magnet inserts.",
+          "Ensure to plate the accessories with waterless coating via the CNC machine process.",
+        ],
+      },
+
+      {
+        type: "heading",
+        text: [{ text: "Stella McCartney", href: "https://www.stellamccartney.com/gb/en/" }],
+      },
+      {
+        type: "paragraph",
+        text: "Location: London, UK · Products: Women's and kid's fashion, Accessories, Bags, Footwear",
+      },
+      {
+        type: "list",
+        items: [
+          "It adheres to the critical practices of eco-friendliness by using eco-conscious materials, non-toxic dyes, and polyester recycled from plastic bottles.",
+          "One key aim is to replace nylon with eco-nylon, which are recycled fishing nets.",
+          "It uses organic cotton obtained from farmers who do not use toxic chemicals.",
+          "Ensure to use less oil-based synthetics.",
+        ],
+      },
+
+      { type: "heading", text: [{ text: "BEEN London", href: "https://been.london/" }] },
+      { type: "paragraph", text: "Location: London, UK · Products: Bags, Accessories" },
+      {
+        type: "list",
+        items: [
+          [
+            { text: "Only takes " },
+            { text: "materials destined for landfills", href: "https://been.london/pages/materials" },
+          ],
+          "Single-use plastic bottles are turned to be used to make silky linings and zips",
+          "Use pineapple leaves and apple peels to make vegan leather.",
+          "Practice shipping materials by sea to reduce the carbon footprint of transportation.",
+          "Collaborated with Peru-based NGO Camino Verde to support the reforestation process of the Amazon Rainforest.",
+        ],
+      },
+
+      { type: "heading", text: "Other Sustainable Fashion Brands You Must Know" },
+      {
+        type: "paragraph",
+        text: "Here is the list of other sustainable fashion brands you must keep an eye on:",
+      },
+      {
+        type: "list",
+        items: [
+          [{ text: "Pact", href: "https://kotn.com/" }],
+          [{ text: "Kotn", href: "https://kotn.com/" }],
+          [{ text: "Quince", href: "https://www.quince.com/" }],
+          [{ text: "tentree", href: "https://www.tentree.com/" }],
+          [{ text: "Fair Indigo", href: "https://www.fairindigo.com/" }],
+          [{ text: "Everlane", href: "https://www.everlane.com/" }],
+          [{ text: "Allbirds", href: "https://www.allbirds.com/" }],
+          [{ text: "Sézane", href: "https://www.sezane.com/choose-country-region/" }],
+          [{ text: "Etsy", href: "https://www.etsy.com/" }],
+          [{ text: "Reformation", href: "https://www.thereformation.com/" }],
+          [{ text: "Warp + Weft", href: "https://warpweftworld.com/" }],
+          [{ text: "Yes Friends", href: "https://yesfriends.co/" }],
+          [{ text: "Jungmaven", href: "https://jungmaven.com/" }],
+          [{ text: "Boody", href: "https://boody.com/" }],
+          [{ text: "Colored Organics", href: "https://coloredorganics.com/" }],
+          [{ text: "MagicLinen", href: "https://magiclinen.com/" }],
+          [{ text: "Vege Threads", href: "https://www.vegethreads.com/" }],
+          [{ text: "Haverdash", href: "https://www.haverdash.com/" }],
+          [{ text: "Fair Trade Winds", href: "https://www.fairtradewinds.net/" }],
+          [{ text: "LA RELAXED", href: "https://larelaxed.com/" }],
+          [{ text: "Oliver Logan", href: "https://oliverlogan.com/" }],
+        ],
+      },
+
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "In conclusion, many sustainable fashion brands are evolving the market. If you want to adapt to sustainability, it's time to learn about these products and contribute.",
+      },
+      {
+        type: "paragraph",
+        text: "We hope this guide helped you understand the critical sustainable fashion brands!",
+      },
+    ],
+  },
   {
     slug: "how-to-create-a-zero-waste-kitchen",
     title: "How To Create A Zero-Waste Kitchen (Secrets That Worked)",
