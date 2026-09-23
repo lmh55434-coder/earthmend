@@ -42,6 +42,114 @@ export function formatPostDate(iso: string): string {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "how-to-start-a-zero-waste-lifestyle",
+    title: "How To Start A Zero-Waste Lifestyle (10+ Easy Tips)",
+    category: "Sustainability",
+    excerpt:
+      "Ten practical habits for easing into a zero-waste lifestyle — from composting food scraps to make-your-own cleaning products.",
+    date: "2026-09-23",
+    readingTime: "3 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "How can you start a zero-waste lifestyle? You can start your zero-waste lifestyle from your home. For example, replace digital with print, soap bottles with bars, and more!",
+      },
+      { type: "paragraph", text: "Read ahead to find out more!" },
+      { type: "heading", text: "What Are The Steps To A Zero-Waste Lifestyle?" },
+
+      { type: "heading", text: "Purchase From Local Farmers" },
+      {
+        type: "paragraph",
+        text: "Local farmers produce fresh, nutritious, and sustainable fruits and vegetables. What's more important than healthy food? So, don't compromise your health at any cost!",
+      },
+
+      { type: "heading", text: "Compost Food Scraps" },
+      {
+        type: "paragraph",
+        text: "When you compost your food scraps, you prevent landfills from filling up. Hence, you will also contribute to less methane, greenhouse gases, and global warming.",
+      },
+      {
+        type: "paragraph",
+        text: "Start today by creating your compost heap, and don't hesitate to lend it to your city's compost pick-up service.",
+      },
+
+      { type: "heading", text: "Avoid Tea Bags" },
+      {
+        type: "paragraph",
+        text: "Since most people purchase tea bags, this is a key point to consider. Many tea bags contain microplastics, which harm the environment.",
+      },
+      {
+        type: "paragraph",
+        text: "So, what's the best alternative? Go for loose-leaf tea and reusable cloth tea bags, and taste fantastic tea at your fingertips!",
+      },
+
+      { type: "heading", text: "Avoid Single-Use Plastics" },
+      {
+        type: "paragraph",
+        text: "There are many single-use plastics you use, such as plastic cutlery, plates, straws, and more, which harm the environment.",
+      },
+      {
+        type: "paragraph",
+        text: "Hence, go for reusable items such as cutlery, stainless steel straws, and containers.",
+      },
+
+      { type: "heading", text: "Buy Goods In Bulk" },
+      {
+        type: "paragraph",
+        text: "Always buy in bulk, using reusable mason jars or cloth bags. Moreover, when you purchase in bulk, you can save a lot of pennies from paying high prices.",
+      },
+
+      { type: "heading", text: "Recycle Spare Tires" },
+      {
+        type: "paragraph",
+        text: "Even though landfills don't take tires, check out the retailers close to your location. Retailers may take your recycling tires.",
+      },
+      { type: "paragraph", text: "You can transform these tires into tire swings, dog beds, and more." },
+
+      { type: "heading", text: "Make Your Cleaning Products" },
+      {
+        type: "paragraph",
+        text: "Conventional cleaning products contain harmful chemicals that affect waterways and other bodies. Hence, consider making your own eco-friendly cleaning products.",
+      },
+      {
+        type: "paragraph",
+        text: "Here's our recipe for an eco-friendly cleaning product: mix baking soda with lemon juice and vinegar and add it to a spray bottle. You can use this to clean your tiles, floors, kitchen, and more!",
+      },
+
+      { type: "heading", text: "Avoid Plastic Bottles" },
+      {
+        type: "paragraph",
+        text: "Did you know that approximately 40% of bottled water is tap water? Hence, avoid buying plastic bottles. You can opt for quality water filters or even reusable bottles.",
+      },
+
+      { type: "heading", text: "Use Cloth Produce Bags" },
+      {
+        type: "paragraph",
+        text: "Whenever you purchase groceries, habitually carry cloth bags instead of flimsy plastic bags. Since plastic always ends up in the ocean, opting for cloth bags also helps maintain a zero-waste lifestyle!",
+      },
+
+      { type: "heading", text: "Purchase From Sustainable Cloth Brands" },
+      {
+        type: "paragraph",
+        text: "There are plenty of trendy, sustainable clothing brands. Identify the best brands and begin shopping today!",
+      },
+      {
+        type: "paragraph",
+        text: "These clothing items are also reusable; you can even donate them after a couple of years with the same top-notch quality.",
+      },
+
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "In conclusion, you can use the zero-waste lifestyle tips discussed above to create an eco-friendly and sustainable future.",
+      },
+      {
+        type: "paragraph",
+        text: "We hope this guide helped start your eco-friendly practices today!",
+      },
+    ],
+  },
+  {
     slug: "sustainable-gardening-tips-for-beginners",
     title: "Sustainable Gardening Tips For Beginners For Eco-Friendly Produce",
     category: "Sustainability",
