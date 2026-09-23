@@ -42,6 +42,145 @@ export function formatPostDate(iso: string): string {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "sustainable-gift-ideas-for-every-occasion",
+    title: "Sustainable Gift Ideas For Every Occasion (25+ Best Options)",
+    category: "Sustainability",
+    excerpt:
+      "Over 50 sustainable gift picks across home, fashion, beauty, travel and more — organized by occasion so you can find something for everyone on your list.",
+    date: "2026-09-23",
+    readingTime: "6 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "Are you looking for sustainable gift ideas suitable for every occasion? We have hand-picked more than 25 products that are ideal for various occasions.",
+      },
+      {
+        type: "paragraph",
+        text: "Hence, you can choose the best gift product based on what your loved one would love!",
+      },
+      { type: "heading", text: "Best Sustainable Gift Ideas" },
+
+      { type: "heading", text: "Best Home & Kitchen Gifts" },
+      {
+        type: "paragraph",
+        text: "If your loved one loves home or kitchen items, many sustainable gift items exist. Eco-friendly home gift items are handy to create an effective environment. Here are the best home and kitchen gift options for you:",
+      },
+      {
+        type: "list",
+        items: [
+          [{ text: "Bauhaus Enamel Colander", href: "https://www.madetrade.com/products/darling-spring-bauhaus-enamel-colander" }],
+          [{ text: "Blueland The Natural Hand Soap Collection", href: "https://www.blueland.com/products/natural-collection" }],
+          [{ text: "Bread Warmer + Basket", href: "https://www.madetrade.com/search?q=Bread+Warmer+%2B+Basket&type=product" }],
+          [{ text: "Brightly Sustainable Chef Gift Set", href: "https://shop.brightly.eco/collections/november-2021/products/the-chef-kit" }],
+          [{ text: "Cast Iron 15″ Lean Grill Pan", href: "https://www.madetrade.com/products/finex-cast-iron-15-lean-grill-pan" }],
+          [{ text: "Glass Votive Candle Bundle", href: "https://www.madetrade.com/products/ritual-and-fancy-glass-votive-candle-bundle" }],
+          [{ text: "Handcrafted Furniture From Reclaimed Wood", href: "https://www.etsy.com/market/reclaimed_wood_furniture" }],
+          [{ text: "Homemade Candles", href: "https://www.etsy.com/uk/market/homemade_candles" }],
+          [{ text: "Minimal Ikebana Raw Stoneware Vase", href: "https://www.madetrade.com/products/convivial-ikebana-handmade-raw-stoneware-vase" }],
+          [{ text: "Personalized Recipe Book", href: "https://www.amazon.co.uk/personalised-recipe-book/s?k=personalised+recipe+book" }],
+          [{ text: "Rachio Smart Sprinkler Controller", href: "https://rachio.com/rachio-3/" }],
+          [{ text: "Recycled Copper Kitchen Compost Canisters", href: "https://www.madetrade.com/products/sertodo-copper-copper-compost-kitchen-canisters" }],
+          [{ text: "Utopia Kitchen Compost Bin", href: "https://www.amazon.com/Utopia-Kitchen-Stainless-Compost-Countertop/dp/B015DRQ36E/" }],
+        ],
+      },
+
+      { type: "heading", text: "Best Fashion & Accessories Gifts" },
+      {
+        type: "paragraph",
+        text: "Are you planning to give fashion or accessories-related gifts? We understand finding eco-friendly fashion products is daunting. However, many brands promote sustainability and eco-friendliness. Therefore, there is a wide range of best fashion or accessories gift items that are sustainable. Here are the best picks:",
+      },
+      {
+        type: "list",
+        items: [
+          [{ text: "Agave Wool Convertible Clutch", href: "https://www.madetrade.com/products/mz-made-agave-convertible-clutch" }],
+          [{ text: "Boody Cozy Knit Wrap", href: "https://boodywear.com/products/cozy-knit-wrap" }],
+          [{ text: "Dainty Polaris Choker Necklace", href: "https://www.madetrade.com/products/altar-polaris-choker" }],
+          [{ text: "Fellowship Cork Wallet", href: "https://www.madetrade.com/products/tiradia-cork-fellowship-wallet" }],
+          [{ text: "Girlfriend Collective Please Recycle Backpack", href: "https://girlfriend.com/products/quartz-backpack-1" }],
+          [{ text: "Gold Recycled Hoop In White Topaz", href: "https://www.madetrade.com/products/sara-patino-jewelry-gold-hoop-with-white-topaz" }],
+          [{ text: "Hand-Knit Scarf", href: "https://www.etsy.com/uk/market/hand_knitted_scarf" }],
+          [{ text: "Knitted Unisex Beanie", href: "https://www.madetrade.com/products/terra-thread-organic-cotton-beanie" }],
+          [{ text: "Kooshoo Compostable Scrunchies", href: "https://www.kooshoo.com/collections/organic-cotton-plastic-free-scrunchies/products/blue-scrunchies" }],
+          [{ text: "Linen Waffle Blanket", href: "https://www.madetrade.com/products/amourlinen-linen-waffle-blanket" }],
+          [{ text: "Men's Owen Belt In Brandy", href: "https://www.madetrade.com/products/nisolo-leather-belt-brandy" }],
+          [{ text: "Natural Dye Silk Bandana", href: "https://www.madetrade.com/products/last-chance-textiles-natural-dye-silk-bandana" }],
+          [{ text: "Nixon Light-Wave Watch", href: "https://www.nixon.com/products/light-wave-all-black" }],
+          [{ text: "Pela Phone Case", href: "https://pelacase.com/products/seashell-little-yellow-flowers-eco-friendly-iphone-13-case" }],
+          [{ text: "Rattan Clutch Bag", href: "https://www.madetrade.com/products/village-thrive-rattan-clutch-bag" }],
+          [{ text: "Signature Cork Backpack", href: "https://www.madetrade.com/products/tiradia-cork-signature-backpack" }],
+          [{ text: "The Foggy Dog Bandana", href: "https://www.thefoggydog.com/collections/dog-bandanas/products/upcycled-denim-stripe-dog-bandana" }],
+          [{ text: "Upcycled Blankets", href: "https://www.madetrade.com/search?q=Upcycled+Blankets&type=product" }],
+          [{ text: "Vrai Pave Huggie Hoops", href: "https://www.vrai.com/jewelry/earrings/pave-huggie-hoops" }],
+          [{ text: "Wildred The Cloud Puff", href: "https://www.aritzia.com/us/en/product/the-cloud-puff/84952.html" }],
+        ],
+      },
+
+      { type: "heading", text: "Best Beauty & Personal Care Gifts" },
+      {
+        type: "paragraph",
+        text: "Finding compelling eco-friendly beauty and personal care items should be carefully selected. Since these products relate to one's well-being, you should be very informed about your decisions. However, based on our research, we hand-picked the top beauty and personal care items as follows:",
+      },
+      {
+        type: "list",
+        items: [
+          [{ text: "Durango Waxed Canvas Dopp Kit", href: "https://www.madetrade.com/products/nisolo-mens-dopp-kit-bag-waxed-canvas" }],
+          [{ text: "Earth Mama Organics Baby Gift Set", href: "https://earthmamaorganics.com/products/a-little-something-for-baby.html" }],
+          [{ text: "Masque Bar Natural Beauty Kit", href: "https://masque.bar/collections/best-sellers/products/all-naturals-value-set" }],
+          [{ text: "Men's Eucalyptus Tee", href: "https://www.madetrade.com/products/sijo-mens-short-sleeve-tee" }],
+          [{ text: "Pima Pajama Sets", href: "https://www.madetrade.com/search?q=Pima+Pajama+Sets&type=product" }],
+          [{ text: "Principle Beauty Eyeshadow Palette", href: "https://principlebeauty.com/collections/palettes/products/principle-beauty-desert-nomad-palette" }],
+          [{ text: "Siblings Scent No 1 Bundle", href: "https://siblings.co/products/scent-no-01" }],
+          [{ text: "Solstice Chemise", href: "https://www.madetrade.com/products/coyuchi-solstice-chemise-rosehip" }],
+          [{ text: "Unisex Waffle Robe", href: "https://www.madetrade.com/products/coyuchi-unisex-organic-waffle-robe-shadow" }],
+          [{ text: "Unisex Wool Slipper with Rubber Sole", href: "https://www.madetrade.com/products/baabushka-wool-slipper-rubber-sole" }],
+        ],
+      },
+
+      { type: "heading", text: "Best Travel & Outdoor Gifts" },
+      {
+        type: "paragraph",
+        text: "They are beneficial picks if you decide to give travel or outdoor gift items. They always come in handy as most people travel in their daily lives. Hence, here are the best helpful travel and outdoor gift items:",
+      },
+      {
+        type: "list",
+        items: [
+          [{ text: "Allbirds Wool Runners", href: "https://www.allbirds.com/products/womens-wool-runners" }],
+          [{ text: "Bumi Duffel Bag", href: "https://www.madetrade.com/products/terra-thread-eco-friendly-duffel-bag" }],
+          [{ text: "Executive Work Tote Bag", href: "https://www.madetrade.com/products/terra-thread-executive-work-tote-bag" }],
+          [{ text: "Keepcup Reusable Cup", href: "https://www.amazon.com/KeepCup-Reusable-Glass-Large-454mls/dp/B089QSBF7D" }],
+          [{ text: "Paravel Aviator Carry-On", href: "https://tourparavel.com/products/the-aviator-carry-on" }],
+          [{ text: "Scoria Yoga Mat", href: "https://www.scoriaworld.com/collections/artist-cork-yoga-mats/products/blossom-cork-yoga-mat" }],
+          [{ text: "To-Go Ware Bamboo Utensil Set", href: "https://www.rei.com/product/186201/to-go-ware-premium-bamboo-utensil-set" }],
+        ],
+      },
+
+      { type: "heading", text: "Best Gifts & Specialty Items Gifts" },
+      {
+        type: "paragraph",
+        text: "Apart from the usual products like home, fashion, kitchen, and beauty, there are some unique gift options. For someone crazy as you, you can check out these special gift items:",
+      },
+      {
+        type: "list",
+        items: [
+          [{ text: "Bamboo Cutlery Sets", href: "https://jungleculture.eco/collections/bamboo-cutlery" }],
+          [{ text: "Chopvalue Dominos", href: "https://chopvalue.com/products/domino-stones" }],
+          [{ text: "Furoshiki Reusable Gift Wrapping Cloth", href: "https://www.anthropologie.com/shop/furoshiki-reusable-gift-wrapping-cloth" }],
+          [{ text: "Indoor Herb Garden Starter Kit", href: "https://www.amazon.com/gp/product/B07HHMJBG2/" }],
+          [{ text: "Jewelry Made Out Of Recycled Materials", href: "https://www.etsy.com/market/recycled_jewelry" }],
+          [{ text: "Outdoor Lights With Renewable Energy", href: "https://www.powerbee.co.uk/outdoor-lighting.html" }],
+          [{ text: "Stainless Steel Straws", href: "https://www.kleankanteen.co.uk/collections/straws" }],
+        ],
+      },
+
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "Finding the ideal sustainable gift idea based on your loved ones' preferences is daunting. Hence, we have categorized and hand-picked the best gift options for your requirements!",
+      },
+      { type: "paragraph", text: "Happy gifting!" },
+    ],
+  },
+  {
     slug: "eco-friendly-alternatives-to-common-household-items",
     title: "Eco-Friendly Alternatives To Common Household Items",
     category: "Sustainability",
