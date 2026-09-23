@@ -42,6 +42,77 @@ export function formatPostDate(iso: string): string {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "eco-friendly-alternatives-to-common-household-items",
+    title: "Eco-Friendly Alternatives To Common Household Items",
+    category: "Sustainability",
+    excerpt:
+      "Nearly 30 easy swaps for everyday household items — from rechargeable batteries to beeswax wraps — that cut down on waste around the home.",
+    date: "2026-09-23",
+    readingTime: "4 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "How can we make our household more eco-friendly? You can make your household more eco-friendly by replacing some items with eco-friendly alternatives.",
+      },
+      { type: "paragraph", text: "Read ahead to find out more!" },
+      { type: "heading", text: "Are There Eco-Friendly Alternatives?" },
+      {
+        type: "paragraph",
+        text: "Yes, there are many eco-friendly alternatives you can use. Here are the top picks for you:",
+      },
+      {
+        type: "list",
+        items: [
+          "Batteries to Rechargeable Batteries: Rechargeable batteries produce less waste and are even a good investment for long-term usage.",
+          "Conventional toilet brush to a reusable toilet brush: Did you know that reusable toilet brush comes with a handle? So, why do you use a conventional toilet brush with throwaway pads?",
+          "Disposable coffee cups with reusable coffee cups: Disposable coffee cups are difficult to recycle. So, remember to use a reusable coffee cup, and you can even get a discount at cafes!",
+          "Disposable razors to safety razors: Invest in a good-quality razor while saving your pennies on replacing 2, 4, or even 5 whole head blades.",
+          "Plastic food containers to glass steel containers: Glass steel containers are eco-friendly, healthy, contain no chemicals, and can even be stored in the freezer.",
+          "Makeup remover wipes to makeup remover towel: Use a makeup remover towel to get rid of water or makeup removers while using it repeatedly.",
+          "Paper towels for reusable paper towels: Many reusable paper towels, such as disposable bamboo “paper” towels and reusable dish clothes, help reduce paper waste.",
+          "Plastic bottle to reusable water bottle: Plastic or cardboard water bottles are unhealthy, so switch to reusable water bottles while being stylish.",
+          "Plastic nail brush to wooden nail brush: Wooden nail brushes with nylon bristles are the best care for your nails. They have an extended lifespan than plastic nail brushes.",
+          "Plastic saran wrap to beeswax wraps: Use reusable food wraps, including beeswax wraps, which are made from cotton, beeswax, and tree oil.",
+          "Plastic spray bottles to reusable glass spray bottles: Plastic spray bottles do not have clean concentrates, but a reusable or glass spray bottle helps!",
+          "Plastic straws to reusable straws: Did you know that plastic straws backlash in every country? Hence, a reusable straw is an easy swap.",
+          "Single-use shopping bags to reusable shopping bags: Single-use or paper shopping bags are a breeze for paper bag consumption. So, make you turn to reusable shopping bags.",
+        ],
+      },
+      { type: "heading", text: "How To Make Eco-Friendly Products At Home?" },
+      {
+        type: "paragraph",
+        text: "By replacing some products with eco-friendly products, you can create a better environment at home. Here are some:",
+      },
+      {
+        type: "list",
+        items: [
+          "Clothes are made from synthetic materials to sustainable, natural materials.",
+          "Cotton buds to 100% biodegradable cotton buds.",
+          "Disposable notepad or journal to infinitely reusable one.",
+          "Dryer sheets for wool dryer balls.",
+          "Lint rollers for a reusable lint brush.",
+          "Liquid soap to bars of soap.",
+          "Paper towels to old rags.",
+          "Plastic deodorant for reusable deodorant holders with plastic-free refills.",
+          "Plastic dog poo bags to biodegradable dog poo bags.",
+          "Plastic lotion bottles for reusable lotion holders with plastic-free refills.",
+          "Plastic picnic ware to compostable wooden picnic ware.",
+          "Plastic produce bags to organic cotton mesh bags.",
+          "Plastic product bags for reusable produce bags.",
+          "Shampoo bottles to shampoo bars.",
+          "Tampons or sanitary towels to menstrual cups/cloth pads.",
+          "Toothpaste to natural toothpaste in a glass jar.",
+        ],
+      },
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "In conclusion, there are many eco-friendly alternatives that you can swap for. This would create a better environment for you and your kids.",
+      },
+      { type: "paragraph", text: "Let's get started today!" },
+    ],
+  },
+  {
     slug: "top-sustainable-fashion-brands",
     title: "Top Sustainable Fashion Brands (Leading Brands)",
     category: "Sustainability",
