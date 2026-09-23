@@ -27,11 +27,6 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
   "Behind the Brand",
 ];
 
-/**
- * Placeholder posts — realistic titles, excerpts and metadata so the page
- * can be designed and reviewed end to end. Swap these for real posts by
- * editing this array; every component downstream reads from it.
- */
 export function formatPostDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-AU", {
     day: "numeric",
@@ -41,6 +36,94 @@ export function formatPostDate(iso: string): string {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "eco-friendly-travel-tips",
+    title: "Eco-Friendly Travel Tips (To Reduce Your Carbon Footprint)",
+    category: "Sustainability",
+    excerpt:
+      "Practical eco-friendly travel tips across four stages of a trip — picking a destination, choosing accommodation, packing, and getting there.",
+    date: "2026-09-23",
+    readingTime: "4 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "How can we travel in an eco-friendly way? You can plan your eco-friendly travel by choosing an ideal destination, adequate accommodations, packing, and even transportation.",
+      },
+      { type: "paragraph", text: "Let's learn more!" },
+      { type: "heading", text: "Eco-Friendly Travel Tips" },
+
+      { type: "heading", text: "How To Pick A Destination" },
+      {
+        type: "paragraph",
+        text: "Before you travel, you need to pick a destination. So, here are a couple of eco-friendly travel tips while choosing a destination:",
+      },
+      {
+        type: "list",
+        items: [
+          "Choose a staycation that helps to cut down carbon emissions.",
+          "Pick sustainable destinations that support green lifestyles, protect inhabitants, reduce energy consumption, and more!",
+          "Travel to a second city (less known cities) which prevents contributing to pollution and over-tourism.",
+          "Travel to places that would benefit from reparation or economic support due to the effects of conditions such as global warming and climate change.",
+          "Visit famous destinations during the off-season (avoid peak season), as the busiest cities or places do not always promote sustainability.",
+        ],
+      },
+
+      { type: "heading", text: "Where To Stay" },
+      {
+        type: "paragraph",
+        text: "Once you decide on the destination, you can also make eco-friendly accommodation choices for where you should stay. Choosing your accommodation options wisely helps to cut down global emissions. Here are some tips to consider when selecting an ideal location:",
+      },
+      {
+        type: "list",
+        items: [
+          "Avoid using hotel laundry services — they either clean your clothes separately or send them to dry cleaners with a large carbon footprint.",
+          "Beware of greenwashing, where businesses indicate false eco-friendly claims.",
+          "Book through an eco-friendly booking site that helps filter sustainable and eco-friendly accommodation options.",
+          "Check whether your accommodation provider contributes to sustainability initiatives such as recycling or solar power systems.",
+          "Choose sustainably certified accommodations that use energy management, comply with social and environmental standards, and protect natural resources!",
+          "Select energy-efficient accommodations that use renewable energy and energy-efficient technologies, and conserve heating, electricity and cooling.",
+        ],
+      },
+
+      { type: "heading", text: "What Should You Pack" },
+      {
+        type: "paragraph",
+        text: "How can you maintain eco-friendly travel baggage? Here's how and what you need to carry with you:",
+      },
+      {
+        type: "list",
+        items: [
+          "Carry essential reusable travel items such as cloth napkins, a clothesline, cutlery, Tupperware, reusable snack bags, and more!",
+          "Avoid using single-use plastic straws, which harm wildlife and plants.",
+          "Carry a reusable water bottle to refill as required instead of using disposable plastic water bottles.",
+          "Carry shampoo bars instead of bottles, as shampoo bars do not have plastic packaging.",
+          "Consider using branded reusable luggage you can recycle or drop off when it breaks.",
+          "Use a cloth shopping bag while shopping for groceries while travelling; it also holds a tiny space.",
+        ],
+      },
+
+      { type: "heading", text: "How Should You Travel?" },
+      {
+        type: "paragraph",
+        text: "If you want to adopt eco-friendly travel habits, there are specific and effective ways you can travel. They mainly deal with your modes of transportation, and here are your tips:",
+      },
+      {
+        type: "list",
+        items: [
+          "Avoid domestic flights if you can replace them by travelling via bus, train, or car.",
+          "Go for non-stop flight bookings.",
+          "If you are using flights, ensure your airline uses biofuels to reduce global CO2 emissions.",
+          "Switch to boat transport rather than flights, as they contribute less to pollution.",
+        ],
+      },
+
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "So, are you clear on how to plan your trips using these eco-friendly travel tips? Get started now!",
+      },
+    ],
+  },
   {
     slug: "sustainable-living-debunking-zero-waste-myths",
     title: "Sustainable Living: Debunking Zero Waste Myths",
@@ -1289,113 +1372,5 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "So, are you ready to switch to eco-friendly products and contribute to a healthy environment for the future generation? Let's start practicing today!",
       },
     ],
-  },
-  {
-    slug: "what-happens-after-its-used",
-    title: "What Happens After It's Used?",
-    category: "Sustainability",
-    excerpt:
-      "It's the question that started EarthMend. A look at why we think it's worth asking about every product a business hands out — not just the pen.",
-    date: "2026-09-08",
-    readingTime: "5 min read",
-  },
-  {
-    slug: "what-our-logo-means",
-    title: "What Our Logo Means (And Why It Took So Long to Get Right)",
-    category: "Behind the Brand",
-    excerpt:
-      "Air, water, fire and earth, crossed into one mark. The thinking behind the symbol on every EarthMend pen.",
-    date: "2026-08-19",
-    readingTime: "4 min read",
-  },
-  {
-    slug: "problem-with-most-promotional-products",
-    title: "The Problem With Most Promotional Products",
-    category: "For Business",
-    excerpt:
-      "Most branded merchandise is designed to be handed out, not kept. We look at why — and what a second purpose changes.",
-    date: "2026-08-03",
-    readingTime: "6 min read",
-  },
-  {
-    slug: "inside-the-seed-capsule",
-    title: "Inside the Seed Capsule: How a Pen Becomes a Plant",
-    category: "Product",
-    excerpt:
-      "From ink to soil: a close look at the small biodegradable capsule that gives an EarthMend pen its second life.",
-    date: "2026-07-22",
-    readingTime: "4 min read",
-  },
-  {
-    slug: "greenwashing-101",
-    title: "Greenwashing 101: What “Eco-Friendly” Actually Means",
-    category: "Sustainability",
-    excerpt:
-      "Vague claims are easy to make and hard to trust. Why we're careful about the words “sustainable” and “eco-friendly” — including our own.",
-    date: "2026-07-05",
-    readingTime: "7 min read",
-  },
-  {
-    slug: "questions-before-branding-your-giveaway",
-    title: "5 Questions to Ask Before Branding Your Next Giveaway",
-    category: "For Business",
-    excerpt:
-      "Before your logo goes on anything, a short list of questions worth asking about what happens to it after.",
-    date: "2026-06-18",
-    readingTime: "5 min read",
-  },
-  {
-    slug: "why-we-chose-kraft-paper",
-    title: "Why We Chose Kraft Paper Over Plastic",
-    category: "Product",
-    excerpt:
-      "A simple material choice, and the thinking behind it — practicality, cost, and what it means for the pen's second life.",
-    date: "2026-06-02",
-    readingTime: "4 min read",
-  },
-  {
-    slug: "corporate-gifting-that-gets-kept",
-    title: "Corporate Gifting That Doesn't End Up in a Drawer",
-    category: "For Business",
-    excerpt:
-      "Gifts that get used, then remembered. Some thoughts on choosing corporate gifts people actually want to keep.",
-    date: "2026-05-14",
-    readingTime: "5 min read",
-  },
-  {
-    slug: "australias-changing-climate",
-    title: "Australia's Changing Climate, in Plain Language",
-    category: "Sustainability",
-    excerpt:
-      "No jargon, no alarm bells — just a plain-language look at how Australia's climate conversation is shifting, and why it matters to business.",
-    date: "2026-05-01",
-    readingTime: "6 min read",
-  },
-  {
-    slug: "beginners-guide-to-planting-your-capsule",
-    title: "A Beginner's Guide to Planting Your Seed Capsule",
-    category: "Product",
-    excerpt:
-      "Soil, sunlight, water, time. Everything you need to know to plant the seed capsule from your EarthMend pen.",
-    date: "2026-04-16",
-    readingTime: "3 min read",
-  },
-  {
-    slug: "small-business-smaller-footprint",
-    title: "Small Business, Smaller Footprint: Where to Start",
-    category: "For Business",
-    excerpt:
-      "You don't need a sustainability department to make better choices. A few practical starting points for small teams.",
-    date: "2026-04-02",
-    readingTime: "6 min read",
-  },
-  {
-    slug: "real-cost-of-free-promotional-merchandise",
-    title: "The Real Cost of “Free” Promotional Merchandise",
-    category: "Sustainability",
-    excerpt:
-      "Giveaways aren't really free — someone pays, eventually. A look at the true cost of disposable branded products.",
-    date: "2026-03-11",
-    readingTime: "5 min read",
   },
 ];
