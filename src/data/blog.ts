@@ -1,5 +1,10 @@
 export type BlogCategory = "Sustainability" | "For Business" | "Product" | "Behind the Brand";
 
+export type BlogBodyBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; text: string }
+  | { type: "list"; items: string[] };
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -7,8 +12,8 @@ export type BlogPost = {
   excerpt: string;
   date: string; // ISO
   readingTime: string;
-  /** One entry per paragraph. Omitted while a post is still a placeholder. */
-  body?: string[];
+  /** Omitted while a post is still a placeholder. */
+  body?: BlogBodyBlock[];
 };
 
 export const BLOG_CATEGORIES: BlogCategory[] = [
@@ -32,6 +37,108 @@ export function formatPostDate(iso: string): string {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "how-to-reduce-your-plastic-footprint",
+    title: "How to Reduce Your Plastic Footprint? (10 Easy Ways You Forgot)",
+    category: "Sustainability",
+    excerpt:
+      "Ten small, practical swaps — from reusable bottles to buying in bulk — that add up to a real drop in your everyday plastic use.",
+    date: "2026-09-23",
+    readingTime: "3 min read",
+    body: [
+      {
+        type: "paragraph",
+        text: "You can reduce your plastic footprint by taking small steps, from your home to your buying practices. For example, you can carry small tote bags instead of single-use plastic bags.",
+      },
+      {
+        type: "paragraph",
+        text: "Did you know that the lifespan of plastic products averages about 10 years? It can also take up to 500 years to decompose, depending on composition and disposal. (Source: Statista)",
+      },
+      {
+        type: "paragraph",
+        text: "In this guide, we will discuss the easy 10 best practices for reducing your plastic footprint today!",
+      },
+      { type: "heading", text: "What Are 10 Ways To Reduce Plastic Footprint?" },
+      { type: "heading", text: "1. Use Reusable Products" },
+      {
+        type: "paragraph",
+        text: "So, what reusable products can you use to reduce your plastic footprint? Here are they:",
+      },
+      {
+        type: "list",
+        items: [
+          "Reusable bottles instead of single-use plastic bottles.",
+          "Reusable hot drink cups instead of single-use hot drink cups.",
+        ],
+      },
+      { type: "paragraph", text: "Invest in the above products and carry them with you." },
+      { type: "heading", text: "2. Why Use Soap Bars (Instead Of Shower Gel)?" },
+      {
+        type: "paragraph",
+        text: "Shower gels are not a healthy option, so replace them with soap bars, shampoos, or liquids. However, if you dislike soap, consider opting for refill bags or shower gel.",
+      },
+      { type: "paragraph", text: "So, it will cut down your monthly overall plastic use." },
+      { type: "heading", text: "3. Avoid Disposable Cutlery And Straws" },
+      { type: "paragraph", text: "You can avoid using disposable cutlery and straws." },
+      {
+        type: "paragraph",
+        text: "So, what can you use instead? Carry reusable cutlery sets, metal sets, bamboo straws, and more!",
+      },
+      { type: "heading", text: "4. Do You Carry A Tote Bag?" },
+      { type: "paragraph", text: "Instead of using single-use plastic bags, invest in tote bags." },
+      {
+        type: "paragraph",
+        text: "Absolutely, sellers love it when you carry a tote bag or a foldable shopping bag.",
+      },
+      { type: "heading", text: "5. How Long Have You Been Using Plastic Containers?" },
+      { type: "paragraph", text: "If you use plastic containers in your kitchenware, stop it from today!" },
+      {
+        type: "paragraph",
+        text: "You can switch to glass or stainless steel containers. They are not harmful and don't impact your food like plastic containers.",
+      },
+      { type: "heading", text: "6. Which One Should You Pick, Loose Tea Or Teabags?" },
+      {
+        type: "paragraph",
+        text: "Since tea bags contain a plastic footprint, why don't you switch to loose tea?",
+      },
+      { type: "paragraph", text: "There are high-quality brews you can purchase from loose tea providers." },
+      { type: "heading", text: "7. How Many Days A Week Do You Order Food?" },
+      {
+        type: "paragraph",
+        text: "You can order food fewer times in a month instead of purchasing prepackaged meals or takeaways. When you do so, the food is packaged in plastic, which is not suitable for your health.",
+      },
+      { type: "paragraph", text: "So, consider cooking more at home (and ordering less food outdoors)." },
+      { type: "heading", text: "8. Have You Reused Old Garments?" },
+      { type: "paragraph", text: "One of the most polluting products is clothes, as they are made of plastic." },
+      {
+        type: "paragraph",
+        text: "So, instead of throwing away your old clothes, you can reuse them even as surface wipes.",
+      },
+      { type: "heading", text: "9. How Many Paper Napkin Packages Did You Buy?" },
+      {
+        type: "paragraph",
+        text: "Did you know that paper napkins also contribute to plastic usage? Hence, it's time to replace them with disposable paper napkins or cloth towels.",
+      },
+      { type: "heading", text: "10. Why Buy In Bulk?" },
+      {
+        type: "paragraph",
+        text: "Instead of buying several small containers of products such as nuts, yogurt, curd, rice, pasta, jars, and packaging, consider purchasing bigger containers.",
+      },
+      {
+        type: "paragraph",
+        text: "Also, you can look for nonplastic packages such as glass jars to practice eco-friendly packaging as well.",
+      },
+      { type: "heading", text: "Final Thoughts" },
+      {
+        type: "paragraph",
+        text: "In conclusion, it is essential to reduce your plastic footprint, and you can start with small practices.",
+      },
+      {
+        type: "paragraph",
+        text: "So, are you ready to switch to eco-friendly products and contribute to a healthy environment for the future generation? Let's start practicing today!",
+      },
+    ],
+  },
   {
     slug: "what-happens-after-its-used",
     title: "What Happens After It's Used?",

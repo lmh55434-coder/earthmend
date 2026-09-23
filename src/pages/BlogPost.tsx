@@ -5,6 +5,7 @@ import TextLink from "../components/ui/TextLink";
 import SectionLabel from "../components/ui/SectionLabel";
 import Reveal from "../components/ui/Reveal";
 import CategoryIcon from "../components/blog/CategoryIcon";
+import ArticleBody from "../components/blog/ArticleBody";
 import CTASection from "../components/sections/CTASection";
 import { BLOG_POSTS, formatPostDate } from "../data/blog";
 
@@ -49,12 +50,8 @@ export default function BlogPost() {
             </p>
 
             {post.body ? (
-              <div className="mx-auto mt-10 max-w-content-text space-y-5 border-t border-line pt-10">
-                {post.body.map((paragraph, i) => (
-                  <p key={i} className="text-body text-ink-muted">
-                    {paragraph}
-                  </p>
-                ))}
+              <div className="mx-auto mt-10 max-w-content-text border-t border-line pt-10">
+                <ArticleBody blocks={post.body} />
               </div>
             ) : (
               <div className="mx-auto mt-10 max-w-content-text border-t border-line pt-8">
