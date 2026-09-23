@@ -8,6 +8,8 @@ import OurStory from "./pages/OurStory";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import FAQ from "./pages/FAQ";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import RequestQuote from "./pages/RequestQuote";
 
 export default function App() {
@@ -22,6 +24,8 @@ export default function App() {
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogPost />} />
         <Route path="faq" element={<FAQ />} />
+        <Route path="privacy" element={<Privacy />} />
+        <Route path="terms" element={<Terms />} />
         <Route path="request-quote" element={<RequestQuote />} />
       </Route>
     </Routes>
