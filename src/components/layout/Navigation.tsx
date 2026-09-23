@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "For Business", href: "/for-business" },
   { label: "Our Story", href: "/our-story" },
   { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 // A real route (e.g. "/the-pen") gets client-side routing via <Link>. A
