@@ -25,7 +25,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-line-inverted bg-charcoal text-ivory">
       <Container>
-        <div className="grid grid-cols-1 gap-12 py-section-sm sm:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-12 py-section-sm sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr]">
           <div className="max-w-sm space-y-4">
             <p className="font-serif text-xl font-medium">EarthMend</p>
             <p className="text-body text-kraft">
@@ -48,6 +48,24 @@ export default function Footer() {
               </ul>
             </nav>
           ))}
+
+          <div aria-label="Contact">
+            <p className="text-eyebrow text-kraft">Contact</p>
+            <div className="mt-4 space-y-3">
+              <TextLink
+                href="mailto:hello@earthmend.com.au"
+                tone="inverted"
+                className="min-h-0 py-0"
+              >
+                hello@earthmend.com.au
+              </TextLink>
+              <p className="text-body text-kraft">
+                179 Alfred Street
+                <br />
+                Fortitude Valley QLD 4006
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col gap-4 border-t border-line-inverted py-8 text-small !text-kraft sm:flex-row sm:items-center sm:justify-between">

@@ -9,7 +9,7 @@ export default function FAQ() {
       <FAQList />
       <CTASection
         heading="Still have a question?"
-        supporting="Request a free sample to see the pen for yourself, or get a quote for your business."
+        supporting="Request a free sample, get a quote, or email us directly at hello@earthmend.com.au."
         quoteHref="/for-business#build-your-order"
         sampleHref="/for-business#build-your-order"
         quoteLabel="Get a Quote"
