@@ -3,6 +3,7 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
+import { usePageMeta } from "../../hooks/usePageMeta";
 
 export type LegalSection = {
   heading: string;
@@ -22,6 +23,8 @@ type LegalPageProps = {
  * no per-paragraph Reveal choreography beyond the opening fade.
  */
 export default function LegalPage({ title, lastUpdated, intro, sections }: LegalPageProps) {
+  usePageMeta(title, intro);
+
   return (
     <Section tone="ivory" spacing="lg">
       <Container size="text">

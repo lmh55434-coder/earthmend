@@ -4,8 +4,14 @@ import WhyItMatters from "../components/sections/WhyItMatters";
 import BusinessSection from "../components/sections/BusinessSection";
 import StorySection from "../components/sections/StorySection";
 import CTASection from "../components/sections/CTASection";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Home() {
+  usePageMeta(
+    "A Pen That Gives Back",
+    "A plantable kraft-paper pen with a biodegradable seed capsule. Write, plant, grow. Sustainable corporate gifting for Australian businesses.",
+  );
+
   return (
     <>
       <Hero />

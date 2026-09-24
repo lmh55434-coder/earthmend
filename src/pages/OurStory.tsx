@@ -5,6 +5,7 @@ import WhatTheSymbolMeans from "../components/sections/WhatTheSymbolMeans";
 import MadeInAustralia from "../components/sections/MadeInAustralia";
 import StoryBridge from "../components/sections/StoryBridge";
 import CTASection from "../components/sections/CTASection";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 /**
  * The brand's own voice — why EarthMend exists, what it believes, and what
@@ -12,6 +13,11 @@ import CTASection from "../components/sections/CTASection";
  * Matters' job), and honest about what it can and can't claim.
  */
 export default function OurStory() {
+  usePageMeta(
+    "Our Story",
+    "EarthMend began with a simple idea: what if an everyday product could have a life beyond its first use?",
+  );
+
   return (
     <>
       <OurStoryHero />

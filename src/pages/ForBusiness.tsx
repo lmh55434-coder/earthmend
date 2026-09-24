@@ -5,8 +5,14 @@ import WhereItFits from "../components/sections/WhereItFits";
 import BuildYourOrder from "../components/sections/BuildYourOrder";
 import SampleCTA from "../components/sections/SampleCTA";
 import CTASection from "../components/sections/CTASection";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function ForBusiness() {
+  usePageMeta(
+    "For Business",
+    "Add your logo or brand identity to an everyday product that people can actually use. From conferences to client gifts, EarthMend gives your brand a physical presence with a story beyond the first use.",
+  );
+
   return (
     <>
       <BrandShowcase />

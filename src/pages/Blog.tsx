@@ -1,8 +1,14 @@
 import BlogHero from "../components/sections/BlogHero";
 import BlogListing from "../components/sections/BlogListing";
 import CTASection from "../components/sections/CTASection";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Blog() {
+  usePageMeta(
+    "Blog",
+    "Notes on sustainable materials, responsible claims, and building brands that leave more than a logo behind.",
+  );
+
   return (
     <>
       <BlogHero />

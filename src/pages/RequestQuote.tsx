@@ -9,6 +9,7 @@ import OrderSummary from "../components/configurator/OrderSummary";
 import FileUpload from "../components/configurator/FileUpload";
 import { SEED_OPTIONS, getQuantityOption, calculateOrder, formatCurrency } from "../data/pricing";
 import { loadOrderConfig, type OrderConfig } from "../lib/orderConfig";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 type FormState = {
   name: string;
@@ -117,6 +118,8 @@ function TextAreaField({ id, label, value, onChange, error, rows = 4, optional }
 }
 
 export default function RequestQuote() {
+  usePageMeta("Request a Quote", "Build your EarthMend order and tell us a little about your requirements.", true);
+
   const location = useLocation();
   const [config] = useState<OrderConfig | null>(
     () => (location.state as OrderConfig | null) ?? loadOrderConfig(),

@@ -5,6 +5,7 @@ import ProductFeature from "../components/sections/ProductFeature";
 import HowToPlant from "../components/sections/HowToPlant";
 import CTASection from "../components/sections/CTASection";
 import penFull from "../assets/pen/pen-full.jpg";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 /**
  * The dedicated product page: an intro, what it's made from, the planting
@@ -13,6 +14,11 @@ import penFull from "../assets/pen/pen-full.jpg";
  * repeating the homepage's own story.
  */
 export default function ThePen() {
+  usePageMeta(
+    "The Pen",
+    "A ballpoint pen with a kraft-paper barrel and a biodegradable seed capsule — built for everyday writing, and for what happens after.",
+  );
+
   return (
     <>
       <Section tone="ivory" spacing="sm">

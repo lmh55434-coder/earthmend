@@ -1,8 +1,14 @@
 import FAQHero from "../components/sections/FAQHero";
 import FAQList from "../components/sections/FAQList";
 import CTASection from "../components/sections/CTASection";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function FAQ() {
+  usePageMeta(
+    "FAQ",
+    "Everything we're asked most often about the pen, ordering for business, and what happens after the ink runs out.",
+  );
+
   return (
     <>
       <FAQHero />

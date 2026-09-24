@@ -11,6 +11,7 @@ import TheAnswer from "../components/sections/TheAnswer";
 import HowToPlant from "../components/sections/HowToPlant";
 import Philosophy from "../components/sections/Philosophy";
 import CTASection from "../components/sections/CTASection";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 /**
  * The intellectual and emotional foundation of EarthMend — why the choices
@@ -19,6 +20,11 @@ import CTASection from "../components/sections/CTASection";
  * and The Pen carry that weight elsewhere.
  */
 export default function WhyItMatters() {
+  usePageMeta(
+    "Why It Matters",
+    "Australia is changing. The products people buy, the choices businesses make and the expectations around sustainability are all becoming part of a bigger conversation.",
+  );
+
   return (
     <>
       <WhyMattersHero />

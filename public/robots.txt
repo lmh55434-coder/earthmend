@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /request-quote
+
+Sitemap: https://earthmend.com.au/sitemap.xml

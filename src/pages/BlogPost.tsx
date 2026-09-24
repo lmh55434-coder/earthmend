@@ -8,6 +8,7 @@ import CategoryIcon from "../components/blog/CategoryIcon";
 import ArticleBody from "../components/blog/ArticleBody";
 import CTASection from "../components/sections/CTASection";
 import { BLOG_POSTS, formatPostDate } from "../data/blog";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 /**
  * Renders the real article body when a post has one. Posts without a
@@ -17,6 +18,7 @@ import { BLOG_POSTS, formatPostDate } from "../data/blog";
 export default function BlogPost() {
   const { slug } = useParams();
   const post = BLOG_POSTS.find((p) => p.slug === slug);
+  usePageMeta(post?.title ?? "Blog", post?.excerpt ?? "Notes on sustainable materials and building brands that leave more than a logo behind.");
 
   if (!post) {
     return <Navigate to="/blog" replace />;
