@@ -1,5 +1,6 @@
 import Container from "./Container";
 import TextLink from "../ui/TextLink";
+import SocialLinks from "../ui/SocialLinks";
 
 const COLUMNS = [
   {
@@ -64,6 +65,7 @@ export default function Footer() {
                 <br />
                 Fortitude Valley QLD 4006
               </p>
+              <SocialLinks className="!-ml-2 pt-1" />
             </div>
           </div>
         </div>
