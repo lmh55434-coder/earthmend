@@ -3,7 +3,7 @@ import Section from "../layout/Section";
 import TextLink from "../ui/TextLink";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import penFull from "../../assets/pen/pen-full.jpg";
+import ideaSectionImage from "../../assets/marketing/idea-section-packaging.jpg";
 
 const POINTS = [
   { number: "01", label: "Write", description: "Made for everyday writing." },
@@ -23,10 +23,10 @@ export default function TheIdea({ id }: { id?: string }) {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:items-center lg:gap-x-16">
           <Reveal className="lg:col-span-6">
             <img
-              src={penFull}
-              alt="The EarthMend kraft-paper pen with its branded barrel and biodegradable seed capsule"
+              src={ideaSectionImage}
+              alt="A pen in a custom-branded card sleeve beside EarthMend's 'Plant after use and make it sprout' instructions card"
               className="w-full object-cover"
-              style={{ aspectRatio: "5 / 4", objectPosition: "68% 50%" }}
+              style={{ aspectRatio: "4 / 5" }}
             />
           </Reveal>
 
