@@ -22,7 +22,7 @@ export const FAQ_SECTIONS: { category: FAQCategory; items: FAQItem[] }[] = [
       {
         question: "What seeds come with the pen?",
         answer:
-          "You can choose from Australian native wildflower seeds, herb seeds, or vegetable seeds when you place your order.",
+          "You can choose from Herbs, Flowers, or Vegetables and Fruits when you place your order.",
       },
       {
         question: "Does the whole pen break down once it's planted?",

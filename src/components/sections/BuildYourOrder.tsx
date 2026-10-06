@@ -82,11 +82,12 @@ export default function BuildYourOrder() {
               </div>
               <SeedSelector selected={seedIds} onChange={setSeedIds} />
 
-              <div className="mt-8 border border-line-inverted-strong bg-ivory p-4 sm:p-6">
+              <div className="mt-8 bg-ivory p-4 sm:p-6">
                 <ZoomableImage
                   src={seedVarieties}
                   alt="A catalogue of seed varieties available in the EarthMend seed capsule: herbs (basil, thyme, sage, parsley, rucola), flowers (sunflower, forget-me-not, wildflower, daisy, eternity flower), and vegetables and fruit (cherry tomato, cucumber, melon, strawberry, chili)"
                   className="w-full"
+                  desktopZoomable
                 />
               </div>
             </Reveal>

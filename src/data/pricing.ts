@@ -26,9 +26,9 @@ export const SINGLE_CARD_PRICE = 0.25;
 export type SeedOption = { id: string; label: string };
 
 export const SEED_OPTIONS: SeedOption[] = [
-  { id: "wildflower", label: "Australian Native Wildflower Seeds" },
-  { id: "herb", label: "Herb Seeds" },
-  { id: "vegetable", label: "Vegetable Seeds" },
+  { id: "herb", label: "Herbs" },
+  { id: "wildflower", label: "Flowers" },
+  { id: "vegetable", label: "Vegetables and Fruits" },
 ];
 
 export function getQuantityOption(key: QuantityKey): QuantityOption {

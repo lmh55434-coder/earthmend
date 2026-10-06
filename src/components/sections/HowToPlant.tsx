@@ -97,6 +97,7 @@ export default function HowToPlant({
             src={seedVarieties}
             alt="A catalogue of seed varieties available in the EarthMend seed capsule: herbs (basil, thyme, sage, parsley, rucola), flowers (sunflower, forget-me-not, wildflower, daisy, eternity flower), and vegetables and fruit (cherry tomato, cucumber, melon, strawberry, chili)"
             className="mt-7 w-full border border-line"
+            desktopZoomable
           />
         </Reveal>
       </Container>

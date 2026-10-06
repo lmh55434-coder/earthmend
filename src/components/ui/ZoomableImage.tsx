@@ -6,17 +6,27 @@ type ZoomableImageProps = {
   alt: string;
   className?: string;
   style?: React.CSSProperties;
+  /** Enable the zoom trigger at desktop widths too (default: mobile-only). */
+  desktopZoomable?: boolean;
 };
 
 /**
- * Wraps an <img> with a mobile-only tap-to-zoom lightbox. On wide, very
- * landscape photos (like the hero's feature diagram) the full image reads
- * fine at desktop width but shrinks to a thin strip on phones — this gives
- * mobile visitors a way to open it full-screen and scroll/pinch into the
- * detail instead. Desktop is untouched: the trigger is inert above the `lg`
- * breakpoint so there's no dead click target on the hero photo.
+ * Wraps an <img> with a tap/click-to-zoom lightbox. On wide, very landscape
+ * photos (like the hero's feature diagram) the full image reads fine at
+ * desktop width but shrinks to a thin strip on phones — this gives mobile
+ * visitors a way to open it full-screen and scroll/pinch into the detail
+ * instead. By default desktop is untouched (the trigger is inert above the
+ * `lg` breakpoint), since most images already show at full size there; pass
+ * `desktopZoomable` for images — like a dense infographic — that still
+ * benefit from enlarging on desktop.
  */
-export default function ZoomableImage({ src, alt, className = "", style }: ZoomableImageProps) {
+export default function ZoomableImage({
+  src,
+  alt,
+  className = "",
+  style,
+  desktopZoomable = false,
+}: ZoomableImageProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -37,8 +47,9 @@ export default function ZoomableImage({ src, alt, className = "", style }: Zooma
   }, [open]);
 
   function handleOpen() {
-    // Desktop already shows the image at full size — only open on mobile.
-    if (window.matchMedia("(min-width: 1024px)").matches) return;
+    // Desktop already shows most images at full size — only open there
+    // when the caller opts in.
+    if (!desktopZoomable && window.matchMedia("(min-width: 1024px)").matches) return;
     setOpen(true);
   }
 
@@ -48,12 +59,16 @@ export default function ZoomableImage({ src, alt, className = "", style }: Zooma
         type="button"
         onClick={handleOpen}
         aria-label={`Zoom in on image: ${alt}`}
-        className="group relative block w-full cursor-zoom-in lg:pointer-events-none lg:cursor-auto"
+        className={`group relative block w-full cursor-zoom-in ${
+          desktopZoomable ? "" : "lg:pointer-events-none lg:cursor-auto"
+        }`}
       >
         <img src={src} alt={alt} className={className} style={style} />
         <span
           aria-hidden="true"
-          className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-charcoal/70 text-ivory lg:hidden"
+          className={`absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-charcoal/70 text-ivory ${
+            desktopZoomable ? "" : "lg:hidden"
+          }`}
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.4" />
@@ -88,12 +103,12 @@ export default function ZoomableImage({ src, alt, className = "", style }: Zooma
               className="h-full w-full overflow-auto overscroll-contain"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
-              <div className="flex min-h-full items-center p-6">
+              <div className="flex min-h-full items-center p-6 lg:items-center lg:justify-center">
                 <img
                   src={src}
                   alt={alt}
                   onClick={() => setOpen(false)}
-                  className="w-[220%] max-w-none cursor-zoom-out"
+                  className="w-[220%] max-w-none cursor-zoom-out lg:w-auto lg:max-w-[90vw] lg:max-h-[85vh] lg:object-contain"
                 />
               </div>
             </div>
