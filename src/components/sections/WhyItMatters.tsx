@@ -3,7 +3,7 @@ import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import TextLink from "../ui/TextLink";
 import Reveal from "../ui/Reveal";
-import penMood from "../../assets/pen/pen-mood.jpg";
+import plantMarkers from "../../assets/marketing/plant-markers.jpg";
 
 type WhyItMattersProps = {
   id?: string;
@@ -43,10 +43,10 @@ export default function WhyItMatters({ id, linkLabel, linkHref }: WhyItMattersPr
 
           <Reveal delay={120} className="lg:col-span-7">
             <img
-              src={penMood}
-              alt="The EarthMend pen resting on a kraft-paper surface, with generous negative space"
+              src={plantMarkers}
+              alt="Potted tomato and herb plants with EarthMend pens planted in the soil as handwritten plant markers"
               className="w-full object-cover"
-              style={{ aspectRatio: "6 / 5", objectPosition: "50% 35%" }}
+              style={{ aspectRatio: "1000 / 1414" }}
             />
           </Reveal>
         </div>
