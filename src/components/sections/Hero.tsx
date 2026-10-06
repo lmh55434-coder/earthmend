@@ -1,6 +1,7 @@
 import Container from "../layout/Container";
 import Bleed from "../layout/Bleed";
 import Section from "../layout/Section";
+import ZoomableImage from "../ui/ZoomableImage";
 import penFeatureDiagram from "../../assets/marketing/pen-feature-diagram-v3.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
@@ -27,10 +28,12 @@ export default function Hero() {
       {/*
         The one full-bleed moment of the homepage: the annotated product
         diagram, shown wide and uncropped rather than forced into a boxed
-        hero panel.
+        hero panel. On mobile its very wide aspect ratio leaves it quite
+        small, so ZoomableImage adds a tap-to-enlarge lightbox there;
+        desktop already shows it at a comfortable size and is untouched.
       */}
       <Bleed className="mt-14 lg:mt-16">
-        <img
+        <ZoomableImage
           src={penFeatureDiagram}
           alt="An EarthMend pen labelled with its features: kraft-paper barrel, a printed logo area on the barrel, and a biodegradable seed capsule with seeds in its cap"
           className="w-full object-cover"
