@@ -4,12 +4,14 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
+import ZoomableImage from "../ui/ZoomableImage";
 import QuantitySelector from "../configurator/QuantitySelector";
 import SeedSelector from "../configurator/SeedSelector";
 import PackagingSelector from "../configurator/PackagingSelector";
 import OrderSummary from "../configurator/OrderSummary";
 import { getQuantityOption, type QuantityKey } from "../../data/pricing";
 import { saveOrderConfig, type OrderConfig } from "../../lib/orderConfig";
+import seedVarieties from "../../assets/marketing/seed-varieties.jpg";
 
 const STEPS = [
   { number: "01", label: "Choose Your Quantity" },
@@ -79,6 +81,14 @@ export default function BuildYourOrder() {
                 </div>
               </div>
               <SeedSelector selected={seedIds} onChange={setSeedIds} />
+
+              <div className="mt-8 border border-line-inverted-strong bg-ivory p-4 sm:p-6">
+                <ZoomableImage
+                  src={seedVarieties}
+                  alt="A catalogue of seed varieties available in the EarthMend seed capsule: herbs (basil, thyme, sage, parsley, rucola), flowers (sunflower, forget-me-not, wildflower, daisy, eternity flower), and vegetables and fruit (cherry tomato, cucumber, melon, strawberry, chili)"
+                  className="w-full"
+                />
+              </div>
             </Reveal>
 
             <Reveal delay={160} className="mt-12 border-t border-line-inverted pt-8">

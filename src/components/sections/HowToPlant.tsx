@@ -3,8 +3,10 @@ import Section from "../layout/Section";
 import Reveal from "../ui/Reveal";
 import ImageBlock from "../product/ImageBlock";
 import SectionIntro from "./SectionIntro";
+import ZoomableImage from "../ui/ZoomableImage";
 import penTip from "../../assets/pen/pen-tip.jpg";
 import penSeedCapsule from "../../assets/pen/pen-seed-capsule.jpg";
+import seedVarieties from "../../assets/marketing/seed-varieties.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
 
@@ -85,6 +87,18 @@ export default function HowToPlant({
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={360} className="mt-14 lg:mt-20">
+          <p className="text-eyebrow">Choose Your Seeds</p>
+          <p className="text-body mt-2 max-w-content-text text-ink-muted">
+            A look at the herb, flower, and vegetable and fruit varieties behind each seed option.
+          </p>
+          <ZoomableImage
+            src={seedVarieties}
+            alt="A catalogue of seed varieties available in the EarthMend seed capsule: herbs (basil, thyme, sage, parsley, rucola), flowers (sunflower, forget-me-not, wildflower, daisy, eternity flower), and vegetables and fruit (cherry tomato, cucumber, melon, strawberry, chili)"
+            className="mt-7 w-full border border-line"
+          />
+        </Reveal>
       </Container>
     </Section>
   );
