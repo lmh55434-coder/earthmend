@@ -21,6 +21,19 @@ export default function TheIdea({ id }: { id?: string }) {
     <Section id={id} tone="ivory" spacing="lg">
       <Container size="narrow">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:items-center lg:gap-x-16">
+          {/* Mobile only: label + heading shown above the image; the
+              desktop pair below (inside the text column) takes over at lg. */}
+          <Reveal className="lg:hidden">
+            <SectionLabel>The Idea</SectionLabel>
+            <h2 className="text-h1 mt-4">
+              One pen.
+              <br />
+              Your brand.
+              <br />
+              A second purpose.
+            </h2>
+          </Reveal>
+
           <Reveal className="lg:col-span-6">
             <img
               src={ideaSectionImage}
@@ -31,14 +44,16 @@ export default function TheIdea({ id }: { id?: string }) {
           </Reveal>
 
           <Reveal delay={120} className="max-w-content-text lg:col-span-6">
-            <SectionLabel>The Idea</SectionLabel>
-            <h2 className="text-h1 mt-4">
-              One pen.
-              <br />
-              Your brand.
-              <br />
-              A second purpose.
-            </h2>
+            <div className="hidden lg:block">
+              <SectionLabel>The Idea</SectionLabel>
+              <h2 className="text-h1 mt-4">
+                One pen.
+                <br />
+                Your brand.
+                <br />
+                A second purpose.
+              </h2>
+            </div>
             <p className="text-body-lg mt-5 text-ink-muted">
               An everyday writing essential designed for businesses, events and organisations —
               with a thoughtful second life after use.
