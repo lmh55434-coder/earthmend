@@ -5,12 +5,6 @@ import penFeatureDiagram from "../../assets/marketing/pen-feature-diagram-v3.jpg
 
 const JOURNEY = ["Write", "Plant", "Grow"];
 
-/**
- * Native aspect ratio of the pen-feature-diagram image — set explicitly so
- * it's never cropped or distorted.
- */
-const PEN_PHOTO_ASPECT = "2000 / 627";
-
 export default function Hero() {
   return (
     <Section tone="ivory" spacing="sm">
@@ -26,15 +20,17 @@ export default function Hero() {
 
       {/*
         The one full-bleed moment of the homepage: the annotated product
-        diagram, shown wide and uncropped rather than forced into a boxed
-        hero panel.
+        diagram. The full, uncropped image only reads clearly at desktop
+        widths — on mobile its very wide aspect ratio would shrink to a
+        barely-visible sliver, so a tighter crop (anchored to the right edge,
+        trimming only the unlabelled cap end) keeps the pen legibly sized
+        while still showing all four callouts.
       */}
       <Bleed className="mt-14 lg:mt-16">
         <img
           src={penFeatureDiagram}
           alt="An EarthMend pen labelled with its features: kraft-paper barrel, a printed logo area on the barrel, and a biodegradable seed capsule with seeds in its cap"
-          className="w-full object-cover"
-          style={{ aspectRatio: PEN_PHOTO_ASPECT }}
+          className="aspect-[2.2/1] w-full object-cover object-right lg:aspect-[2000/627] lg:object-center"
         />
       </Bleed>
 
