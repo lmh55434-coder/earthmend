@@ -3,7 +3,7 @@ import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import TextLink from "../ui/TextLink";
 import Reveal from "../ui/Reveal";
-import plantMarkers from "../../assets/marketing/plant-markers.jpg";
+import plantMarkers from "../../assets/marketing/plant-markers-v2.jpg";
 
 type WhyItMattersProps = {
   id?: string;
