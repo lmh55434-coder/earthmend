@@ -1,15 +1,15 @@
 import Container from "../layout/Container";
 import Bleed from "../layout/Bleed";
 import Section from "../layout/Section";
-import penFull from "../../assets/pen/pen-full.jpg";
+import brandMockups from "../../assets/marketing/brand-mockups.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
 
 /**
- * The real pen's native crop ratio (extracted from the brand's reference
- * photography) — set explicitly so the image is never cropped or distorted.
+ * Native aspect ratio of the brand-mockups image — set explicitly so it's
+ * never cropped or distorted.
  */
-const PEN_PHOTO_ASPECT = "1022 / 380";
+const PEN_PHOTO_ASPECT = "2000 / 1125";
 
 export default function Hero() {
   return (
@@ -30,8 +30,8 @@ export default function Hero() {
       */}
       <Bleed className="mt-14 lg:mt-16">
         <img
-          src={penFull}
-          alt="The EarthMend kraft-paper pen and its biodegradable seed capsule, resting beside its cap"
+          src={brandMockups}
+          alt="Five EarthMend pens shown with example branded packaging designs across different industries"
           className="w-full object-cover"
           style={{ aspectRatio: PEN_PHOTO_ASPECT }}
         />
