@@ -1,7 +1,7 @@
 import Container from "../layout/Container";
 import Bleed from "../layout/Bleed";
 import Section from "../layout/Section";
-import penFeatureDiagram from "../../assets/marketing/pen-feature-diagram.jpg";
+import penFeatureDiagram from "../../assets/marketing/pen-feature-diagram-v2.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
 
@@ -9,7 +9,7 @@ const JOURNEY = ["Write", "Plant", "Grow"];
  * Native aspect ratio of the pen-feature-diagram image — set explicitly so
  * it's never cropped or distorted.
  */
-const PEN_PHOTO_ASPECT = "2000 / 496";
+const PEN_PHOTO_ASPECT = "2000 / 566";
 
 export default function Hero() {
   return (
