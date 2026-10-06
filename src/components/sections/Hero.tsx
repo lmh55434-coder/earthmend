@@ -1,15 +1,15 @@
 import Container from "../layout/Container";
 import Bleed from "../layout/Bleed";
 import Section from "../layout/Section";
-import brandedPenConcept from "../../assets/marketing/branded-pen-concept.jpg";
+import penFeatureDiagram from "../../assets/marketing/pen-feature-diagram.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
 
 /**
- * Native aspect ratio of the branded-pen-concept image — set explicitly so
+ * Native aspect ratio of the pen-feature-diagram image — set explicitly so
  * it's never cropped or distorted.
  */
-const PEN_PHOTO_ASPECT = "2000 / 1125";
+const PEN_PHOTO_ASPECT = "2000 / 496";
 
 export default function Hero() {
   return (
@@ -25,13 +25,14 @@ export default function Hero() {
       </Container>
 
       {/*
-        The one full-bleed moment of the homepage: the branded concept shot,
-        shown wide and uncropped rather than forced into a boxed hero panel.
+        The one full-bleed moment of the homepage: the annotated product
+        diagram, shown wide and uncropped rather than forced into a boxed
+        hero panel.
       */}
       <Bleed className="mt-14 lg:mt-16">
         <img
-          src={brandedPenConcept}
-          alt="An EarthMend pen with its branding printed along the barrel, resting beside its cap and seed capsule"
+          src={penFeatureDiagram}
+          alt="An EarthMend pen labelled with its features: kraft-paper barrel, a printed logo area on the barrel, and a biodegradable seed capsule with seeds in its cap"
           className="w-full object-cover"
           style={{ aspectRatio: PEN_PHOTO_ASPECT }}
         />
