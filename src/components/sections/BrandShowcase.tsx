@@ -2,7 +2,9 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import penFull from "../../assets/pen/pen-full.jpg";
+import brandShowcaseVideoMp4 from "../../assets/video/brand-showcase.mp4";
+import brandShowcaseVideoWebm from "../../assets/video/brand-showcase.webm";
+import brandShowcasePoster from "../../assets/marketing/brand-video-poster.jpg";
 
 const STEPS = ["Your Brand", "Their Everyday", "A Second Purpose"];
 
@@ -45,12 +47,19 @@ export default function BrandShowcase() {
         </Reveal>
 
         <Reveal delay={120} className="mt-10 lg:mt-14">
-          <img
-            src={penFull}
-            alt="Close-up of the EarthMend pen's branded kraft-paper barrel"
+          <video
+            poster={brandShowcasePoster}
+            aria-label="A row of EarthMend pens, each in a sample card sleeve printed with different example company branding"
             className="w-full object-cover"
-            style={{ aspectRatio: "16 / 7", objectPosition: "48% 50%" }}
-          />
+            style={{ aspectRatio: "16 / 7" }}
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src={brandShowcaseVideoWebm} type="video/webm" />
+            <source src={brandShowcaseVideoMp4} type="video/mp4" />
+          </video>
         </Reveal>
       </Container>
     </Section>
