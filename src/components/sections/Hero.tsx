@@ -2,15 +2,15 @@ import Container from "../layout/Container";
 import Bleed from "../layout/Bleed";
 import Section from "../layout/Section";
 import ZoomableImage from "../ui/ZoomableImage";
-import penFeatureDiagram from "../../assets/marketing/pen-feature-diagram-v3.jpg";
+import growthSequence from "../../assets/marketing/growth-sequence.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
 
 /**
- * Native aspect ratio of the pen-feature-diagram image — set explicitly so
+ * Native aspect ratio of the growth-sequence image — set explicitly so
  * it's never cropped or distorted.
  */
-const PEN_PHOTO_ASPECT = "2000 / 627";
+const PEN_PHOTO_ASPECT = "1147 / 600";
 
 export default function Hero() {
   return (
@@ -26,16 +26,15 @@ export default function Hero() {
       </Container>
 
       {/*
-        The one full-bleed moment of the homepage: the annotated product
-        diagram, shown wide and uncropped rather than forced into a boxed
-        hero panel. On mobile its very wide aspect ratio leaves it quite
-        small, so ZoomableImage adds a tap-to-enlarge lightbox there;
-        desktop already shows it at a comfortable size and is untouched.
+        The one full-bleed moment of the homepage: a real four-stage time
+        lapse of the pen planted and growing, shown wide and uncropped
+        rather than forced into a boxed hero panel. ZoomableImage adds a
+        tap-to-enlarge lightbox on mobile, where the strip is narrower.
       */}
       <Bleed className="mt-14 lg:mt-16">
         <ZoomableImage
-          src={penFeatureDiagram}
-          alt="An EarthMend pen labelled with its features: kraft-paper barrel, a printed logo area on the barrel, and a biodegradable seed capsule with seeds in its cap"
+          src={growthSequence}
+          alt="A four-photo time lapse of an EarthMend pen planted in a pot, from freshly planted beside tiny seedlings through to fully grown among flourishing leaves"
           className="w-full object-cover"
           style={{ aspectRatio: PEN_PHOTO_ASPECT }}
         />
