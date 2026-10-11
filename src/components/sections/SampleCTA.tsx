@@ -3,7 +3,7 @@ import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Button from "../ui/Button";
 import Reveal from "../ui/Reveal";
-import penSeedCapsule from "../../assets/pen/pen-seed-capsule.jpg";
+import sampleCardSleeve from "../../assets/marketing/sample-card-sleeve.jpg";
 
 /**
  * A tactile, personal closing moment before the final dark CTA — a large
@@ -16,10 +16,10 @@ export default function SampleCTA() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-x-16">
           <Reveal className="lg:col-span-7">
             <img
-              src={penSeedCapsule}
-              alt="Close-up of the EarthMend pen's biodegradable seed capsule"
+              src={sampleCardSleeve}
+              alt="An EarthMend pen in a sample card sleeve branded for a fictional hotel company, beside EarthMend's own 'Plant after use' instructions card"
               className="w-full object-cover"
-              style={{ aspectRatio: "6 / 5" }}
+              style={{ aspectRatio: "1485 / 1856" }}
             />
           </Reveal>
 
