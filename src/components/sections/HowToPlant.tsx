@@ -4,8 +4,9 @@ import Reveal from "../ui/Reveal";
 import ImageBlock from "../product/ImageBlock";
 import SectionIntro from "./SectionIntro";
 import ZoomableImage from "../ui/ZoomableImage";
-import penTip from "../../assets/pen/pen-tip.jpg";
-import penSeedCapsule from "../../assets/pen/pen-seed-capsule.jpg";
+import journeyWrite from "../../assets/marketing/journey-write.jpg";
+import journeyPlant from "../../assets/marketing/journey-plant.jpg";
+import journeyGrow from "../../assets/marketing/journey-grow.jpg";
 import seedVarieties from "../../assets/marketing/seed-varieties.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
@@ -15,22 +16,22 @@ const STEPS = [
     number: "01",
     label: "Write",
     description: "Use the pen normally until the ink runs out.",
-    image: penTip,
-    alt: "Close-up of the EarthMend pen's writing tip",
+    image: journeyWrite,
+    alt: "A hand writing with the EarthMend pen in a notebook",
   },
   {
     number: "02",
     label: "Plant",
     description: "Remove the biodegradable seed capsule and gently plant it in suitable soil.",
-    image: penSeedCapsule,
-    alt: "Close-up of the EarthMend pen's biodegradable seed capsule",
+    image: journeyPlant,
+    alt: "The EarthMend pen planted in a pot of soil",
   },
   {
     number: "03",
     label: "Grow",
     description: "Give it suitable sunlight, water and time.",
-    image: null,
-    alt: "",
+    image: journeyGrow,
+    alt: "The EarthMend pen planted among flowering foliage, grown in a sunny spot",
   },
 ] as const;
 
@@ -44,9 +45,7 @@ type HowToPlantProps = {
 /**
  * The pen's second life, told as one continuous journey — a connecting
  * line across WRITE / PLANT / GROW, each stop carrying its own real
- * detail photo where one exists. No boxed cards; a growth photo doesn't
- * exist yet, so that stop uses the same honest placeholder treatment as
- * everywhere else rather than a fabricated image.
+ * lifestyle photo. No boxed cards.
  */
 export default function HowToPlant({
   id,
@@ -76,10 +75,9 @@ export default function HowToPlant({
               className="py-8 lg:px-10 lg:py-2 lg:first:pl-0 lg:last:pr-0"
             >
               <ImageBlock
-                src={step.image ?? undefined}
-                alt={step.alt || "Placeholder — growth photography to be added once available"}
-                aspect="4 / 3"
-                placeholderLabel={step.image ? undefined : "Photography coming soon"}
+                src={step.image}
+                alt={step.alt}
+                aspect="3 / 4"
                 className="w-full max-w-xs"
               />
               <p className="text-h3 mt-5 tracking-widest">{step.label.toUpperCase()}</p>
