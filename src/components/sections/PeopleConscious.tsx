@@ -2,7 +2,7 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import penTip from "../../assets/pen/pen-tip.jpg";
+import peopleCards from "../../assets/marketing/people-cards.jpg";
 
 /**
  * Reversed split (text leads on desktop) for rhythm against the previous
@@ -31,10 +31,10 @@ export default function PeopleConscious() {
             className="lg:col-span-6 lg:col-start-7 lg:row-start-1"
           >
             <img
-              src={penTip}
-              alt="A hand holding the EarthMend pen, close on the writing tip"
+              src={peopleCards}
+              alt="A pen in a sample card sleeve branded for a fictional hotel company, beside EarthMend's own 'Plant after use' instructions card"
               className="w-full object-cover"
-              style={{ aspectRatio: "6 / 5", objectPosition: "50% 45%" }}
+              style={{ aspectRatio: "900 / 1259" }}
             />
           </Reveal>
         </div>
