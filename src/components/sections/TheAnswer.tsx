@@ -2,7 +2,8 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import penFull from "../../assets/pen/pen-full.jpg";
+import ZoomableImage from "../ui/ZoomableImage";
+import growthSequence from "../../assets/marketing/growth-sequence.jpg";
 
 /**
  * The product reveal — the first time the actual pen appears on this
@@ -24,11 +25,11 @@ export default function TheAnswer() {
         </Reveal>
 
         <Reveal delay={140} className="mt-12 lg:mt-16">
-          <img
-            src={penFull}
-            alt="The EarthMend kraft-paper pen and its biodegradable seed capsule, resting beside its cap"
+          <ZoomableImage
+            src={growthSequence}
+            alt="A four-photo time lapse of an EarthMend pen planted in a pot, from freshly planted beside tiny seedlings through to fully grown among flourishing leaves"
             className="w-full object-cover"
-            style={{ aspectRatio: "1022 / 380" }}
+            style={{ aspectRatio: "1927 / 1009" }}
           />
         </Reveal>
       </Container>
