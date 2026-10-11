@@ -1,10 +1,13 @@
 import Container from "../components/layout/Container";
+import Bleed from "../components/layout/Bleed";
 import Section from "../components/layout/Section";
 import SectionLabel from "../components/ui/SectionLabel";
+import ZoomableImage from "../components/ui/ZoomableImage";
 import ProductFeature from "../components/sections/ProductFeature";
 import HowToPlant from "../components/sections/HowToPlant";
 import CTASection from "../components/sections/CTASection";
 import penFull from "../assets/pen/pen-full.jpg";
+import penFeatureDiagram from "../assets/marketing/pen-feature-diagram-v3.jpg";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 /**
@@ -37,14 +40,14 @@ export default function ThePen() {
           </div>
         </Container>
 
-        <Container className="mt-14 lg:mt-16">
-          <img
-            src={penFull}
-            alt="The EarthMend kraft-paper pen and its biodegradable seed capsule, resting beside its cap"
+        <Bleed className="mt-14 lg:mt-16">
+          <ZoomableImage
+            src={penFeatureDiagram}
+            alt="An EarthMend pen labelled with its features: kraft-paper barrel, a printed logo area on the barrel, and a biodegradable seed capsule with seeds in its cap"
             className="w-full object-cover"
-            style={{ aspectRatio: "1022 / 380" }}
+            style={{ aspectRatio: "2000 / 627" }}
           />
-        </Container>
+        </Bleed>
       </Section>
 
       <ProductFeature
