@@ -51,7 +51,7 @@ export default function BrandShowcase() {
             poster={brandShowcasePoster}
             aria-label="A row of EarthMend pens, each in a sample card sleeve printed with different example company branding"
             className="w-full object-cover"
-            style={{ aspectRatio: "16 / 7" }}
+            style={{ aspectRatio: "16 / 9" }}
             autoPlay
             muted
             loop
