@@ -10,7 +10,7 @@ const JOURNEY = ["Write", "Plant", "Grow"];
  * Native aspect ratio of the growth-sequence image — set explicitly so
  * it's never cropped or distorted.
  */
-const PEN_PHOTO_ASPECT = "1147 / 600";
+const PEN_PHOTO_ASPECT = "1927 / 1009";
 
 export default function Hero() {
   return (
