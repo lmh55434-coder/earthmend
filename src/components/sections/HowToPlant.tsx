@@ -6,7 +6,7 @@ import SectionIntro from "./SectionIntro";
 import ZoomableImage from "../ui/ZoomableImage";
 import journeyWrite from "../../assets/marketing/journey-write.jpg";
 import journeyPlant from "../../assets/marketing/journey-plant.jpg";
-import journeyGrow from "../../assets/marketing/journey-grow.jpg";
+import journeyGrow from "../../assets/marketing/people-sprout-pot.jpg";
 import seedVarieties from "../../assets/marketing/seed-varieties.jpg";
 
 const JOURNEY = ["Write", "Plant", "Grow"];
@@ -31,7 +31,7 @@ const STEPS = [
     label: "Grow",
     description: "Give it suitable sunlight, water and time.",
     image: journeyGrow,
-    alt: "The EarthMend pen planted among flowering foliage, grown in a sunny spot",
+    alt: "The EarthMend pen planted in a pot beside a sprouting nasturtium seedling with tiny leaves and flower buds",
   },
 ] as const;
 
