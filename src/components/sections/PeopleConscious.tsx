@@ -2,7 +2,7 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import peopleCards from "../../assets/marketing/people-cards.jpg";
+import peopleSproutPot from "../../assets/marketing/people-sprout-pot.jpg";
 
 /**
  * Reversed split (text leads on desktop) for rhythm against the previous
@@ -31,10 +31,10 @@ export default function PeopleConscious() {
             className="lg:col-span-6 lg:col-start-7 lg:row-start-1"
           >
             <img
-              src={peopleCards}
-              alt="A pen in a sample card sleeve branded for a fictional hotel company, beside EarthMend's own 'Plant after use' instructions card"
+              src={peopleSproutPot}
+              alt="An EarthMend pen planted in a green pot beside a sprouting nasturtium seedling with tiny leaves and flower buds"
               className="w-full object-cover"
-              style={{ aspectRatio: "900 / 1259" }}
+              style={{ aspectRatio: "1500 / 2000" }}
             />
           </Reveal>
         </div>
