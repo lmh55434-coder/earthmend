@@ -19,7 +19,7 @@ export default function SampleCTA() {
               src={sampleCardSleeve}
               alt="An EarthMend pen in a sample card sleeve branded for a fictional hotel company, beside EarthMend's own 'Plant after use' instructions card"
               className="w-full object-cover"
-              style={{ aspectRatio: "1485 / 1856" }}
+              style={{ aspectRatio: "1313 / 1856" }}
             />
           </Reveal>
 
