@@ -2,7 +2,7 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import penSeedCapsule from "../../assets/pen/pen-seed-capsule.jpg";
+import claimsFlower from "../../assets/marketing/claims-flower.jpg";
 
 const IS = [
   "A pen with a biodegradable seed capsule",
@@ -28,10 +28,10 @@ export default function ClaimsMatter() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-x-14">
           <Reveal className="lg:col-span-5">
             <img
-              src={penSeedCapsule}
-              alt="Close-up of the EarthMend pen's biodegradable seed capsule"
+              src={claimsFlower}
+              alt="The EarthMend pen planted in a pot beside a flowering nasturtium plant"
               className="w-full object-cover"
-              style={{ aspectRatio: "4 / 5" }}
+              style={{ aspectRatio: "900 / 1252" }}
             />
           </Reveal>
 
