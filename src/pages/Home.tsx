@@ -8,8 +8,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Home() {
   usePageMeta(
-    "A Pen That Gives Back",
-    "A plantable kraft-paper pen with a biodegradable seed capsule. Write, plant, grow. Sustainable corporate gifting for Australian businesses.",
+    "Plantable Pen That Gives Back",
+    "EarthMend's plantable pen has a kraft-paper barrel and a biodegradable seed capsule — write, plant it, and grow something real. Sustainable corporate gifting for Australian businesses.",
   );
 
   return (

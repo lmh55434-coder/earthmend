@@ -47,6 +47,7 @@ export default function WhyItMatters({ id, linkLabel, linkHref }: WhyItMattersPr
               alt="An EarthMend pen planted in a small pot beside a young sprouted nasturtium seedling"
               className="w-full object-cover"
               style={{ aspectRatio: "1000 / 1333" }}
+              loading="lazy"
             />
           </Reveal>
         </div>

@@ -51,6 +51,7 @@ export default function WhatTheSymbolMeans() {
               src={logoMark}
               alt="The EarthMend mark"
               className="h-32 w-32 invert lg:h-40 lg:w-40"
+              loading="lazy"
             />
             <p className="text-body mt-6 max-w-xs !text-kraft">
               The intersecting lines read as balance — four elements crossing into one shape,

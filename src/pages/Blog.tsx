@@ -5,8 +5,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Blog() {
   usePageMeta(
-    "Blog",
-    "Notes on sustainable materials, responsible claims, and building brands that leave more than a logo behind.",
+    "Sustainable Living Blog",
+    "Articles on sustainable living, zero-waste tips and responsible sustainability claims, plus notes on materials and building brands that leave more than a logo behind.",
   );
 
   return (

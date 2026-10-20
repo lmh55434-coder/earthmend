@@ -35,6 +35,7 @@ export default function PeopleConscious() {
               alt="An EarthMend pen planted in a green pot beside a sprouting nasturtium seedling with tiny leaves and flower buds"
               className="w-full object-cover"
               style={{ aspectRatio: "1500 / 2000" }}
+              loading="lazy"
             />
           </Reveal>
         </div>

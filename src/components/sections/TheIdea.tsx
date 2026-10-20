@@ -40,6 +40,7 @@ export default function TheIdea({ id }: { id?: string }) {
               alt="A pen in a custom-branded card sleeve beside EarthMend's 'Plant after use and make it sprout' instructions card"
               className="w-full object-cover"
               style={{ aspectRatio: "4 / 5" }}
+              loading="lazy"
             />
           </Reveal>
 

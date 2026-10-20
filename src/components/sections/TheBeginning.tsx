@@ -20,6 +20,7 @@ export default function TheBeginning() {
               alt="The EarthMend pen resting on a kraft-paper surface"
               className="w-full object-cover"
               style={{ aspectRatio: "5 / 4", objectPosition: "50% 40%" }}
+              loading="lazy"
             />
           </Reveal>
 

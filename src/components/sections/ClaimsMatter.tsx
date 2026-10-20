@@ -32,6 +32,7 @@ export default function ClaimsMatter() {
               alt="The EarthMend pen planted in a pot beside a flowering nasturtium plant"
               className="w-full object-cover"
               style={{ aspectRatio: "900 / 1252" }}
+              loading="lazy"
             />
           </Reveal>
 

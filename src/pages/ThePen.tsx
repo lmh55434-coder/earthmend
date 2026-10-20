@@ -9,6 +9,26 @@ import CTASection from "../components/sections/CTASection";
 import penFull from "../assets/pen/pen-full.jpg";
 import penFeatureDiagram from "../assets/marketing/pen-feature-diagram-v3.jpg";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { useStructuredData } from "../hooks/useStructuredData";
+
+// Module-level so the object reference is stable across renders — it has no
+// dependency on props or state, and useStructuredData re-serializes on every
+// identity change.
+const PRODUCT_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "EarthMend Plantable Pen",
+  description:
+    "A plantable ballpoint pen with a kraft-paper barrel and a biodegradable seed capsule — built for everyday writing, and for what happens after.",
+  image: `https://earthmend.com.au${penFull}`,
+  url: "https://earthmend.com.au/the-pen",
+  brand: {
+    "@type": "Brand",
+    name: "EarthMend",
+  },
+  category: "Promotional Products > Pens",
+  material: "Kraft paper",
+};
 
 /**
  * The dedicated product page: an intro, what it's made from, the planting
@@ -18,9 +38,10 @@ import { usePageMeta } from "../hooks/usePageMeta";
  */
 export default function ThePen() {
   usePageMeta(
-    "The Pen",
-    "A ballpoint pen with a kraft-paper barrel and a biodegradable seed capsule — built for everyday writing, and for what happens after.",
+    "The Plantable Pen",
+    "A plantable ballpoint pen with a kraft-paper barrel and a biodegradable seed capsule — built for everyday writing, and for what happens after.",
   );
+  useStructuredData("the-pen-product-schema", PRODUCT_SCHEMA);
 
   return (
     <>
@@ -46,6 +67,7 @@ export default function ThePen() {
             alt="An EarthMend pen labelled with its features: kraft-paper barrel, a printed logo area on the barrel, and a biodegradable seed capsule with seeds in its cap"
             className="w-full object-cover"
             style={{ aspectRatio: "2000 / 627" }}
+            eager
           />
         </Bleed>
       </Section>

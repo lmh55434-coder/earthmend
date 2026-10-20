@@ -1,29 +1,44 @@
+import { Link } from "react-router-dom";
 import type { BlogBodyBlock, InlineContent } from "../../data/blog";
 
 type ArticleBodyProps = {
   blocks: BlogBodyBlock[];
 };
 
-/** Renders a run of inline text, resolving any external links within it. */
+const LINK_CLASS =
+  "underline decoration-ink-muted/50 underline-offset-2 transition-colors duration-200 ease-editorial hover:text-ink hover:decoration-ink";
+
+/**
+ * Renders a run of inline text, resolving any links within it. An internal
+ * link (href starting with "/") uses react-router's <Link> so it's a
+ * client-side navigation in the same tab; anything else is treated as an
+ * external citation and opens in a new tab.
+ */
 function Inline({ content }: { content: InlineContent }) {
   if (typeof content === "string") return <>{content}</>;
   return (
     <>
-      {content.map((segment, i) =>
-        segment.href ? (
+      {content.map((segment, i) => {
+        if (!segment.href) return <span key={i}>{segment.text}</span>;
+        if (segment.href.startsWith("/")) {
+          return (
+            <Link key={i} to={segment.href} className={LINK_CLASS}>
+              {segment.text}
+            </Link>
+          );
+        }
+        return (
           <a
             key={i}
             href={segment.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-ink-muted/50 underline-offset-2 transition-colors duration-200 ease-editorial hover:text-ink hover:decoration-ink"
+            className={LINK_CLASS}
           >
             {segment.text}
           </a>
-        ) : (
-          <span key={i}>{segment.text}</span>
-        ),
-      )}
+        );
+      })}
     </>
   );
 }

@@ -1,6 +1,11 @@
 export type BlogCategory = "Sustainability" | "For Business" | "Product" | "Behind the Brand";
 
-/** A run of text, optionally an external link. Plain strings still work everywhere this is used. */
+/**
+ * A run of text, optionally a link. Plain strings still work everywhere
+ * this is used. An `href` starting with "/" is an internal site link
+ * (rendered as an in-app <Link>, no new tab); anything else is treated as
+ * external and opens in a new tab.
+ */
 export type InlineSegment = { text: string; href?: string };
 export type InlineContent = string | InlineSegment[];
 
@@ -445,6 +450,14 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: "paragraph",
+        text: [
+          { text: "If you want the simplest possible first step before any of that, our " },
+          { text: "plantable pen", href: "/the-pen" },
+          { text: " turns into a sprouting seedling with zero gardening experience required." },
+        ],
+      },
+      {
+        type: "paragraph",
         text: "We hope this guide was helpful to learn effective green gardening tips!",
       },
     ],
@@ -663,7 +676,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Metal straws",
           "Rechargeable batteries",
           "Refillable cleaning bottles",
-          "Refillable pens",
+          [{ text: "Refillable (or better, plantable) pens", href: "/the-pen" }],
           "Refillable shampoo and conditioner bottles",
           "Reusable baking sheets",
           "Reusable cloth sandwich wraps",
@@ -816,6 +829,7 @@ export const BLOG_POSTS: BlogPost[] = [
         items: [
           [{ text: "Bamboo Cutlery Sets", href: "https://jungleculture.eco/collections/bamboo-cutlery" }],
           [{ text: "Chopvalue Dominos", href: "https://chopvalue.com/products/domino-stones" }],
+          [{ text: "EarthMend Plantable Pen", href: "/the-pen" }],
           [{ text: "Furoshiki Reusable Gift Wrapping Cloth", href: "https://www.anthropologie.com/shop/furoshiki-reusable-gift-wrapping-cloth" }],
           [{ text: "Indoor Herb Garden Starter Kit", href: "https://www.amazon.com/gp/product/B07HHMJBG2/" }],
           [{ text: "Jewelry Made Out Of Recycled Materials", href: "https://www.etsy.com/market/recycled_jewelry" }],
@@ -880,6 +894,11 @@ export const BLOG_POSTS: BlogPost[] = [
           "Clothes are made from synthetic materials to sustainable, natural materials.",
           "Cotton buds to 100% biodegradable cotton buds.",
           "Disposable notepad or journal to infinitely reusable one.",
+          [
+            { text: "Disposable pens to a " },
+            { text: "plantable pen", href: "/the-pen" },
+            { text: " that grows into a plant once the ink runs out." },
+          ],
           "Dryer sheets for wool dryer balls.",
           "Lint rollers for a reusable lint brush.",
           "Liquid soap to bars of soap.",
@@ -1264,6 +1283,14 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "paragraph",
         text: "These certifications build trust and reliability for consumers who purchase your products.",
+      },
+      {
+        type: "paragraph",
+        text: [
+          { text: "That same trust carries over to corporate gifting — a " },
+          { text: "branded, plantable promotional product", href: "/for-business" },
+          { text: " signals the same values a certification does, and gives clients or event attendees something tangible to remember you by." },
+        ],
       },
       {
         type: "paragraph",

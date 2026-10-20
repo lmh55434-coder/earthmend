@@ -5,8 +5,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function FAQ() {
   usePageMeta(
-    "FAQ",
-    "Everything we're asked most often about the pen, ordering for business, and what happens after the ink runs out.",
+    "Plantable Pen FAQ",
+    "Everything we're asked most often about the plantable pen, ordering for business, and what happens after the ink runs out.",
   );
 
   return (

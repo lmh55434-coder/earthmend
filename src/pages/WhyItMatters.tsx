@@ -21,8 +21,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
  */
 export default function WhyItMatters() {
   usePageMeta(
-    "Why It Matters",
-    "Australia is changing. The products people buy, the choices businesses make and the expectations around sustainability are all becoming part of a bigger conversation.",
+    "Why Sustainable Corporate Gifts Matter",
+    "Australia is changing. The products people buy, the choices businesses make and the expectations around sustainable, plantable corporate gifts are all becoming part of a bigger conversation.",
   );
 
   return (

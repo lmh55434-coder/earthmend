@@ -15,7 +15,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 export default function OurStory() {
   usePageMeta(
     "Our Story",
-    "EarthMend began with a simple idea: what if an everyday product could have a life beyond its first use?",
+    "EarthMend began with a simple idea: what if an everyday writing product could have a life beyond its first use? The story behind our plantable pen.",
   );
 
   return (

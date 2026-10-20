@@ -33,6 +33,7 @@ export default function MadeInAustralia() {
               alt="Close-up of the EarthMend pen's kraft-paper barrel and writing tip"
               className="w-full object-cover"
               style={{ aspectRatio: "6 / 5", objectPosition: "50% 45%" }}
+              loading="lazy"
             />
           </Reveal>
         </div>

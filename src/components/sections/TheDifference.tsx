@@ -51,6 +51,7 @@ export default function TheDifference() {
               alt="The EarthMend pen resting on a kraft-paper surface"
               className="w-full object-cover"
               style={{ aspectRatio: "4 / 5", objectPosition: "50% 45%" }}
+              loading="lazy"
             />
           </Reveal>
         </div>

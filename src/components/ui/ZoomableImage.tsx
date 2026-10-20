@@ -8,6 +8,12 @@ type ZoomableImageProps = {
   style?: React.CSSProperties;
   /** Enable the zoom trigger at desktop widths too (default: mobile-only). */
   desktopZoomable?: boolean;
+  /**
+   * Load this image eagerly instead of lazily. Only the one above-the-fold
+   * image on a page (a hero) should set this — everything else should lazy
+   * load so it doesn't compete with the hero for initial bandwidth.
+   */
+  eager?: boolean;
 };
 
 /**
@@ -26,6 +32,7 @@ export default function ZoomableImage({
   className = "",
   style,
   desktopZoomable = false,
+  eager = false,
 }: ZoomableImageProps) {
   const [open, setOpen] = useState(false);
 
@@ -63,7 +70,14 @@ export default function ZoomableImage({
           desktopZoomable ? "" : "lg:pointer-events-none lg:cursor-auto"
         }`}
       >
-        <img src={src} alt={alt} className={className} style={style} />
+        <img
+          src={src}
+          alt={alt}
+          className={className}
+          style={style}
+          loading={eager ? "eager" : "lazy"}
+          fetchPriority={eager ? "high" : undefined}
+        />
         <span
           aria-hidden="true"
           className={`absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-charcoal/70 text-ivory ${

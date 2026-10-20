@@ -37,6 +37,7 @@ export default function Hero() {
           alt="A four-photo time lapse of an EarthMend pen planted in a pot, from freshly planted beside tiny seedlings through to fully grown among flourishing leaves"
           className="w-full object-cover"
           style={{ aspectRatio: PEN_PHOTO_ASPECT }}
+          eager
         />
       </Bleed>
 

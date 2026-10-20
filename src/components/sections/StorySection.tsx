@@ -27,6 +27,7 @@ export default function StorySection({ id, linkLabel, linkHref }: StorySectionPr
             alt="The EarthMend kraft-paper pen resting on its surface"
             className="w-full object-cover lg:ml-[10%] lg:w-[90%]"
             style={{ aspectRatio: "16 / 10", objectPosition: "35% 50%" }}
+            loading="lazy"
           />
 
           <div className="relative z-10 mt-8 max-w-md bg-ivory px-1 lg:absolute lg:bottom-0 lg:left-0 lg:mt-0 lg:bg-cream lg:px-10 lg:py-10">

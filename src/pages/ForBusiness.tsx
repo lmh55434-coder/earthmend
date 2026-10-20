@@ -9,8 +9,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function ForBusiness() {
   usePageMeta(
-    "For Business",
-    "Add your logo or brand identity to an everyday product that people can actually use. From conferences to client gifts, EarthMend gives your brand a physical presence with a story beyond the first use.",
+    "Branded Plantable Pens for Business",
+    "Add your logo to a plantable pen for corporate gifting, conferences and client giveaways — a branded promotional product people actually use, with a story beyond the first use.",
   );
 
   return (
