@@ -8,7 +8,8 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "build": "npm run sitemap && tsc --noEmit && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "postinstall": "playwright install --with-deps chromium"
   },
   "dependencies": {
     "react": "^18.3.1",
