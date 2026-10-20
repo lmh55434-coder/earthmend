@@ -131,6 +131,11 @@ async function main() {
 }
 
 main().catch((err) => {
+  // A broken prerender shouldn't take the whole site down. vite build has
+  // already written a working (if un-prerendered) dist/ by this point, so
+  // log the failure loudly and let the deploy ship that instead of hard
+  // -failing the build — a plain SPA deploy beats no deploy at all.
+  console.error("Prerendering failed — deploying without it:");
   console.error(err);
-  process.exit(1);
+  process.exit(0);
 });
