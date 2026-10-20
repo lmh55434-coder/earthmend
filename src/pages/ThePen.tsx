@@ -10,6 +10,15 @@ import penFull from "../assets/pen/pen-full.jpg";
 import penFeatureDiagram from "../assets/marketing/pen-feature-diagram-v3.jpg";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { useStructuredData } from "../hooks/useStructuredData";
+import { QUANTITY_OPTIONS } from "../data/pricing";
+
+// Derived from the same pricing table the order builder uses, so the two
+// never drift — the free sample (unitPrice 0) and the 5,000+ custom-quote
+// tier (unitPrice null) are excluded since neither is a fixed per-unit
+// price.
+const PRICED_TIERS = QUANTITY_OPTIONS.map((o) => o.unitPrice).filter(
+  (price): price is number => price !== null && price > 0,
+);
 
 // Module-level so the object reference is stable across renders — it has no
 // dependency on props or state, and useStructuredData re-serializes on every
@@ -28,6 +37,18 @@ const PRODUCT_SCHEMA = {
   },
   category: "Promotional Products > Pens",
   material: "Kraft paper",
+  // Bulk, quantity-tiered pricing — there's no single fixed retail price,
+  // so AggregateOffer (not Offer) is the correct fit: it reports the real
+  // range shown in the order builder rather than inventing one price.
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "AUD",
+    lowPrice: Math.min(...PRICED_TIERS).toFixed(2),
+    highPrice: Math.max(...PRICED_TIERS).toFixed(2),
+    offerCount: PRICED_TIERS.length,
+    availability: "https://schema.org/InStock",
+    url: "https://earthmend.com.au/for-business#build-your-order",
+  },
 };
 
 /**
