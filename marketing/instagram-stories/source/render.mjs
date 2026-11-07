@@ -1,6 +1,7 @@
 // Renders the EarthMend Instagram Story FAQ series (1080x1920 PNGs).
-// The pen is always the real product photo (pen.png, cut from the supplied
-// reference) — never redrawn — so its proportions stay exact.
+// The pen is always the real product photo (cut from the supplied photo of
+// the actual pen: cap, kraft barrel, seed capsule and seeds, exactly as
+// photographed) — never redrawn — so its proportions stay exact.
 import { chromium } from "playwright-core";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -11,7 +12,10 @@ mkdirSync(OUT, { recursive: true });
 const f = (p) => `file://${here}/${p}`;
 const font = (p) => f(`node_modules/@fontsource/${p}`);
 
-const PEN_W = 1578, PEN_H = 86; // native cut-out size, never distorted
+// native cut-out sizes, never distorted
+const SET = { src: "pen-set.png", w: 1476, h: 182 };       // barrel + capsule + seeds
+const FULL = { src: "pen-set-full.png", w: 1962, h: 211 }; // cap + barrel + capsule + seeds
+const CAPS = { src: "pen-capsule.png", w: 247, h: 177 };   // capsule + seeds
 
 const C = {
   ivory: "#F5F0E5", cream: "#EEE4CC", kraft: "#D8C49A", charcoal: "#1E1914",
@@ -67,10 +71,10 @@ const themes = {
 };
 
 // pen: centre (cx,cy), length L (px, along the pen), rotation deg (0 = tip left)
-function pen({ cx, cy, L, rot = 0, cls = "" }) {
-  const s = L / PEN_W, w = PEN_W * s, h = PEN_H * s;
+function pen({ cx, cy, L, rot = 0, cls = "", asset = SET }) {
+  const s = L / asset.w, w = asset.w * s, h = asset.h * s;
   return `<div class="pen-wrap ${cls}" style="left:${cx - w / 2}px;top:${cy - h / 2}px;width:${w}px;height:${h}px">
-    <img src="${f("pen.png")}" style="width:${w}px;height:${h}px;transform:rotate(${rot}deg)"></div>`;
+    <img src="${f(asset.src)}" style="width:${w}px;height:${h}px;transform:rotate(${rot}deg)"></div>`;
 }
 
 const top = (chapter) => `<div class="top"><div class="brand"><img src="${f("logo-mark.png")}">EARTHMEND</div><div class="chap">${chapter}</div></div>`;
@@ -105,14 +109,16 @@ const stories = [
 
   ["01-3-anatomy", "ivory", `
     ${top(CH[0])}
-    ${abs("left:96px;top:300px;right:96px", `<div class="eyebrow">Anatomy</div><h2 class="serif" style="font-size:84px;line-height:1.02;margin-top:22px;white-space:nowrap">Three parts.<br><em>One second life.</em></h2>`)}
-    ${pen({ cx: 830, cy: 1160, L: 1060, rot: 90 })}
-    ${abs("left:96px;top:640px;width:600px", `<div style="display:flex;align-items:center;gap:0"><div><div class="eyebrow" style="color:${C.moss}">01</div><p class="serif" style="font-size:46px;margin-top:8px">Ballpoint tip</p><p style="font-size:30px;line-height:1.4;color:${C.muted};margin-top:8px">Writes like the pen<br>you already know.</p></div></div>`)}
-    ${abs("left:96px;top:660px;width:698px", `<div class="rule" style="margin-left:420px;background:${C.charcoal};opacity:.35"></div>`)}
-    ${abs("left:96px;top:1060px;width:600px", `<div class="eyebrow" style="color:${C.moss}">02</div><p class="serif" style="font-size:46px;margin-top:8px">Kraft-paper barrel</p><p style="font-size:30px;line-height:1.4;color:${C.muted};margin-top:8px">Natural kraft paper —<br>and room for your logo.</p>`)}
-    ${abs("left:96px;top:1080px;width:698px", `<div class="rule" style="margin-left:470px;background:${C.charcoal};opacity:.35"></div>`)}
-    ${abs("left:96px;top:1480px;width:600px", `<div class="eyebrow" style="color:${C.moss}">03</div><p class="serif" style="font-size:46px;margin-top:8px">Seed capsule</p><p style="font-size:30px;line-height:1.4;color:${C.muted};margin-top:8px">Biodegradable, filled with<br>seeds, made for planting.</p>`)}
-    ${abs("left:96px;top:1500px;width:698px", `<div class="rule" style="margin-left:400px;background:${C.charcoal};opacity:.35"></div>`)}
+    ${abs("left:96px;top:300px;right:96px", `<div class="eyebrow">Anatomy</div><h2 class="serif" style="font-size:84px;line-height:1.02;margin-top:22px;white-space:nowrap">Four parts.<br><em>One second life.</em></h2>`)}
+    ${pen({ cx: 830, cy: 1080, L: 1150, rot: 90, asset: FULL })}
+    ${abs("left:96px;top:560px;width:600px", `<div class="eyebrow" style="color:${C.moss}">01</div><p class="serif" style="font-size:44px;margin-top:6px">Kraft-paper cap</p><p style="font-size:28px;line-height:1.4;color:${C.muted};margin-top:6px">Protects the tip.</p>`)}
+    ${abs("left:96px;top:612px;width:690px", `<div class="rule" style="margin-left:330px;background:${C.charcoal};opacity:.35"></div>`)}
+    ${abs("left:96px;top:740px;width:600px", `<div class="eyebrow" style="color:${C.moss}">02</div><p class="serif" style="font-size:44px;margin-top:6px">Ballpoint tip</p><p style="font-size:28px;line-height:1.4;color:${C.muted};margin-top:6px">Writes like the pen you know.</p>`)}
+    ${abs("left:96px;top:792px;width:690px", `<div class="rule" style="margin-left:330px;background:${C.charcoal};opacity:.35"></div>`)}
+    ${abs("left:96px;top:1060px;width:600px", `<div class="eyebrow" style="color:${C.moss}">03</div><p class="serif" style="font-size:44px;margin-top:6px">Kraft-paper barrel</p><p style="font-size:28px;line-height:1.4;color:${C.muted};margin-top:6px">Room for your logo.</p>`)}
+    ${abs("left:96px;top:1112px;width:690px", `<div class="rule" style="margin-left:420px;background:${C.charcoal};opacity:.35"></div>`)}
+    ${abs("left:96px;top:1500px;width:600px", `<div class="eyebrow" style="color:${C.moss}">04</div><p class="serif" style="font-size:44px;margin-top:6px">Seed capsule</p><p style="font-size:28px;line-height:1.4;color:${C.muted};margin-top:6px">Biodegradable, filled with seeds.</p>`)}
+    ${abs("left:96px;top:1552px;width:690px", `<div class="rule" style="margin-left:380px;background:${C.charcoal};opacity:.35"></div>`)}
     ${foot()}`],
 
   // ───────── Chapter 02 — Write. Plant. Grow. (cream)
@@ -142,8 +148,8 @@ const stories = [
     ${abs("left:96px;top:330px", Q("What actually<br>grows from it?"))}
     ${abs("left:96px;top:690px", A("You choose the seeds when you order."))}
     ${abs(`left:96px;right:96px;top:960px;height:330px;overflow:hidden;border-radius:2px;background:${C.ivory}`, `
-      <div style="position:absolute;right:70px;top:50%;transform:translateY(-58%);filter:drop-shadow(0 22px 20px rgba(30,25,20,.22))">
-        <img src="${f("pen.png")}" style="display:block;width:${PEN_W * 2.2}px;height:${PEN_H * 2.2}px"></div>
+      <div style="position:absolute;left:58%;top:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 18px 16px rgba(30,25,20,.20))">
+        <img src="${f(CAPS.src)}" style="display:block;width:${CAPS.w * 1.7}px;height:${CAPS.h * 1.7}px"></div>
       <span style="position:absolute;left:44px;bottom:36px;font-size:21px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${C.muted}">The seed capsule</span>`)}
     ${abs("left:96px;right:96px;top:1350px", ["Australian native wildflowers", "Herbs", "Vegetables"].map((t, i) =>
       `<div style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;border-top:1px solid rgba(30,25,20,.16)"><span class="serif" style="font-size:44px">${t}</span><span style="font-size:24px;color:${C.muted};letter-spacing:.12em">0${i + 1}</span></div>`).join(""))}
@@ -170,7 +176,7 @@ const stories = [
     ].map(([k, v]) => `<div style="display:flex;justify-content:space-between;align-items:baseline;gap:40px;padding:30px 0;border-top:1px solid rgba(245,240,229,.18)">
         <span style="font-size:24px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#B5AB9A">${k}</span>
         <span class="serif" style="font-size:44px;text-align:right">${v}</span></div>`).join("") + `<div style="border-top:1px solid rgba(245,240,229,.18)"></div>`)}
-    ${abs("left:96px;right:96px;top:1560px", `<p style="font-size:28px;line-height:1.45;color:#B5AB9A">No clip. No plastic barrel. Nothing extra.</p>`)}
+    ${abs("left:96px;right:96px;top:1560px", `<p style="font-size:28px;line-height:1.45;color:#B5AB9A">No clip. No plastic barrel.</p>`)}
     ${foot()}`],
 
   // ───────── Chapter 04 — A small material difference (kraft)
@@ -198,8 +204,8 @@ const stories = [
     ${abs("left:96px;top:720px", Q("Can we put our<br>logo on it?"))}
     ${abs("left:96px;top:1080px;color:" + C.ivory, A("Yes. Your logo is printed directly onto the <span class='hl'>kraft-paper barrel</span>."))}
     ${pen({ cx: 540, cy: 1520, L: 960 })}
-    ${abs("left:497px;top:1556px;width:2px;height:64px;background:" + C.ivory, "")}
-    ${abs("left:513px;top:1596px;font-size:22px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:" + C.ivory, "Your logo here")}
+    ${abs("left:262px;top:1522px;width:2px;height:70px;background:" + C.ivory, "")}
+    ${abs("left:278px;top:1566px;font-size:22px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:" + C.ivory, "Your logo here")}
     ${foot()}`],
 
   ["05-2-who-orders", "moss", `
@@ -213,16 +219,15 @@ const stories = [
 
   ["05-3-end", "ivory", `
     ${top("Earthmend FAQ")}
-    ${pen({ cx: 540, cy: 960, L: 1180, rot: 90 })}
+    ${pen({ cx: 610, cy: 960, L: 1180, rot: 90, asset: FULL })}
     ${abs("left:96px;top:330px;width:380px", `<h2 class="serif" style="font-size:96px;line-height:1.0">A pen<br>that<br><em>gives<br>back.</em></h2>`)}
-    ${abs("left:640px;top:1100px;width:360px", `<div style="font-size:26px;font-weight:600;letter-spacing:.28em;line-height:2.2">WRITE<br><span style="color:${C.moss}">↓</span><br>PLANT<br><span style="color:${C.moss}">↓</span><br>GROW</div>`)}
+    ${abs("left:730px;top:1100px;width:300px", `<div style="font-size:26px;font-weight:600;letter-spacing:.28em;line-height:2.2">WRITE<br><span style="color:${C.moss}">↓</span><br>PLANT<br><span style="color:${C.moss}">↓</span><br>GROW</div>`)}
     ${abs("left:96px;top:1300px;width:400px", `<p style="font-size:30px;line-height:1.45;color:${C.muted}">Still curious? Send us a DM or request a free sample.</p>`)}
     ${abs("left:96px;right:96px;top:1600px", `<div class="rule"></div><p class="serif" style="font-size:48px;margin-top:26px">earthmend.com.au</p>`)}
     <div class="foot"><span></span><span>Made in Australia</span></div>`],
 ];
 
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" }).catch(() =>
-  chromium.launch());
+const browser = await chromium.launch({ executablePath: process.env.CHROME || "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome" });
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 const only = process.argv[3];
 for (const [name, theme, body] of stories) {
