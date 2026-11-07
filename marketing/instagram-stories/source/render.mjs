@@ -81,6 +81,8 @@ const top = (chapter) => `<div class="top"><div class="brand"><img src="${f("log
 const foot = (l = "earthmend.com.au", r = "") => `<div class="foot"><span>${l}</span><span>${r}</span></div>`;
 const Q = (t) => `<div class="q"><span class="lbl">You asked</span><p>${t}</p></div>`;
 const A = (...ps) => `<div class="a"><div class="lbl"><img src="${f("logo-mark.png")}">Earthmend</div>${ps.map((p) => `<p>${p}</p>`).join("")}</div>`;
+const photo = (src, style, pos = "50% 50%") => `<div style="position:absolute;${style};overflow:hidden;border-radius:3px;box-shadow:0 18px 30px rgba(30,25,20,.18)"><img src="${f(src)}" style="width:100%;height:100%;object-fit:cover;object-position:${pos};display:block"></div>`;
+const cap = (style, t, color) => `<div style="position:absolute;${style};font-size:20px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${color}">${t}</div>`;
 const abs = (style, html) => `<div style="position:absolute;${style}">${html}</div>`;
 const opener = (n, title, fg) => `<div class="eyebrow">Chapter ${n}</div><h1 class="serif" style="font-size:112px;line-height:1.0;margin-top:26px;${fg ? `color:${fg}` : ""}">${title}</h1>`;
 
@@ -125,32 +127,37 @@ const stories = [
   ["02-1-ink-runs-out", "cream", `
     ${top(CH[1])}
     ${abs("left:96px;top:320px;right:96px", opener("02", "Write.<br>Plant. Grow."))}
-    ${abs("left:96px;top:720px", Q("What happens when<br>the ink runs out?"))}
-    ${abs("left:96px;top:1080px", A("Don’t throw it away just yet.", "The <span class='hl'>seed capsule</span> at the end<br>can be planted."))}
+    ${abs("left:96px;top:720px", `<div style="max-width:560px">${Q("What happens<br>when the ink<br>runs out?")}</div>`)}
+    ${abs("left:96px;top:1120px;width:560px", A("Don’t throw it away<br>just yet.", "The <span class='hl'>seed capsule</span> at the end can be planted."))}
+    ${photo("photos/photo-15.jpg", "left:700px;top:720px;width:284px;height:640px", "25% 50%")}
     ${pen({ cx: 540, cy: 1560, L: 940, rot: 0 })}
     ${foot()}`],
 
   ["02-2-how-to-plant", "cream", `
     ${top(CH[1])}
     ${abs("left:96px;top:320px;right:96px", `<div class="eyebrow">How it works</div><h2 class="serif" style="font-size:88px;line-height:1.02;margin-top:22px">From desk<br><em>to soil.</em></h2>`)}
-    ${pen({ cx: 540, cy: 800, L: 900, rot: -4 })}
-    ${abs("left:96px;right:96px;top:960px", [
+    ${photo("photos/photo-15.jpg", "left:96px;top:600px;width:280px;height:330px", "30% 45%")}
+    ${photo("photos/photo-17.jpg", "left:400px;top:600px;width:280px;height:330px", "50% 62%")}
+    ${photo("photos/photo-18.jpg", "left:704px;top:600px;width:280px;height:330px", "50% 48%")}
+    ${cap("left:96px;top:950px", "Planted", C.muted)}${cap("left:400px;top:950px", "Sprouting", C.muted)}${cap("left:704px;top:950px", "Growing", C.muted)}
+    ${abs("left:96px;right:96px;top:1010px", [
       ["01", "Write", "Use it like any ballpoint pen."],
       ["02", "Plant", "Remove the seed capsule and plant<br>it in suitable soil."],
       ["03", "Grow", "Give it sunlight, water and time."],
-    ].map(([n, h, t], i) => `<div style="display:flex;gap:44px;padding:34px 0;${i ? "border-top:1px solid rgba(30,25,20,.16)" : ""}">
-        <span class="serif" style="font-size:76px;line-height:.9;color:${C.moss};width:110px">${n}</span>
-        <div><p class="serif" style="font-size:50px">${h}</p><p style="font-size:32px;line-height:1.4;color:${C.muted};margin-top:8px">${t}</p></div></div>`).join(""))}
+    ].map(([n, h, t], i) => `<div style="display:flex;gap:44px;padding:28px 0;${i ? "border-top:1px solid rgba(30,25,20,.16)" : ""}">
+        <span class="serif" style="font-size:70px;line-height:.9;color:${C.moss};width:110px">${n}</span>
+        <div><p class="serif" style="font-size:46px">${h}</p><p style="font-size:30px;line-height:1.4;color:${C.muted};margin-top:6px">${t}</p></div></div>`).join(""))}
     ${foot()}`],
 
   ["02-3-what-grows", "cream", `
     ${top(CH[1])}
     ${abs("left:96px;top:330px", Q("What actually<br>grows from it?"))}
     ${abs("left:96px;top:690px", A("You choose the seeds when you order."))}
-    ${abs(`left:96px;right:96px;top:960px;height:330px;overflow:hidden;border-radius:2px;background:${C.ivory}`, `
-      <div style="position:absolute;left:58%;top:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 18px 16px rgba(30,25,20,.20))">
-        <img src="${f(CAPS.src)}" style="display:block;width:${CAPS.w * 1.7}px;height:${CAPS.h * 1.7}px"></div>
-      <span style="position:absolute;left:44px;bottom:36px;font-size:21px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${C.muted}">The seed capsule</span>`)}
+    ${abs(`left:96px;top:960px;width:420px;height:330px;overflow:hidden;border-radius:3px;background:${C.ivory}`, `
+      <div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);filter:drop-shadow(0 16px 14px rgba(30,25,20,.20))">
+        <img src="${f(CAPS.src)}" style="display:block;width:${CAPS.w * 1.3}px;height:${CAPS.h * 1.3}px"></div>
+      <span style="position:absolute;left:32px;bottom:28px;font-size:20px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${C.muted}">The seed capsule</span>`)}
+    ${photo("photos/photo-16.jpg", "left:540px;top:960px;width:444px;height:330px", "50% 43%")}
     ${abs("left:96px;right:96px;top:1350px", ["Australian native wildflowers", "Herbs", "Vegetables"].map((t, i) =>
       `<div style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;border-top:1px solid rgba(30,25,20,.16)"><span class="serif" style="font-size:44px">${t}</span><span style="font-size:24px;color:${C.muted};letter-spacing:.12em">0${i + 1}</span></div>`).join(""))}
     ${foot()}`],
@@ -212,18 +219,21 @@ const stories = [
     ${top(CH[4])}
     ${abs("left:96px;top:330px", Q("Who orders<br>Earthmend pens?"))}
     ${abs("left:96px;top:690px;color:" + C.ivory, A("Teams who want their giveaway to <span class='hl'>outlast the event</span>."))}
-    ${abs("left:96px;right:96px;top:1000px;color:" + C.ivory, ["Corporate gifting", "Events &amp; conferences", "Universities", "Client &amp; staff gifts"].map((t) =>
-      `<div style="padding:24px 0;border-top:1px solid rgba(245,240,229,.24)"><span class="serif" style="font-size:48px">${t}</span></div>`).join("") + `<div style="border-top:1px solid rgba(245,240,229,.24)"></div>`)}
-    ${abs("left:96px;right:96px;top:1560px;color:" + C.ivory, `<p style="font-size:30px;line-height:1.45">Bulk orders from 50 pens · Free sample available</p>`)}
+    ${photo("photos/photo-19.jpg", "left:96px;top:950px;width:370px;height:518px", "50% 50%")}
+    ${cap("left:96px;top:1488px", "Optional card packaging", C.ivory)}
+    ${abs("left:510px;right:96px;top:950px;color:" + C.ivory, ["Corporate gifting", "Events &amp; conferences", "Universities", "Client &amp; staff gifts"].map((t) =>
+      `<div style="padding:22px 0;border-top:1px solid rgba(245,240,229,.24)"><span class="serif" style="font-size:38px;line-height:1.15">${t}</span></div>`).join("") + `<div style="border-top:1px solid rgba(245,240,229,.24)"></div>`)}
+    ${abs("left:96px;right:96px;top:1580px;color:" + C.ivory, `<p style="font-size:30px;line-height:1.45">Bulk orders from 50 pens · Free sample available</p>`)}
     ${foot()}`],
 
   ["05-3-end", "ivory", `
     ${top("Earthmend FAQ")}
-    ${pen({ cx: 610, cy: 960, L: 1180, rot: 90, asset: FULL })}
-    ${abs("left:96px;top:330px;width:380px", `<h2 class="serif" style="font-size:96px;line-height:1.0">A pen<br>that<br><em>gives<br>back.</em></h2>`)}
-    ${abs("left:730px;top:1100px;width:300px", `<div style="font-size:26px;font-weight:600;letter-spacing:.28em;line-height:2.2">WRITE<br><span style="color:${C.moss}">↓</span><br>PLANT<br><span style="color:${C.moss}">↓</span><br>GROW</div>`)}
-    ${abs("left:96px;top:1300px;width:400px", `<p style="font-size:30px;line-height:1.45;color:${C.muted}">Still curious? Send us a DM or request a free sample.</p>`)}
-    ${abs("left:96px;right:96px;top:1600px", `<div class="rule"></div><p class="serif" style="font-size:48px;margin-top:26px">earthmend.com.au</p>`)}
+    ${photo("photos/photo-18.jpg", "left:96px;top:250px;width:888px;height:880px", "50% 42%")}
+    ${abs("left:96px;right:96px;top:1170px", `<h2 class="serif" style="font-size:84px;line-height:1.0">A pen that <em>gives back.</em></h2>`)}
+    ${abs("left:96px;right:96px;top:1310px", `<div style="display:flex;justify-content:space-between;font-size:28px;font-weight:600;letter-spacing:.3em">
+      <span>WRITE</span><span style="color:${C.moss}">→</span><span>PLANT</span><span style="color:${C.moss}">→</span><span>GROW</span></div>`)}
+    ${abs("left:96px;right:96px;top:1410px", `<p style="font-size:30px;line-height:1.45;color:${C.muted}">Still curious? Send us a DM or request a free sample.</p>`)}
+    ${abs("left:96px;right:96px;top:1530px", `<div class="rule"></div><p class="serif" style="font-size:48px;margin-top:22px">earthmend.com.au</p>`)}
     <div class="foot"><span></span><span>Made in Australia</span></div>`],
 ];
 
