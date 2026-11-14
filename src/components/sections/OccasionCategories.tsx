@@ -4,6 +4,8 @@ import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
 import ImageBlock from "../product/ImageBlock";
 import weddingFavoursCard from "../../assets/occasions/wedding-favours-card.jpg";
+import birthdayFavoursCard from "../../assets/occasions/birthday-favours-card.jpg";
+import babyShowerFavoursCard from "../../assets/occasions/baby-shower-favours-card.jpg";
 
 type Category = {
   id: string;
@@ -34,7 +36,8 @@ const CATEGORIES: Category[] = [
     headline: "A Little Gift. A Lasting Memory.",
     description:
       "Celebrate another year with a thoughtful gift that goes beyond the occasion. Personalise plantable pens for birthday parties, milestone celebrations and special gatherings.",
-    alt: "A personalised EarthMend plantable pen presented as a birthday celebration favour, styled with understated botanical details",
+    image: birthdayFavoursCard,
+    alt: "Three personalised EarthMend birthday favour pens printed with 'Happy Birthday', laid out on a table with a birthday cake, candles and roses",
     placeholderLabel: "Birthday celebration photography — to be supplied",
     cta: "Explore Birthday Gifts",
   },
@@ -44,7 +47,8 @@ const CATEGORIES: Category[] = [
     headline: "A Little Gift for a New Beginning.",
     description:
       "Celebrate new beginnings with thoughtful plantable gifts for baby showers. Create personalised favours to thank family and friends for sharing this special moment.",
-    alt: "A personalised EarthMend plantable pen baby shower favour, styled with soft botanical illustrations and gentle neutral tones",
+    image: babyShowerFavoursCard,
+    alt: "Three personalised EarthMend baby shower favour pens printed with 'Oh Baby!', laid out on a table with a teddy bear, knitted booties and a naked cake",
     placeholderLabel: "Baby shower photography — to be supplied",
     cta: "Explore Baby Shower Favours",
   },
