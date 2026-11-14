@@ -44,7 +44,7 @@ export default function WhyItMatters({ id, linkLabel, linkHref }: WhyItMattersPr
           <Reveal delay={120} className="lg:col-span-7">
             <img
               src={sproutPot}
-              alt="An EarthMend pen planted in a small pot beside a young sprouted nasturtium seedling"
+              alt="An EarthMend pen planted in a small pot with sprouting seedlings, resting on a high-rise windowsill overlooking a city skyline"
               className="w-full object-cover"
               style={{ aspectRatio: "1000 / 1333" }}
               loading="lazy"
