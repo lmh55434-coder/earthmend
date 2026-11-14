@@ -2,7 +2,7 @@ import Container from "../layout/Container";
 import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import peopleSproutPot from "../../assets/marketing/people-sprout-pot.jpg";
+import peoplePotFlower from "../../assets/marketing/people-pot-flower.jpg";
 
 /**
  * Reversed split (text leads on desktop) for rhythm against the previous
@@ -31,8 +31,8 @@ export default function PeopleConscious() {
             className="lg:col-span-6 lg:col-start-7 lg:row-start-1"
           >
             <img
-              src={peopleSproutPot}
-              alt="An EarthMend pen planted in a green pot beside a sprouting nasturtium seedling with tiny leaves and flower buds"
+              src={peoplePotFlower}
+              alt="An EarthMend pen planted in a green pot beside a grown nasturtium plant with a red flower, on a wooden floor"
               className="w-full object-cover"
               style={{ aspectRatio: "1500 / 2000" }}
               loading="lazy"
