@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: "The Pen", href: "/the-pen" },
   { label: "Why It Matters", href: "/why-it-matters" },
   { label: "For Business", href: "/for-business" },
+  { label: "Special Occasions", href: "/special-occasions" },
   { label: "Our Story", href: "/our-story" },
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
@@ -77,13 +78,13 @@ export default function Navigation() {
               centres between two equal-width edges, instead of being centred
               on the full row and then overlapping the real CTA on the right
               as the viewport narrows. */}
-          <div className="hidden w-full items-center gap-4 lg:flex">
+          <div className="hidden w-full items-center gap-4 xl:flex">
             <div aria-hidden="true" className="invisible shrink-0 px-5 py-2.5 text-xs font-medium">
               Request a Free Sample
             </div>
 
             <nav aria-label="Primary" className="flex flex-1 justify-center">
-              <ul className="flex items-center gap-6 xl:gap-10">
+              <ul className="flex items-center gap-7">
                 {NAV_LINKS.map((link) => {
                   const linkClasses =
                     "text-small !text-ink border-b border-transparent pb-0.5 transition-colors duration-200 ease-editorial hover:border-moss hover:text-moss";
@@ -119,7 +120,7 @@ export default function Navigation() {
             aria-controls={menuId}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center lg:hidden"
+            className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center xl:hidden"
           >
             <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
               <line x1="0" y1="1" x2="22" y2="1" stroke="currentColor" strokeWidth="1.4" />
@@ -141,7 +142,7 @@ export default function Navigation() {
 
       <div
         id={menuId}
-        className={`overflow-hidden border-t border-line bg-background transition-[max-height] duration-300 ease-editorial lg:hidden ${
+        className={`overflow-hidden border-t border-line bg-background transition-[max-height] duration-300 ease-editorial xl:hidden ${
           open ? "max-h-[28rem]" : "max-h-0 border-t-0"
         }`}
       >

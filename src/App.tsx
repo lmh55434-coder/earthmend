@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import ThePen from "./pages/ThePen";
 import WhyItMatters from "./pages/WhyItMatters";
 import ForBusiness from "./pages/ForBusiness";
+import SpecialOccasions from "./pages/SpecialOccasions";
 import OurStory from "./pages/OurStory";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="the-pen" element={<ThePen />} />
         <Route path="why-it-matters" element={<WhyItMatters />} />
         <Route path="for-business" element={<ForBusiness />} />
+        <Route path="special-occasions" element={<SpecialOccasions />} />
         <Route path="our-story" element={<OurStory />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogPost />} />

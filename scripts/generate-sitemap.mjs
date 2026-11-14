@@ -14,6 +14,7 @@ const STATIC_ROUTES = [
   "the-pen",
   "why-it-matters",
   "for-business",
+  "special-occasions",
   "our-story",
   "blog",
   "faq",

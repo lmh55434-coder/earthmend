@@ -69,6 +69,28 @@
       <input type="text" name="bot-field" />
     </form>
 
+    <!--
+      Second hidden form, same reason as above: the Special Occasions
+      enquiry form (src/components/sections/OccasionsEnquiry.tsx) has a
+      different field set (occasion type, event date) from the corporate
+      quote-request form, so it needs its own Netlify form registration.
+    -->
+    <form name="occasion-enquiry" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <select name="occasionType">
+        <option>Wedding</option>
+        <option>Birthday</option>
+        <option>Baby Shower</option>
+        <option>Other</option>
+      </select>
+      <input type="text" name="eventDate" />
+      <input type="text" name="quantity" />
+      <textarea name="personalisation"></textarea>
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
