@@ -3,12 +3,14 @@ import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
 import ImageBlock from "../product/ImageBlock";
+import weddingFavoursCard from "../../assets/occasions/wedding-favours-card.jpg";
 
 type Category = {
   id: string;
   eyebrow: string;
   headline: string;
   description: string;
+  image?: string;
   alt: string;
   placeholderLabel: string;
   cta: string;
@@ -21,7 +23,8 @@ const CATEGORIES: Category[] = [
     headline: "A Little Thank-You That Grows.",
     description:
       "Make your wedding day even more memorable with personalised plantable pen favours. Add your names, wedding date and a special thank-you message for your guests.",
-    alt: "A personalised EarthMend wedding favour pen with the couple's names and wedding date, beside a botanical thank-you card",
+    image: weddingFavoursCard,
+    alt: "Three personalised EarthMend wedding favour pens for Emma & Daniel, laid out on linen with fresh flowers and eucalyptus",
     placeholderLabel: "Wedding favour photography — to be supplied",
     cta: "Explore Wedding Favours",
   },
@@ -69,6 +72,7 @@ export default function OccasionCategories() {
           {CATEGORIES.map((category, i) => (
             <Reveal key={category.id} delay={i * 120} className="flex flex-col">
               <ImageBlock
+                src={category.image}
                 alt={category.alt}
                 placeholderLabel={category.placeholderLabel}
                 aspect="4 / 5"

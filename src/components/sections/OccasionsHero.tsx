@@ -4,9 +4,7 @@ import SectionLabel from "../ui/SectionLabel";
 import Button from "../ui/Button";
 import Reveal from "../ui/Reveal";
 import ImageBlock from "../product/ImageBlock";
-// No real wedding favour photography has been supplied for this page yet —
-// ImageBlock renders an honest, labelled placeholder until a photo is
-// imported here and passed as `src` below.
+import weddingHero from "../../assets/occasions/wedding-hero.jpg";
 
 /**
  * The Special Occasions landing page's opening moment — distinct from the
@@ -38,10 +36,11 @@ export default function OccasionsHero() {
 
         <Reveal delay={140} className="mt-14 lg:mt-16">
           <ImageBlock
-            alt="A personalised EarthMend plantable pen wedding favour, with the couple's names and wedding date printed on the card, styled among soft botanical greenery"
-            aspect="16 / 10"
-            placeholderLabel="Wedding favour hero photography — to be supplied"
+            src={weddingHero}
+            alt="A personalised EarthMend plantable pen wedding favour for Emma & Daniel, styled on linen with a candle, fresh flowers and eucalyptus"
+            aspect="1080 / 910"
             className="mx-auto max-w-4xl"
+            eager
           />
         </Reveal>
       </Container>

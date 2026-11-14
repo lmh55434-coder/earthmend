@@ -3,6 +3,7 @@ import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
 import ImageBlock from "../product/ImageBlock";
+import emmaDanielExample from "../../assets/occasions/emma-daniel-example.jpg";
 
 const OPTIONS = [
   { number: "01", label: "Names or event details", description: "Printed on the card." },
@@ -36,8 +37,8 @@ export default function PersonalisationSection() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:items-center lg:gap-x-16">
           <Reveal className="lg:order-2 lg:col-span-6">
             <ImageBlock
-              alt="An example EarthMend wedding favour design for Emma & Daniel, showing their names and wedding date printed on the card and thank-you message on the pen barrel"
-              placeholderLabel="Emma & Daniel wedding favour example — to be supplied"
+              src={emmaDanielExample}
+              alt="A close-up example of an EarthMend wedding favour design for Emma & Daniel, showing their names and wedding date printed on the card and a thank-you message printed on the pen barrel"
               aspect="4 / 5"
             />
           </Reveal>

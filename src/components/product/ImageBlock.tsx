@@ -7,6 +7,12 @@ type ImageBlockProps = {
   objectPosition?: string;
   placeholderLabel?: string;
   className?: string;
+  /**
+   * Load this image eagerly instead of lazily. Only an above-the-fold hero
+   * image should set this — everything else should lazy load so it doesn't
+   * compete with the hero for initial bandwidth.
+   */
+  eager?: boolean;
 };
 
 /**
@@ -22,6 +28,7 @@ export default function ImageBlock({
   objectPosition,
   placeholderLabel,
   className = "",
+  eager = false,
 }: ImageBlockProps) {
   if (src) {
     return (
@@ -30,7 +37,8 @@ export default function ImageBlock({
         alt={alt}
         className={`w-full object-cover ${className}`}
         style={{ aspectRatio: aspect, objectPosition }}
-        loading="lazy"
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : undefined}
       />
     );
   }
