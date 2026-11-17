@@ -1,5 +1,6 @@
 import Hero from "../components/sections/Hero";
 import TheIdea from "../components/sections/TheIdea";
+import SpecialOccasionsTeaser from "../components/sections/SpecialOccasionsTeaser";
 import WhyItMatters from "../components/sections/WhyItMatters";
 import BusinessSection from "../components/sections/BusinessSection";
 import StorySection from "../components/sections/StorySection";
@@ -17,6 +18,8 @@ export default function Home() {
       <Hero />
 
       <TheIdea id="the-idea" />
+
+      <SpecialOccasionsTeaser id="special-occasions" />
 
       <WhyItMatters id="why-it-matters" linkLabel="Explore Why It Matters" linkHref="/why-it-matters" />
 
