@@ -1,4 +1,9 @@
-export type FAQCategory = "The Pen & Planting" | "Ordering for Business" | "Shipping & Delivery" | "Sustainability";
+export type FAQCategory =
+  | "The Pen & Planting"
+  | "Ordering for Business"
+  | "Special Occasions & Personal Gifts"
+  | "Shipping & Delivery"
+  | "Sustainability";
 
 export type FAQItem = {
   question: string;
@@ -22,7 +27,7 @@ export const FAQ_SECTIONS: { category: FAQCategory; items: FAQItem[] }[] = [
       {
         question: "What seeds come with the pen?",
         answer:
-          "You can choose from Herbs, Flowers, or Vegetables and Fruits when you place your order.",
+          "You can choose from flower seeds (including Australian native wildflowers), herb seeds, or vegetables and fruit — or let us know if you have a specific variety in mind and we'll confirm availability and suitability.",
       },
       {
         question: "Does the whole pen break down once it's planted?",
@@ -37,31 +42,47 @@ export const FAQ_SECTIONS: { category: FAQCategory; items: FAQItem[] }[] = [
       {
         question: "What's the minimum order quantity?",
         answer:
-          "Bulk pricing starts at 50 pens. If you'd like to try one first, a free single-pen sample is available any time.",
+          "Our minimum order is 20 units, with bulk orders available up to 5,000+ pcs. If you'd like to try one first, let us know in your enquiry and we'll arrange a free sample.",
       },
       {
         question: "How much does it cost?",
         answer:
-          "Pricing is volume-based — the more you order, the lower the price per pen. Use the order builder on the For Business page to see live pricing for your quantity, or request a custom quote for orders of 5,000 or more.",
+          "Pricing depends on your quantity, branding and packaging, so we don't display fixed prices online. Submit a business enquiry with your requirements and our team will follow up with a personalised quotation.",
       },
       {
         question: "Can I add my logo or branding to the pen?",
         answer:
-          "Yes — your logo or brand artwork is printed directly onto the kraft-paper barrel. Upload your artwork when you build your order and our team will review it.",
+          "Yes — upload your logo and artwork in the Company Branding section of our business enquiry, along with your preferred placement and colours, and our team will review it and come back with design ideas.",
       },
       {
         question: "How long does a branded order take to arrive?",
-        answer: "Typical turnaround is 1–2 weeks from order confirmation, depending on quantity and customisation.",
+        answer:
+          "Turnaround depends on your quantity, customisation and delivery date. Let us know your required delivery date in your enquiry and we'll confirm timing with you directly.",
       },
       {
         question: "Is there a packaging option for gifting or events?",
         answer:
-          "Yes — single card packaging can be added to your order for a small additional cost per pen, which suits gifting, conferences and client hand-outs.",
+          "Yes — you can select individual card packaging or bulk packaging as part of your enquiry, which suits gifting, conferences and client hand-outs. We'll confirm packaging costs along with your quotation.",
       },
       {
         question: "What kinds of businesses order EarthMend pens?",
         answer:
           "Corporate gifting, events and conferences, trade shows, client and employee gifts, brand activations, and universities and organisations all use EarthMend as a branded giveaway with a second purpose.",
+      },
+    ],
+  },
+  {
+    category: "Special Occasions & Personal Gifts",
+    items: [
+      {
+        question: "Can I order plantable pens for a wedding, birthday or baby shower?",
+        answer:
+          "Yes — visit our Special Occasions page to personalise plantable pen favours for weddings, birthdays, baby showers and other celebrations, with your own names, dates and messages.",
+      },
+      {
+        question: "What's the difference between a business order and a Special Occasions order?",
+        answer:
+          "Business enquiries are for corporate gifting, branding and bulk orders. Special Occasions enquiries are for personal celebrations, with a simpler personalisation flow for your names, message and seed preferences.",
       },
     ],
   },
