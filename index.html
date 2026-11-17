@@ -126,6 +126,82 @@
       <input type="text" name="bot-field" />
     </form>
 
+    <!--
+      Third hidden form, same reason as above: the Business Gifting enquiry
+      form (src/components/sections/BuildYourOrder.tsx) has its own field
+      set (logo upload, branding, purpose) separate from the Special
+      Occasions and corporate quote-request forms.
+    -->
+    <form
+      name="business-gift-enquiry"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      enctype="multipart/form-data"
+      hidden
+    >
+      <input type="text" name="companyName" />
+      <input type="text" name="contactName" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="url" name="website" />
+      <input type="checkbox" name="purpose" value="Corporate Gifting" />
+      <input type="checkbox" name="purpose" value="Conferences and Seminars" />
+      <input type="checkbox" name="purpose" value="Exhibitions and Trade Shows" />
+      <input type="checkbox" name="purpose" value="Marketing Campaigns" />
+      <input type="checkbox" name="purpose" value="Employee Gifts" />
+      <input type="checkbox" name="purpose" value="Client Appreciation Gifts" />
+      <input type="checkbox" name="purpose" value="Promotional Merchandise" />
+      <input type="checkbox" name="purpose" value="Educational Institutions" />
+      <input type="checkbox" name="purpose" value="Other" />
+      <select name="estimatedQuantity">
+        <option>50–99</option>
+        <option>100–249</option>
+        <option>250–499</option>
+        <option>500–999</option>
+        <option>1,000–2,499</option>
+        <option>2,500–4,999</option>
+        <option>5,000+</option>
+        <option>Not Sure Yet</option>
+      </select>
+      <input type="text" name="deliveryDate" />
+      <input type="text" name="deliverySuburb" />
+      <select name="deliveryState">
+        <option>QLD</option>
+        <option>NSW</option>
+        <option>VIC</option>
+        <option>SA</option>
+        <option>WA</option>
+        <option>TAS</option>
+        <option>NT</option>
+        <option>ACT</option>
+      </select>
+      <input type="text" name="deliveryPostcode" />
+      <input type="file" name="logo" multiple />
+      <select name="logoPlacement">
+        <option>On the Pen Barrel</option>
+        <option>On the Card Holder</option>
+        <option>On Both</option>
+        <option>Not Sure – Recommend a Layout</option>
+      </select>
+      <input type="text" name="brandColours" />
+      <textarea name="brandPenMessage"></textarea>
+      <textarea name="brandCardMessage"></textarea>
+      <input type="checkbox" name="seedPreferences" value="Flower Seeds" />
+      <input type="checkbox" name="seedPreferences" value="Australian Native Wildflowers" />
+      <input type="checkbox" name="seedPreferences" value="Herb Seeds" />
+      <input type="checkbox" name="seedPreferences" value="Vegetables and Fruits" />
+      <input type="checkbox" name="seedPreferences" value="Specific Seed Variety" />
+      <input type="checkbox" name="seedPreferences" value="Not Sure – Recommend an Option" />
+      <input type="text" name="specificSeedVariety" />
+      <input type="checkbox" name="packagingPreferences" value="Individual Card Packaging" />
+      <input type="checkbox" name="packagingPreferences" value="Bulk Packaging" />
+      <input type="checkbox" name="packagingPreferences" value="Custom Branded Packaging" />
+      <input type="checkbox" name="packagingPreferences" value="Not Sure – Need Recommendations" />
+      <textarea name="additionalRequirements"></textarea>
+      <input type="url" name="designReferenceLink" />
+      <input type="text" name="bot-field" />
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
