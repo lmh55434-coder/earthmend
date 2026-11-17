@@ -3,7 +3,7 @@ import Section from "../layout/Section";
 import TextLink from "../ui/TextLink";
 import SectionLabel from "../ui/SectionLabel";
 import Reveal from "../ui/Reveal";
-import weddingHero from "../../assets/occasions/wedding-hero.jpg";
+import weddingHeroTeaser from "../../assets/occasions/wedding-hero-teaser.jpg";
 
 const OCCASIONS = [
   { number: "01", label: "Weddings", description: "Personalised favours for your guests." },
@@ -30,10 +30,10 @@ export default function SpecialOccasionsTeaser({ id }: { id?: string }) {
 
           <Reveal className="lg:col-span-6">
             <img
-              src={weddingHero}
-              alt="A personalised EarthMend plantable pen wedding favour styled on linen with a candle, fresh flowers and eucalyptus"
+              src={weddingHeroTeaser}
+              alt="A personalised EarthMend plantable pen wedding favour styled on linen"
               className="w-full object-cover"
-              style={{ aspectRatio: "1080 / 910" }}
+              style={{ aspectRatio: "4 / 5" }}
               loading="lazy"
             />
           </Reveal>
