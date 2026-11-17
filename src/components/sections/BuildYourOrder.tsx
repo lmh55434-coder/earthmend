@@ -4,8 +4,6 @@ import Section from "../layout/Section";
 import SectionLabel from "../ui/SectionLabel";
 import Button from "../ui/Button";
 import Reveal from "../ui/Reveal";
-import ZoomableImage from "../ui/ZoomableImage";
-import seedVarieties from "../../assets/marketing/seed-varieties.jpg";
 
 const PURPOSE_OPTIONS = [
   "Corporate Gifting",
@@ -19,16 +17,7 @@ const PURPOSE_OPTIONS = [
   "Other",
 ] as const;
 
-const QUANTITY_RANGES = [
-  "50–99",
-  "100–249",
-  "250–499",
-  "500–999",
-  "1,000–2,499",
-  "2,500–4,999",
-  "5,000+",
-  "Not Sure Yet",
-] as const;
+const MIN_ORDER_QUANTITY = 20;
 
 const AU_STATES = ["QLD", "NSW", "VIC", "SA", "WA", "TAS", "NT", "ACT"] as const;
 
@@ -116,7 +105,14 @@ function validate(values: FormState): FormErrors {
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
     errors.email = "Please enter a valid email address.";
   }
-  if (!values.estimatedQuantity) errors.estimatedQuantity = "Please select an estimated quantity.";
+  if (!values.estimatedQuantity.trim()) {
+    errors.estimatedQuantity = "Please enter an estimated quantity.";
+  } else {
+    const numeric = parseInt(values.estimatedQuantity.replace(/[^0-9]/g, ""), 10);
+    if (!Number.isNaN(numeric) && numeric < MIN_ORDER_QUANTITY) {
+      errors.estimatedQuantity = `Minimum order quantity is ${MIN_ORDER_QUANTITY} units.`;
+    }
+  }
   if (values.deliveryPostcode.trim() && !/^\d{4}$/.test(values.deliveryPostcode.trim())) {
     errors.deliveryPostcode = "Please enter a valid 4-digit postcode.";
   }
@@ -669,15 +665,18 @@ export default function BuildYourOrder() {
                 </div>
 
                 <div className="mt-8">
-                  <SelectField
+                  <TextField
                     id="estimatedQuantity"
                     label="Estimated Quantity"
                     value={form.estimatedQuantity}
-                    options={QUANTITY_RANGES}
                     onChange={(v) => updateField("estimatedQuantity", v)}
-                    placeholderOption="Select a range"
                     error={errors.estimatedQuantity}
+                    placeholder="e.g. 250"
                   />
+                  <p className={`${noteClasses} mt-2`}>
+                    Minimum order quantity is {MIN_ORDER_QUANTITY} units — bulk orders available up
+                    to 5,000+ pcs.
+                  </p>
                 </div>
 
                 <div className="mt-8">
@@ -812,15 +811,6 @@ export default function BuildYourOrder() {
                   Have a particular seed variety in mind? Let us know. We'll confirm availability
                   and suitability for our plantable pens.
                 </p>
-
-                <div className="mt-8 bg-ivory p-4 sm:p-6">
-                  <ZoomableImage
-                    src={seedVarieties}
-                    alt="A catalogue of seed varieties available in the EarthMend seed capsule: herbs (basil, thyme, sage, parsley, rucola), flowers (sunflower, forget-me-not, wildflower, daisy, eternity flower), and vegetables and fruit (cherry tomato, cucumber, melon, strawberry, chili)"
-                    className="w-full"
-                    desktopZoomable
-                  />
-                </div>
               </div>
 
               {/* 05 — Packaging Preferences */}
