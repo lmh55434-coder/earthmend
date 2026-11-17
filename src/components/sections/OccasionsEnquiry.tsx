@@ -596,6 +596,9 @@ export default function OccasionsEnquiry() {
                     optional
                   />
                 </div>
+                <p className={noteClasses}>
+                  Minimum order quantity is 20 units — bulk orders available up to 5,000+ pcs.
+                </p>
 
                 {/* 3. Personalisation Details */}
                 <SubsectionHeading

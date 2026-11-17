@@ -21,12 +21,7 @@ const MIN_ORDER_QUANTITY = 20;
 
 const AU_STATES = ["QLD", "NSW", "VIC", "SA", "WA", "TAS", "NT", "ACT"] as const;
 
-const LOGO_PLACEMENT_OPTIONS = [
-  "On the Pen Barrel",
-  "On the Card Holder",
-  "On Both",
-  "Not Sure – Recommend a Layout",
-] as const;
+const LOGO_PLACEMENT_OPTIONS = ["Pen Barrel", "Card Holder", "Both", "Not Sure – Recommend a Layout"] as const;
 
 const SEED_PREFERENCE_OPTIONS = [
   "Flower Seeds",
@@ -38,9 +33,8 @@ const SEED_PREFERENCE_OPTIONS = [
 ] as const;
 
 const PACKAGING_PREFERENCE_OPTIONS = [
-  "Individual Card Packaging",
+  "Individual Custom Card Packaging",
   "Bulk Packaging",
-  "Custom Branded Packaging",
   "Not Sure – Need Recommendations",
 ] as const;
 
@@ -57,6 +51,7 @@ type FormState = {
   purpose: string[];
   estimatedQuantity: string;
   deliveryDate: string;
+  deliveryAddress: string;
   deliverySuburb: string;
   deliveryState: string;
   deliveryPostcode: string;
@@ -82,6 +77,7 @@ const EMPTY_FORM: FormState = {
   purpose: [],
   estimatedQuantity: "",
   deliveryDate: "",
+  deliveryAddress: "",
   deliverySuburb: "",
   deliveryState: "",
   deliveryPostcode: "",
@@ -147,11 +143,24 @@ function validateLogoFiles(incoming: File[], existing: File[]): { accepted: File
   return { accepted, rejections };
 }
 
+// Dark-form colour hierarchy — identical approach to the Special Occasions
+// enquiry form (src/components/sections/OccasionsEnquiry.tsx), duplicated
+// here rather than shared, so each file stays self-contained and editing
+// one never risks the other. Every arbitrary-value class is written out in
+// full wherever it's used: Tailwind's content scanner reads this file's
+// raw text statically, so a hex interpolated into a fresh `text-[${...}]`
+// bracket at the call site would never be seen by the scanner.
+const MUTED_PLACEHOLDER_CLASS = "placeholder:text-[#8C8678]";
+const MUTED_OPTION_TEXT_CLASS = "text-[#8C8678]";
+const SOFT_GREY_CLASS = "text-[#8C8678]/75";
+const MUTED_BORDER = "border-[#6E6858]/55";
+
 const fieldClasses =
-  "mt-2 w-full border-0 border-b border-line-inverted-strong bg-transparent py-3 text-body-lg !text-ivory placeholder:text-kraft/60 transition-colors duration-200 ease-editorial focus:border-kraft focus:outline-none";
-const labelClasses = "text-eyebrow !text-kraft";
+  `mt-2 w-full border-0 border-b ${MUTED_BORDER} bg-transparent py-3 text-body-lg !text-paper ${MUTED_PLACEHOLDER_CLASS} transition-colors duration-200 ease-editorial focus:border-kraft focus:outline-none`;
+const labelClasses = "text-eyebrow !text-sm !text-ivory";
+const requiredMarkClasses = "ml-0.5 !text-kraft/90";
 const errorClasses = "mt-1.5 text-small text-[#E8A0A0]";
-const noteClasses = "text-small !text-kraft/80";
+const noteClasses = `text-small ${SOFT_GREY_CLASS}`;
 
 type TextFieldProps = {
   id: keyof FormState;
@@ -161,6 +170,7 @@ type TextFieldProps = {
   onChange: (value: string) => void;
   error?: string;
   optional?: boolean;
+  required?: boolean;
   autoComplete?: string;
   placeholder?: string;
 };
@@ -173,6 +183,7 @@ function TextField({
   onChange,
   error,
   optional,
+  required,
   autoComplete,
   placeholder,
 }: TextFieldProps) {
@@ -180,6 +191,11 @@ function TextField({
     <div>
       <label htmlFor={id} className={labelClasses}>
         {label}
+        {required && (
+          <span aria-hidden="true" className={requiredMarkClasses}>
+            *
+          </span>
+        )}
         {optional && <span className="normal-case tracking-normal text-kraft/70"> (optional)</span>}
       </label>
       <input
@@ -227,7 +243,7 @@ function TextAreaField({ id, label, value, onChange, rows = 4, optional, placeho
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className={`${fieldClasses} resize-none border border-line-inverted-strong px-4`}
+        className={`${fieldClasses} resize-none border border-[#6E6858]/55 px-4`}
       />
     </div>
   );
@@ -240,6 +256,7 @@ type SelectFieldProps = {
   options: readonly string[];
   onChange: (value: string) => void;
   optional?: boolean;
+  required?: boolean;
   placeholderOption?: string;
   error?: string;
 };
@@ -251,6 +268,7 @@ function SelectField({
   options,
   onChange,
   optional,
+  required,
   placeholderOption,
   error,
 }: SelectFieldProps) {
@@ -258,6 +276,11 @@ function SelectField({
     <div>
       <label htmlFor={id} className={labelClasses}>
         {label}
+        {required && (
+          <span aria-hidden="true" className={requiredMarkClasses}>
+            *
+          </span>
+        )}
         {optional && <span className="normal-case tracking-normal text-kraft/70"> (optional)</span>}
       </label>
       <select
@@ -289,57 +312,161 @@ function SelectField({
   );
 }
 
-type CheckboxOptionProps = {
+type MultiSelectDropdownProps = {
+  panelId: string;
   name: string;
   label: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
+  placeholder: string;
+  options: readonly string[];
+  selected: string[];
+  onToggle: (label: string, checked: boolean) => void;
 };
 
-// Shared dark checkbox treatment for every multi-select group in this form
-// (purpose, seed preferences, packaging preferences) — the same visual
-// language as the configurator's seed picker it replaces.
-function CheckboxOption({ name, label, checked, onChange }: CheckboxOptionProps) {
+/**
+ * A compact multi-select dropdown — the same pattern as the Special
+ * Occasions form's seed-preferences control, generalised here since this
+ * form needs three of them (purpose, seed preferences, packaging). Chips
+ * show the current selection when closed, with their own remove buttons;
+ * the panel's checkboxes stay mounted at all times (only visually hidden
+ * via the `hidden` attribute) so FormData always reads every selection
+ * regardless of whether the panel happens to be open at submit time.
+ */
+function MultiSelectDropdown({ panelId, name, label, placeholder, options, selected, onToggle }: MultiSelectDropdownProps) {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function handlePointerDown(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
   return (
-    <label
-      className={`group flex min-h-[44px] cursor-pointer items-center gap-4 border px-5 py-4 transition-colors duration-200 ease-editorial ${
-        checked ? "border-moss bg-moss/15" : "border-line-inverted-strong bg-transparent hover:border-kraft"
-      }`}
-    >
-      <input
-        type="checkbox"
-        name={name}
-        value={label}
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        className="peer sr-only"
-      />
-      <span
-        aria-hidden="true"
-        className={`flex h-5 w-5 shrink-0 items-center justify-center border transition-colors duration-200 ease-editorial peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-kraft ${
-          checked ? "border-moss bg-moss" : "border-line-inverted-strong"
-        }`}
+    <div ref={containerRef} className="relative">
+      <label className={labelClasses}>
+        {label} <span className="normal-case tracking-normal text-kraft/70">(optional)</span>
+      </label>
+
+      <div
+        role="button"
+        tabIndex={0}
+        aria-haspopup="true"
+        aria-expanded={open}
+        aria-controls={panelId}
+        aria-label={`${label}, optional`}
+        onClick={() => setOpen((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setOpen((v) => !v);
+          }
+        }}
+        className={`${fieldClasses} flex min-h-[52px] cursor-pointer flex-wrap items-center justify-between gap-2`}
       >
-        {checked && (
-          <svg width="11" height="9" viewBox="0 0 11 9" fill="none" aria-hidden="true">
-            <path
-              d="M1 4.5L4 7.5L10 1"
-              stroke="#F5F0E5"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        )}
-      </span>
-      <span
-        className={`text-body-lg transition-colors duration-200 ease-editorial ${
-          checked ? "!text-ivory" : "!text-kraft group-hover:!text-ivory"
-        }`}
+        <span className="flex flex-1 flex-wrap gap-2">
+          {selected.length === 0 ? (
+            <span className={MUTED_OPTION_TEXT_CLASS}>{placeholder}</span>
+          ) : (
+            selected.map((label) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-1.5 border border-kraft/40 bg-kraft/10 px-2.5 py-1 text-small !text-paper"
+              >
+                {label}
+                <button
+                  type="button"
+                  aria-label={`Remove ${label}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggle(label, false);
+                  }}
+                  className="ml-0.5 !text-kraft transition-colors duration-150 ease-editorial hover:!text-paper"
+                >
+                  ×
+                </button>
+              </span>
+            ))
+          )}
+        </span>
+        <svg
+          aria-hidden="true"
+          width="12"
+          height="8"
+          viewBox="0 0 12 8"
+          fill="none"
+          className={`shrink-0 transition-transform duration-200 ease-editorial ${open ? "rotate-180" : ""}`}
+        >
+          <path d="M1 1.5L6 6.5L11 1.5" stroke="#D8C49A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+
+      <div
+        id={panelId}
+        hidden={!open}
+        className="absolute left-0 right-0 top-full z-20 mt-2 max-h-72 overflow-y-auto border border-[#6E6858]/55 bg-charcoal p-2 shadow-xl"
       >
-        {label}
-      </span>
-    </label>
+        {options.map((option) => {
+          const checked = selected.includes(option);
+          return (
+            <label
+              key={option}
+              className={`flex min-h-[44px] cursor-pointer items-center gap-3 px-3 transition-colors duration-150 ease-editorial ${
+                checked ? "bg-moss/15" : "hover:bg-white/5"
+              }`}
+            >
+              <input
+                type="checkbox"
+                name={name}
+                value={option}
+                checked={checked}
+                onChange={(e) => onToggle(option, e.target.checked)}
+                className="peer sr-only"
+              />
+              <span
+                aria-hidden="true"
+                className={`flex h-5 w-5 shrink-0 items-center justify-center border transition-colors duration-150 ease-editorial peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-kraft ${
+                  checked ? "border-moss bg-moss" : "border-[#6E6858]/70"
+                }`}
+              >
+                {checked && (
+                  <svg width="11" height="9" viewBox="0 0 11 9" fill="none" aria-hidden="true">
+                    <path
+                      d="M1 4.5L4 7.5L10 1"
+                      stroke="#F5F0E5"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+              </span>
+              <span className={`text-body-lg ${checked ? "!text-paper" : MUTED_OPTION_TEXT_CLASS}`}>{option}</span>
+            </label>
+          );
+        })}
+        <div className="mt-1 flex justify-end border-t border-[#6E6858]/40 pt-2">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="px-3 py-2 text-small !text-kraft transition-colors duration-150 ease-editorial hover:!text-paper"
+          >
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -383,22 +510,19 @@ function LogoUpload({ files, errors, onPick, onRemove }: LogoUploadProps) {
       <label htmlFor="logo-upload-input" className={labelClasses}>
         Upload Your Company Logo <span className="normal-case tracking-normal text-kraft/70">(optional)</span>
       </label>
-      <p className={`${noteClasses} mt-1.5`}>
-        Upload your logo so we can explore how your brand could appear on your plantable pens and
-        packaging.
-      </p>
+      <p className={`${noteClasses} mt-1.5`}>So we can show how your brand could appear on the pen and packaging.</p>
 
       <div className="mt-3 space-y-2">
         {files.map((file) => (
           <div
             key={`${file.name}-${file.size}`}
-            className="flex items-center justify-between gap-4 border border-line-inverted-strong px-4 py-3"
+            className="flex items-center justify-between gap-4 border border-[#6E6858]/55 px-4 py-3"
           >
-            <span className="text-body truncate !text-ivory">{file.name}</span>
+            <span className="text-body truncate !text-paper">{file.name}</span>
             <button
               type="button"
               onClick={() => onRemove(file)}
-              className="text-small shrink-0 !text-kraft underline decoration-line-inverted-strong underline-offset-2 transition-colors duration-200 ease-editorial hover:!text-ivory"
+              className="text-small shrink-0 !text-kraft underline decoration-[#6E6858]/60 underline-offset-2 transition-colors duration-200 ease-editorial hover:!text-paper"
             >
               Remove
             </button>
@@ -409,11 +533,9 @@ function LogoUpload({ files, errors, onPick, onRemove }: LogoUploadProps) {
       {files.length < MAX_LOGO_FILES && (
         <label
           htmlFor="logo-upload-input"
-          className="mt-3 flex min-h-[44px] cursor-pointer items-center justify-center border border-dashed border-line-inverted-strong px-4 py-6 text-center transition-colors duration-200 ease-editorial hover:border-kraft"
+          className="mt-3 flex min-h-[44px] cursor-pointer items-center justify-center border border-dashed border-[#6E6858]/55 px-4 py-6 text-center transition-colors duration-200 ease-editorial hover:border-kraft"
         >
-          <span className="text-body !text-kraft">
-            Click to choose logo or artwork files — PNG, JPG, SVG or PDF
-          </span>
+          <span className="text-body !text-kraft">Click to choose logo or artwork files — PNG, JPG, SVG or PDF</span>
         </label>
       )}
 
@@ -450,29 +572,23 @@ function StepHeading({ number, label, supporting }: { number: string; label: str
         {number}
       </span>
       <div>
-        <p className="text-h3 !text-ivory tracking-widest">{label.toUpperCase()}</p>
-        <p className="text-body !text-kraft mt-1">{supporting}</p>
+        <p className="text-h3 !text-kraft tracking-widest">{label.toUpperCase()}</p>
+        <p className={`text-body ${SOFT_GREY_CLASS} mt-1`}>{supporting}</p>
       </div>
     </div>
   );
 }
 
-function SummaryRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <dt className="text-eyebrow !text-kraft">{label}</dt>
-      <dd className="text-body mt-1 !text-kraft">{value}</dd>
-    </div>
-  );
-}
-
 /**
- * A personalised business gifting enquiry — replaces the old priced
- * quantity/seed/packaging configurator and its "Continue to Quote" handoff
- * with a single Netlify form submission, mirroring the Special Occasions
- * enquiry form's design language and never showing a price. EarthMend
- * confirms quantity-based pricing and delivery timing directly with each
- * business afterwards.
+ * A personalised business gifting enquiry — one Netlify form submission,
+ * never showing a price (EarthMend confirms quantity-based pricing and
+ * delivery timing directly with each business). Deliberately matches the
+ * Special Occasions enquiry form's single-column layout, colour hierarchy
+ * and dropdown pattern (src/components/sections/OccasionsEnquiry.tsx) so
+ * the two enquiry forms feel like the same product, just with a different
+ * field set for corporate buyers. No side summary panel — every selected
+ * value already shows inline (as dropdown chips, attached filenames, etc.)
+ * so a duplicate read-only summary would only repeat the same information.
  */
 export default function BuildYourOrder() {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
@@ -537,401 +653,340 @@ export default function BuildYourOrder() {
     }
   }
 
-  if (submitted) {
-    return (
-      <Section id="build-your-order" tone="charcoal" spacing="lg">
-        <Container size="narrow">
-          <Reveal className="mx-auto max-w-content-text text-center">
-            <p className="text-h3 !text-ivory tracking-normal">
-              Thank you for considering Earthmend for your business gifting!
-            </p>
-            <p className="text-body-lg !text-kraft mt-4">
-              We've received your enquiry and branding details. Our team will review your
-              requirements and get back to you with personalised design ideas and a quotation.
-            </p>
-            <p className="text-body-lg !text-kraft mt-4">
-              We look forward to creating something special for your brand.
-            </p>
-          </Reveal>
-        </Container>
-      </Section>
-    );
-  }
-
   return (
     <Section id="build-your-order" tone="charcoal" spacing="lg">
       <Container size="narrow">
-        <Reveal className="max-w-content-text">
-          <SectionLabel tone="inverted">Business Gifting Enquiry</SectionLabel>
+        <Reveal className="mx-auto max-w-content-text text-center">
+          <div className="flex justify-center">
+            <SectionLabel tone="inverted">Business Gifting Enquiry</SectionLabel>
+          </div>
           <h2 className="text-h1 !text-ivory mt-4">Your Brand. A Gift That Gives Back.</h2>
-          <p className="text-body-lg !text-kraft mt-5">
-            Create personalised plantable pens for your business, event or campaign. Share your
-            requirements and let us help bring your brand to life.
+          <p className={`text-body-lg ${SOFT_GREY_CLASS} mx-auto mt-5 max-w-xl`}>
+            Create personalised plantable pens for your business, event or campaign. Tell us about
+            your requirements and we'll help bring your brand to life.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-14 lg:mt-20 lg:grid-cols-12 lg:items-start lg:gap-x-16">
-          <Reveal className="lg:col-span-7">
-            <form
-              name="business-gift-enquiry"
-              onSubmit={handleSubmit}
-              noValidate
-              encType="multipart/form-data"
-              className="space-y-12"
-            >
-              <input type="hidden" name="form-name" value="business-gift-enquiry" readOnly />
-              <p hidden>
-                <label>
-                  Leave this field blank
-                  <input name="bot-field" tabIndex={-1} autoComplete="off" />
-                </label>
+        <div className="mx-auto mt-14 max-w-content-text lg:mt-16">
+          {submitted ? (
+            <Reveal className="border-t border-line-inverted pt-10 text-center">
+              <p className="text-h3 !text-ivory tracking-normal">
+                Thank you for considering Earthmend for your business gifting!
               </p>
+              <p className={`text-body-lg ${SOFT_GREY_CLASS} mt-4`}>
+                We've received your enquiry and branding details. Our team will review your
+                requirements and get back to you with personalised design ideas and a quotation.
+              </p>
+              <p className={`text-body-lg ${SOFT_GREY_CLASS} mt-4`}>
+                We look forward to creating something special for your brand.
+              </p>
+            </Reveal>
+          ) : (
+            <Reveal delay={80}>
+              <form
+                name="business-gift-enquiry"
+                onSubmit={handleSubmit}
+                noValidate
+                encType="multipart/form-data"
+                className="space-y-12"
+              >
+                <input type="hidden" name="form-name" value="business-gift-enquiry" readOnly />
+                <p hidden>
+                  <label>
+                    Leave this field blank
+                    <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </p>
 
-              {/* 01 — Business Details */}
-              <div className="border-t border-line-inverted pt-8">
-                <StepHeading
-                  number="01"
-                  label="Business Details"
-                  supporting="Tell us who we're creating this for."
-                />
-                <div className="mt-6 space-y-8">
-                  <TextField
-                    id="companyName"
-                    label="Company / Organisation Name"
-                    value={form.companyName}
-                    onChange={(v) => updateField("companyName", v)}
-                    error={errors.companyName}
-                    autoComplete="organization"
-                  />
-                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                {/* 01 — Business Details */}
+                <div className="border-t border-line-inverted pt-8">
+                  <StepHeading number="01" label="Business Details" supporting="Tell us who we're creating this for." />
+                  <div className="mt-6 space-y-8">
                     <TextField
-                      id="contactName"
-                      label="Contact Person Full Name"
-                      value={form.contactName}
-                      onChange={(v) => updateField("contactName", v)}
-                      error={errors.contactName}
-                      autoComplete="name"
+                      id="companyName"
+                      label="Company / Organisation Name"
+                      value={form.companyName}
+                      onChange={(v) => updateField("companyName", v)}
+                      error={errors.companyName}
+                      autoComplete="organization"
+                      required
                     />
-                    <TextField
-                      id="email"
-                      label="Business Email Address"
-                      type="email"
-                      value={form.email}
-                      onChange={(v) => updateField("email", v)}
-                      error={errors.email}
-                      autoComplete="email"
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-                    <TextField
-                      id="phone"
-                      label="Phone Number"
-                      type="tel"
-                      value={form.phone}
-                      onChange={(v) => updateField("phone", v)}
-                      optional
-                      autoComplete="tel"
-                    />
-                    <TextField
-                      id="website"
-                      label="Company Website"
-                      type="url"
-                      value={form.website}
-                      onChange={(v) => updateField("website", v)}
-                      optional
-                      autoComplete="url"
-                    />
+                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                      <TextField
+                        id="contactName"
+                        label="Contact Person Full Name"
+                        value={form.contactName}
+                        onChange={(v) => updateField("contactName", v)}
+                        error={errors.contactName}
+                        autoComplete="name"
+                        required
+                      />
+                      <TextField
+                        id="email"
+                        label="Business Email Address"
+                        type="email"
+                        value={form.email}
+                        onChange={(v) => updateField("email", v)}
+                        error={errors.email}
+                        autoComplete="email"
+                        required
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                      <TextField
+                        id="phone"
+                        label="Phone Number"
+                        type="tel"
+                        value={form.phone}
+                        onChange={(v) => updateField("phone", v)}
+                        optional
+                        autoComplete="tel"
+                      />
+                      <TextField
+                        id="website"
+                        label="Company Website"
+                        type="url"
+                        value={form.website}
+                        onChange={(v) => updateField("website", v)}
+                        optional
+                        autoComplete="url"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* 02 — Order Requirements */}
-              <div className="border-t border-line-inverted pt-8">
-                <StepHeading
-                  number="02"
-                  label="Order Requirements"
-                  supporting="What's this order for, and roughly how many?"
-                />
-                <div className="mt-6 space-y-3">
-                  {PURPOSE_OPTIONS.map((option) => (
-                    <CheckboxOption
-                      key={option}
+                {/* 02 — Order Requirements */}
+                <div className="border-t border-line-inverted pt-8">
+                  <StepHeading
+                    number="02"
+                    label="Order Requirements"
+                    supporting="What's this order for, and roughly how many?"
+                  />
+                  <div className="mt-6 space-y-8">
+                    <MultiSelectDropdown
+                      panelId="purpose-panel"
                       name="purpose"
-                      label={option}
-                      checked={form.purpose.includes(option)}
-                      onChange={(checked) => toggleListField("purpose", option, checked)}
+                      label="Purpose of Order"
+                      placeholder="Choose the purpose of your order"
+                      options={PURPOSE_OPTIONS}
+                      selected={form.purpose}
+                      onToggle={(label, checked) => toggleListField("purpose", label, checked)}
                     />
-                  ))}
-                </div>
 
-                <div className="mt-8">
-                  <TextField
-                    id="estimatedQuantity"
-                    label="Estimated Quantity"
-                    value={form.estimatedQuantity}
-                    onChange={(v) => updateField("estimatedQuantity", v)}
-                    error={errors.estimatedQuantity}
-                    placeholder="e.g. 250"
-                  />
-                  <p className={`${noteClasses} mt-2`}>
-                    Minimum order quantity is {MIN_ORDER_QUANTITY} units — bulk orders available up
-                    to 5,000+ pcs.
-                  </p>
-                </div>
+                    <div>
+                      <TextField
+                        id="estimatedQuantity"
+                        label="Estimated Quantity"
+                        value={form.estimatedQuantity}
+                        onChange={(v) => updateField("estimatedQuantity", v)}
+                        error={errors.estimatedQuantity}
+                        placeholder="e.g. 250"
+                        required
+                      />
+                      <p className={`${noteClasses} mt-2`}>
+                        Minimum order quantity is {MIN_ORDER_QUANTITY} units — bulk orders available
+                        up to 5,000+ pcs.
+                      </p>
+                    </div>
 
-                <div className="mt-8">
-                  <TextField
-                    id="deliveryDate"
-                    label="Required Delivery Date"
-                    value={form.deliveryDate}
-                    onChange={(v) => updateField("deliveryDate", v)}
-                    optional
-                  />
-                </div>
-
-                <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
-                  <TextField
-                    id="deliverySuburb"
-                    label="Delivery Suburb"
-                    value={form.deliverySuburb}
-                    onChange={(v) => updateField("deliverySuburb", v)}
-                    optional
-                    autoComplete="address-level2"
-                  />
-                  <SelectField
-                    id="deliveryState"
-                    label="Delivery State"
-                    value={form.deliveryState}
-                    options={AU_STATES}
-                    onChange={(v) => updateField("deliveryState", v)}
-                    optional
-                    placeholderOption="Select State"
-                  />
-                  <TextField
-                    id="deliveryPostcode"
-                    label="Postcode"
-                    value={form.deliveryPostcode}
-                    onChange={(v) => updateField("deliveryPostcode", v)}
-                    error={errors.deliveryPostcode}
-                    optional
-                    autoComplete="postal-code"
-                  />
-                </div>
-              </div>
-
-              {/* 03 — Company Branding */}
-              <div className="border-t border-line-inverted pt-8">
-                <StepHeading
-                  number="03"
-                  label="Company Branding"
-                  supporting="Share your logo and how you'd like it to appear."
-                />
-                <div className="mt-6 space-y-8">
-                  <LogoUpload
-                    files={logoFiles}
-                    errors={logoErrors}
-                    onPick={handleLogoPick}
-                    onRemove={handleLogoRemove}
-                  />
-
-                  <SelectField
-                    id="logoPlacement"
-                    label="Logo Placement"
-                    value={form.logoPlacement}
-                    options={LOGO_PLACEMENT_OPTIONS}
-                    onChange={(v) => updateField("logoPlacement", v)}
-                    optional
-                    placeholderOption="Select a placement"
-                  />
-
-                  <TextField
-                    id="brandColours"
-                    label="Preferred Brand Colours"
-                    value={form.brandColours}
-                    onChange={(v) => updateField("brandColours", v)}
-                    optional
-                    placeholder="e.g. Navy and gold, matching our brand palette"
-                  />
-
-                  <TextAreaField
-                    id="brandPenMessage"
-                    label="Custom Pen Message"
-                    value={form.brandPenMessage}
-                    onChange={(v) => updateField("brandPenMessage", v)}
-                    rows={2}
-                    optional
-                    placeholder="Enter your preferred message or branding text for the pen barrel."
-                  />
-
-                  <TextAreaField
-                    id="brandCardMessage"
-                    label="Custom Card Message"
-                    value={form.brandCardMessage}
-                    onChange={(v) => updateField("brandCardMessage", v)}
-                    rows={2}
-                    optional
-                    placeholder="Enter your preferred message for the card holder."
-                  />
-                </div>
-              </div>
-
-              {/* 04 — Seed Preferences */}
-              <div className="border-t border-line-inverted pt-8">
-                <StepHeading
-                  number="04"
-                  label="Seed Preferences"
-                  supporting="Select one or more — optional."
-                />
-                <div className="mt-6 space-y-3">
-                  {SEED_PREFERENCE_OPTIONS.map((option) => (
-                    <CheckboxOption
-                      key={option}
-                      name="seedPreferences"
-                      label={option}
-                      checked={form.seedPreferences.includes(option)}
-                      onChange={(checked) => toggleListField("seedPreferences", option, checked)}
-                    />
-                  ))}
-                </div>
-
-                {form.seedPreferences.includes("Specific Seed Variety") && (
-                  <div className="mt-6">
                     <TextField
-                      id="specificSeedVariety"
-                      label="Which flower, herb or vegetable would you prefer?"
-                      value={form.specificSeedVariety}
-                      onChange={(v) => updateField("specificSeedVariety", v)}
+                      id="deliveryDate"
+                      label="Required Delivery Date"
+                      value={form.deliveryDate}
+                      onChange={(v) => updateField("deliveryDate", v)}
                       optional
-                      placeholder="e.g. Basil, Sunflower, Cherry Tomato"
+                    />
+
+                    <TextField
+                      id="deliveryAddress"
+                      label="Delivery Address"
+                      value={form.deliveryAddress}
+                      onChange={(v) => updateField("deliveryAddress", v)}
+                      optional
+                      autoComplete="address-line1"
+                    />
+
+                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+                      <TextField
+                        id="deliverySuburb"
+                        label="Delivery Suburb"
+                        value={form.deliverySuburb}
+                        onChange={(v) => updateField("deliverySuburb", v)}
+                        optional
+                        autoComplete="address-level2"
+                      />
+                      <SelectField
+                        id="deliveryState"
+                        label="Delivery State"
+                        value={form.deliveryState}
+                        options={AU_STATES}
+                        onChange={(v) => updateField("deliveryState", v)}
+                        optional
+                        placeholderOption="Select State"
+                      />
+                      <TextField
+                        id="deliveryPostcode"
+                        label="Postcode"
+                        value={form.deliveryPostcode}
+                        onChange={(v) => updateField("deliveryPostcode", v)}
+                        error={errors.deliveryPostcode}
+                        optional
+                        autoComplete="postal-code"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* 03 — Company Branding */}
+                <div className="border-t border-line-inverted pt-8">
+                  <StepHeading
+                    number="03"
+                    label="Company Branding"
+                    supporting="Share your logo and how you'd like it to appear."
+                  />
+                  <div className="mt-6 space-y-8">
+                    <LogoUpload files={logoFiles} errors={logoErrors} onPick={handleLogoPick} onRemove={handleLogoRemove} />
+
+                    <SelectField
+                      id="logoPlacement"
+                      label="Logo Placement"
+                      value={form.logoPlacement}
+                      options={LOGO_PLACEMENT_OPTIONS}
+                      onChange={(v) => updateField("logoPlacement", v)}
+                      optional
+                      placeholderOption="Select a placement"
+                    />
+
+                    <TextField
+                      id="brandColours"
+                      label="Preferred Brand Colours (Printing Colours)"
+                      value={form.brandColours}
+                      onChange={(v) => updateField("brandColours", v)}
+                      optional
+                      placeholder="e.g. Navy and gold, matching our brand palette"
+                    />
+
+                    <TextAreaField
+                      id="brandPenMessage"
+                      label="Custom Pen Barrel Message"
+                      value={form.brandPenMessage}
+                      onChange={(v) => updateField("brandPenMessage", v)}
+                      rows={2}
+                      optional
+                      placeholder="Enter your preferred message or branding text for the pen barrel."
+                    />
+
+                    <TextAreaField
+                      id="brandCardMessage"
+                      label="Custom Card Message"
+                      value={form.brandCardMessage}
+                      onChange={(v) => updateField("brandCardMessage", v)}
+                      rows={2}
+                      optional
+                      placeholder="Enter your preferred message for the card holder."
                     />
                   </div>
+                </div>
+
+                {/* 04 — Seed Preferences */}
+                <div className="border-t border-line-inverted pt-8">
+                  <StepHeading number="04" label="Seed Preferences" supporting="Optional — choose as many as you like." />
+                  <div className="mt-6 space-y-6">
+                    <MultiSelectDropdown
+                      panelId="seed-preferences-panel"
+                      name="seedPreferences"
+                      label="Seed Preferences"
+                      placeholder="Choose your seed preferences"
+                      options={SEED_PREFERENCE_OPTIONS}
+                      selected={form.seedPreferences}
+                      onToggle={(label, checked) => toggleListField("seedPreferences", label, checked)}
+                    />
+
+                    {form.seedPreferences.includes("Specific Seed Variety") && (
+                      <TextField
+                        id="specificSeedVariety"
+                        label="Which flower, herb or vegetable would you prefer?"
+                        value={form.specificSeedVariety}
+                        onChange={(v) => updateField("specificSeedVariety", v)}
+                        optional
+                        placeholder="e.g. Basil, Sunflower, Cherry Tomato"
+                      />
+                    )}
+
+                    <p className={noteClasses}>
+                      Have a particular seed variety in mind? Let us know. We'll confirm
+                      availability and suitability for our plantable pens.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 05 — Packaging Preferences */}
+                <div className="border-t border-line-inverted pt-8">
+                  <StepHeading
+                    number="05"
+                    label="Packaging Preferences"
+                    supporting="Optional — choose as many as you like."
+                  />
+                  <div className="mt-6">
+                    <MultiSelectDropdown
+                      panelId="packaging-preferences-panel"
+                      name="packagingPreferences"
+                      label="Packaging Preferences"
+                      placeholder="Choose your packaging preferences"
+                      options={PACKAGING_PREFERENCE_OPTIONS}
+                      selected={form.packagingPreferences}
+                      onToggle={(label, checked) => toggleListField("packagingPreferences", label, checked)}
+                    />
+                  </div>
+                </div>
+
+                {/* 06 — Additional Information */}
+                <div className="border-t border-line-inverted pt-8">
+                  <StepHeading
+                    number="06"
+                    label="Additional Information"
+                    supporting="Anything else that would help us prepare your quotation."
+                  />
+                  <div className="mt-6 space-y-8">
+                    <TextAreaField
+                      id="additionalRequirements"
+                      label="Additional Requirements"
+                      value={form.additionalRequirements}
+                      onChange={(v) => updateField("additionalRequirements", v)}
+                      rows={4}
+                      optional
+                      placeholder="Tell us about your campaign, event, branding requirements or any other preferences."
+                    />
+                    <TextField
+                      id="designReferenceLink"
+                      label="Design Inspiration / Reference Link"
+                      type="url"
+                      value={form.designReferenceLink}
+                      onChange={(v) => updateField("designReferenceLink", v)}
+                      error={errors.designReferenceLink}
+                      optional
+                      placeholder="e.g. a link to a Pinterest board or brand guidelines"
+                    />
+                  </div>
+                </div>
+
+                {submitError && (
+                  <p className="text-body text-[#E8A0A0]">
+                    Something went wrong sending your enquiry. Please try again in a moment.
+                  </p>
                 )}
 
-                <p className={`${noteClasses} mt-4`}>
-                  Have a particular seed variety in mind? Let us know. We'll confirm availability
-                  and suitability for our plantable pens.
-                </p>
-              </div>
-
-              {/* 05 — Packaging Preferences */}
-              <div className="border-t border-line-inverted pt-8">
-                <StepHeading
-                  number="05"
-                  label="Packaging Preferences"
-                  supporting="Select one or more — optional."
-                />
-                <div className="mt-6 space-y-3">
-                  {PACKAGING_PREFERENCE_OPTIONS.map((option) => (
-                    <CheckboxOption
-                      key={option}
-                      name="packagingPreferences"
-                      label={option}
-                      checked={form.packagingPreferences.includes(option)}
-                      onChange={(checked) => toggleListField("packagingPreferences", option, checked)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* 06 — Additional Information */}
-              <div className="border-t border-line-inverted pt-8">
-                <StepHeading
-                  number="06"
-                  label="Additional Information"
-                  supporting="Anything else that would help us prepare your quotation."
-                />
-                <div className="mt-6 space-y-8">
-                  <TextAreaField
-                    id="additionalRequirements"
-                    label="Additional Requirements"
-                    value={form.additionalRequirements}
-                    onChange={(v) => updateField("additionalRequirements", v)}
-                    rows={4}
-                    optional
-                    placeholder="Tell us about your campaign, event, branding requirements or any other preferences."
-                  />
-                  <TextField
-                    id="designReferenceLink"
-                    label="Design Inspiration / Reference Link"
-                    type="url"
-                    value={form.designReferenceLink}
-                    onChange={(v) => updateField("designReferenceLink", v)}
-                    error={errors.designReferenceLink}
-                    optional
-                    placeholder="e.g. a link to a Pinterest board or brand guidelines"
-                  />
-                </div>
-              </div>
-
-              {submitError && (
-                <p className="text-body text-[#E8A0A0]">
-                  Something went wrong sending your enquiry. Please try again in a moment.
-                </p>
-              )}
-
-              <p className={noteClasses}>
-                Every project is different. We'll review your requirements and provide a
-                personalised quotation.
-              </p>
-
-              <Button type="submit" variant="primary-inverted" disabled={submitting}>
-                {submitting ? "Sending…" : "Request a Personalised Quote"}
-              </Button>
-            </form>
-          </Reveal>
-
-          <Reveal delay={120} className="lg:sticky lg:top-32 lg:col-span-5">
-            <div className="border border-line-inverted-strong bg-[#26211B] p-7 lg:p-9">
-              <SectionLabel tone="inverted">Your Business Enquiry</SectionLabel>
-              <div className="mt-4 border-t border-line-inverted-strong" />
-
-              <dl className="mt-6 space-y-5">
-                <SummaryRow
-                  label="Estimated Quantity"
-                  value={form.estimatedQuantity || "Not selected yet"}
-                />
-                <SummaryRow
-                  label="Purpose"
-                  value={form.purpose.length > 0 ? form.purpose.join(", ") : "Not selected yet"}
-                />
-                <SummaryRow
-                  label="Branding"
-                  value={
-                    logoFiles.length > 0 || form.logoPlacement || form.brandColours
-                      ? [
-                          logoFiles.length > 0
-                            ? `${logoFiles.length} file${logoFiles.length > 1 ? "s" : ""} attached`
-                            : null,
-                          form.logoPlacement || null,
-                          form.brandColours || null,
-                        ]
-                          .filter(Boolean)
-                          .join(" · ")
-                      : "No branding details yet"
-                  }
-                />
-                <SummaryRow
-                  label="Seed Preferences"
-                  value={form.seedPreferences.length > 0 ? form.seedPreferences.join(", ") : "Not selected yet"}
-                />
-                <SummaryRow
-                  label="Packaging Preferences"
-                  value={
-                    form.packagingPreferences.length > 0
-                      ? form.packagingPreferences.join(", ")
-                      : "Not selected yet"
-                  }
-                />
-              </dl>
-
-              <div className="mt-7 border-t border-line-inverted-strong pt-6">
-                <p className="text-body !text-kraft">
+                <p className={noteClasses}>
                   Every project is different. We'll review your requirements and provide a
                   personalised quotation.
                 </p>
-              </div>
-            </div>
-          </Reveal>
+
+                <Button type="submit" variant="primary-inverted" disabled={submitting}>
+                  {submitting ? "Sending…" : "Request a Personalised Quote"}
+                </Button>
+              </form>
+            </Reveal>
+          )}
         </div>
       </Container>
     </Section>
